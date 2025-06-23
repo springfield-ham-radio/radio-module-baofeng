@@ -1,0 +1,104 @@
+{
+  "name": "radio-module-baofeng",
+  "version": "1.0.0",
+  "description": "Radio module for Baofeng UV-5R series ham radios",
+  "author": "Bryan Hunt",
+  "license": "MIT",
+  "packageManager": "yarn@4.9.1",
+  "readme": "README.md",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "src/",
+    "dist/"
+  ],
+  "keywords": [
+    "ham-radio",
+    "radio-module",
+    "baofeng"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "tsx --test src/**/*.test.ts",
+    "test:integration": "tsx --test test/integration/**/*.test.ts",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix --fix-suggestions",
+    "release": "semantic-release",
+    "prepare": "husky"
+  },
+  "springfield": {
+    "pluginType": "radio-module",
+    "manufacturer": "Baofeng",
+    "supportedRadios": [
+      "uv5r",
+      "uv5r-plus"
+    ],
+    "capabilities": {
+      "dslProtocols": true,
+      "memoryRead": true,
+      "memoryWrite": true,
+      "channelProgramming": true,
+      "settingsProgramming": true
+    }
+  },
+  "release": {
+    "branches": [
+      "main",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits"
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits"
+        }
+      ],
+      "@semantic-release/changelog",
+      "semantic-release-yarn",
+      "@semantic-release/gitlab",
+      "@semantic-release/git"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@springfield/ham-radio-api": "^16.1.0",
+    "@springfield/ham-radio-utils": "^1.0.0",
+    "loglayer": "^6.4.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/gitlab": "13.2.6",
+    "@types/chai": "^5.2.2",
+    "@types/node": "^24.0.3",
+    "chai": "^5.2.0",
+    "fishery": "^2.3.1",
+    "husky": "9.1.7",
+    "oxlint": "^1.2.0",
+    "semantic-release": "24.2.5",
+    "semantic-release-yarn": "3.0.2",
+    "tsx": "^4.20.3",
+    "typescript": "5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

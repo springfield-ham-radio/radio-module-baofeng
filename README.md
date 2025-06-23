@@ -1,6 +1,176 @@
 # radio-module-baofeng
 
+A radio module for Baofeng UV-5R series ham radios, compatible with the Springfield Ham Radio Registry.
 
+## Description
+
+This module provides support for programming and managing Baofeng UV-5R and UV-5RE Plus ham radios. It includes:
+
+- Memory read/write capabilities
+- Channel programming with CTCSS/DCS tones
+- Radio settings configuration
+- Complete protocol implementation for the UV-5R series
+
+## Features
+
+- **Memory Management**: Read and write radio memory segments
+- **Channel Programming**: Program up to 128 channels with frequencies, tones, and power settings
+- **Tone Support**: Full CTCSS and DCS tone encoding/decoding
+- **Settings Configuration**: Configure radio settings like squelch, step size, and scan modes
+- **Protocol Support**: Complete implementation of the Baofeng UV-5R communication protocol
+
+## Installation
+
+```bash
+yarn add radio-module-baofeng
+```
+
+## Usage
+
+### Basic Usage
+
+```typescript
+import { CodecFactory } from 'radio-module-baofeng';
+import { MockLogLayer } from 'loglayer';
+
+const factory = new CodecFactory();
+const logger = new MockLogLayer();
+const modelId = { 
+  model: 'baofeng-uv5r', 
+  name: 'Baofeng UV-5R', 
+  manufacturer: 'Baofeng' 
+};
+
+const codec = await factory.createCodec(modelId, config, logger);
+
+// Encode a radio program
+const program = {
+  channels: [
+    {
+      channelNumber: 0,
+      radioChannel: {
+        name: 'REPEAT',
+        receiveFrequency: 146520000,
+        transmitFrequency: 146520000,
+        receiveTone: { type: 'CTCSS', tone: 100.0 },
+        transmitTone: { type: 'CTCSS', tone: 100.0 },
+      },
+      settings: { transmitPower: 5 },
+    },
+  ],
+  settings: {},
+};
+
+const memory = codec.encode(program);
+
+// Decode radio memory
+const decodedProgram = codec.decode(memory);
+```
+
+### Configuration
+
+The module uses the configuration from `configs/baofeng-uv5r.json` which includes:
+
+- Serial communication settings (9600 baud, 8N1)
+- Memory layout and segment definitions
+- Protocol commands for read/write operations
+- Codec configuration with memory offsets
+
+## Supported Radios
+
+- Baofeng UV-5R
+- Baofeng UV-5RE Plus
+
+## Development
+
+### Prerequisites
+
+- Node.js 18+
+- Yarn package manager
+
+### Setup
+
+```bash
+yarn install
+```
+
+### Testing
+
+```bash
+# Run unit tests
+yarn test
+
+# Run integration tests
+yarn test:integration
+```
+
+### Building
+
+```bash
+yarn build
+```
+
+## Module Structure
+
+```
+radio-module-baofeng/
+├── configs/                    # Radio configuration files
+│   └── baofeng-uv5r.json      # UV-5R configuration
+├── src/                        # Module source code
+│   ├── shared/                 # Shared components
+│   │   ├── schemas/           # JSON schemas
+│   │   │   ├── channel-schema.json
+│   │   │   └── settings-schema.json
+│   │   └── codecs/            # Codec implementations
+│   │       ├── baofeng-codec.ts
+│   │       ├── baofeng-decoder.ts
+│   │       ├── baofeng-encoder.ts
+│   │       └── baofeng-dcs-tones.ts
+│   ├── index.ts               # Main entry point
+│   └── codec-factory.ts       # Codec factory
+├── test/                       # Tests
+│   ├── unit/
+│   └── integration/
+└── package.json
+```
+
+## Protocol Details
+
+The module implements the Baofeng UV-5R communication protocol:
+
+- **Magic Number**: `[80, 187, 255, 32, 18, 7, 37]`
+- **Baud Rate**: 9600
+- **Data Format**: 8 data bits, 1 stop bit, no parity
+- **Memory Segments**: 
+  - Channels: 0x0000 - 0x17FF (6144 bytes)
+  - Settings: 0x1EC0 - 0x1FFF (320 bytes)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Run the test suite
+6. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Support
+
+For issues and questions:
+- Create an issue in the GitLab repository
+- Check the [Springfield Ham Radio documentation](https://springfield-ham-radio.com)
+
+## Changelog
+
+### 1.0.0
+- Initial release
+- Support for Baofeng UV-5R and UV-5RE Plus
+- Complete memory read/write functionality
+- Channel programming with CTCSS/DCS tones
 
 ## Getting started
 
