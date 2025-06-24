@@ -808,58 +808,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-arm64@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@oxlint/darwin-arm64@npm:1.2.0"
+"@oxlint/darwin-arm64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@oxlint/darwin-arm64@npm:1.3.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/darwin-x64@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@oxlint/darwin-x64@npm:1.2.0"
+"@oxlint/darwin-x64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@oxlint/darwin-x64@npm:1.3.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxlint/linux-arm64-gnu@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@oxlint/linux-arm64-gnu@npm:1.2.0"
+"@oxlint/linux-arm64-gnu@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@oxlint/linux-arm64-gnu@npm:1.3.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxlint/linux-arm64-musl@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@oxlint/linux-arm64-musl@npm:1.2.0"
+"@oxlint/linux-arm64-musl@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@oxlint/linux-arm64-musl@npm:1.3.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxlint/linux-x64-gnu@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@oxlint/linux-x64-gnu@npm:1.2.0"
+"@oxlint/linux-x64-gnu@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@oxlint/linux-x64-gnu@npm:1.3.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxlint/linux-x64-musl@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@oxlint/linux-x64-musl@npm:1.2.0"
+"@oxlint/linux-x64-musl@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@oxlint/linux-x64-musl@npm:1.3.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxlint/win32-arm64@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@oxlint/win32-arm64@npm:1.2.0"
+"@oxlint/win32-arm64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@oxlint/win32-arm64@npm:1.3.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxlint/win32-x64@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@oxlint/win32-x64@npm:1.2.0"
+"@oxlint/win32-x64@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@oxlint/win32-x64@npm:1.3.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -1147,34 +1147,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@springfield/ham-radio-api@npm:^12.0.1":
-  version: 12.0.1
-  resolution: "@springfield/ham-radio-api@npm:12.0.1"
-  dependencies:
-    ts-brand: "npm:^0.2.0"
-  checksum: 10c0/eeae74f47d1d06eaafabdb912161bc01dd8ea8b7ead6d69c6486383454705c6520b788b7a785b11f4bedfc776b9b481ab912a93af6b380103c0bf8a3ae51c3f8
-  languageName: node
-  linkType: hard
-
-"@springfield/ham-radio-api@npm:^16.1.0":
-  version: 16.1.0
-  resolution: "@springfield/ham-radio-api@npm:16.1.0"
+"@springfield/ham-radio-api@npm:^16.1.1":
+  version: 16.1.1
+  resolution: "@springfield/ham-radio-api@npm:16.1.1"
   dependencies:
     loglayer: "npm:^6.4.3"
     ts-brand: "npm:^0.2.0"
-  checksum: 10c0/843e87e52ac1ee4566c93d9951f59d3fc7ffa678442ffa1dc8d39f0ced7f295d0b8a5f35699b41639f30adff236ce0364cbc3edea67ed01095d375e354a18674
+  checksum: 10c0/f95705235562486bc95d9e02533959a2b8ffd43cc6fc450477c83a6da3ccb8eba191a5d29ba02695afb1c07bb105079ae85fc7b270adc56623f4c9d8b0e02f9e
   languageName: node
   linkType: hard
 
-"@springfield/ham-radio-utils@npm:^1.0.0":
-  version: 1.3.0
-  resolution: "@springfield/ham-radio-utils@npm:1.3.0"
+"@springfield/ham-radio-utils@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@springfield/ham-radio-utils@npm:2.2.0"
   dependencies:
-    "@springfield/ham-radio-api": "npm:^12.0.1"
+    "@springfield/ham-radio-api": "npm:^16.1.1"
+    ajv: "npm:^8.17.1"
+    ajv-formats: "npm:^3.0.1"
     fishery: "npm:^2.3.1"
-    loglayer: "npm:^6.4.2"
+    loglayer: "npm:^6.4.3"
     sprintf-js: "npm:^1.1.3"
-  checksum: 10c0/a7cb3cb3301b9c58ab404da8c018ca945d14eb2b3e5406dad61be2f2b57fd0e4918e8832b16a2b3a6f5f223c13175ac58e1aadc461ace6458d4f49d40be503b0
+  checksum: 10c0/999d6e16cbde6bad414d23427bc9741e7024de2719e0b815accf43537897feef855e79df6ba027296c10fe13c2c0d1f0f8d07753e1ef08c7dff679e7c7a1fa59
   languageName: node
   linkType: hard
 
@@ -1298,7 +1291,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.11.0":
+"ajv-formats@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "ajv-formats@npm:3.0.1"
+  dependencies:
+    ajv: "npm:^8.0.0"
+  peerDependencies:
+    ajv: ^8.0.0
+  peerDependenciesMeta:
+    ajv:
+      optional: true
+  checksum: 10c0/168d6bca1ea9f163b41c8147bae537e67bd963357a5488a1eaf3abe8baa8eec806d4e45f15b10767e6020679315c7e1e5e6803088dfb84efa2b4e9353b83dd0a
+  languageName: node
+  linkType: hard
+
+"ajv@npm:^8.0.0, ajv@npm:^8.11.0, ajv@npm:^8.17.1":
   version: 8.17.1
   resolution: "ajv@npm:8.17.1"
   dependencies:
@@ -3461,7 +3468,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loglayer@npm:^6.4.2, loglayer@npm:^6.4.3":
+"loglayer@npm:^6.4.3":
   version: 6.4.3
   resolution: "loglayer@npm:6.4.3"
   dependencies:
@@ -4089,18 +4096,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxlint@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "oxlint@npm:1.2.0"
+"oxlint@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "oxlint@npm:1.3.0"
   dependencies:
-    "@oxlint/darwin-arm64": "npm:1.2.0"
-    "@oxlint/darwin-x64": "npm:1.2.0"
-    "@oxlint/linux-arm64-gnu": "npm:1.2.0"
-    "@oxlint/linux-arm64-musl": "npm:1.2.0"
-    "@oxlint/linux-x64-gnu": "npm:1.2.0"
-    "@oxlint/linux-x64-musl": "npm:1.2.0"
-    "@oxlint/win32-arm64": "npm:1.2.0"
-    "@oxlint/win32-x64": "npm:1.2.0"
+    "@oxlint/darwin-arm64": "npm:1.3.0"
+    "@oxlint/darwin-x64": "npm:1.3.0"
+    "@oxlint/linux-arm64-gnu": "npm:1.3.0"
+    "@oxlint/linux-arm64-musl": "npm:1.3.0"
+    "@oxlint/linux-x64-gnu": "npm:1.3.0"
+    "@oxlint/linux-x64-musl": "npm:1.3.0"
+    "@oxlint/win32-arm64": "npm:1.3.0"
+    "@oxlint/win32-x64": "npm:1.3.0"
   dependenciesMeta:
     "@oxlint/darwin-arm64":
       optional: true
@@ -4121,7 +4128,7 @@ __metadata:
   bin:
     oxc_language_server: bin/oxc_language_server
     oxlint: bin/oxlint
-  checksum: 10c0/bf5ac063ec0e15cea6eeda7742979941067b5c1dc568b24ec400c6fab8b4d6287e2f6ff4c3d535849d6a4a3203243811c9ecd3917f4f5943296ed5d5531d7ca3
+  checksum: 10c0/7bbcfe95ba296e649c197607ccd7e617061597ae3ce7e43991711fb043e16deebf2134a6a086beb4f112924b775184121411e3f1f224b651e3c392862fe225ea
   languageName: node
   linkType: hard
 
@@ -4619,15 +4626,15 @@ __metadata:
     "@semantic-release/changelog": "npm:6.0.3"
     "@semantic-release/git": "npm:10.0.1"
     "@semantic-release/gitlab": "npm:13.2.6"
-    "@springfield/ham-radio-api": "npm:^16.1.0"
-    "@springfield/ham-radio-utils": "npm:^1.0.0"
+    "@springfield/ham-radio-api": "npm:^16.1.1"
+    "@springfield/ham-radio-utils": "npm:^2.2.0"
     "@types/chai": "npm:^5.2.2"
     "@types/node": "npm:^24.0.3"
     chai: "npm:^5.2.0"
     fishery: "npm:^2.3.1"
     husky: "npm:9.1.7"
     loglayer: "npm:^6.4.3"
-    oxlint: "npm:^1.2.0"
+    oxlint: "npm:^1.3.0"
     semantic-release: "npm:24.2.5"
     semantic-release-yarn: "npm:3.0.2"
     tsx: "npm:^4.20.3"
