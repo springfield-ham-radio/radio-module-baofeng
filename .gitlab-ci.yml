@@ -1,0 +1,40 @@
+default:
+  image: node:22
+
+stages:
+  - install
+  - build
+  - release
+
+cache:
+  key: modules
+  paths:
+    - node_modules/
+    - .yarn/cache/
+    - dist/
+
+install:
+  stage: install
+  script:
+    - corepack enable
+    - yarn install
+
+build:
+  stage: build
+  script:
+    - corepack enable
+    - yarn build
+
+lint:
+  stage: build
+  script:
+    - corepack enable
+    - yarn lint
+
+release:
+  stage: release
+  before_script:
+    - apt-get update && apt-get install -y git
+  script:
+    - corepack enable
+    - yarn release
