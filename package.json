@@ -77,7 +77,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@springfield/ham-radio-api": "^16.1.1",
+    "@springfield/ham-radio-api": "^16.1.2",
     "@springfield/ham-radio-utils": "^2.2.0",
     "loglayer": "^6.4.3"
   },
