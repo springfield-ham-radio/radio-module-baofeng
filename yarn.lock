@@ -1157,6 +1157,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@springfield/ham-radio-api@npm:^16.1.2":
+  version: 16.1.2
+  resolution: "@springfield/ham-radio-api@npm:16.1.2"
+  dependencies:
+    loglayer: "npm:^6.6.0"
+    ts-brand: "npm:^0.2.0"
+  checksum: 10c0/bd3e0cb35449b298a55c7e7aaa386842c1a79eaf7cf9c75fd375c09deb18f0d2dd9052d77bc42256ce594a7534bd6aa9b47580d089d172151b20eef789235377
+  languageName: node
+  linkType: hard
+
 "@springfield/ham-radio-utils@npm:^2.2.0":
   version: 2.2.0
   resolution: "@springfield/ham-radio-utils@npm:2.2.0"
@@ -1180,7 +1190,7 @@ __metadata:
     "@semantic-release/changelog": "npm:6.0.3"
     "@semantic-release/git": "npm:10.0.1"
     "@semantic-release/gitlab": "npm:13.2.6"
-    "@springfield/ham-radio-api": "npm:^16.1.1"
+    "@springfield/ham-radio-api": "npm:^16.1.2"
     "@springfield/ham-radio-utils": "npm:^2.2.0"
     "@types/chai": "npm:5.2.2"
     "@types/node": "npm:24.0.3"
@@ -3502,6 +3512,18 @@ __metadata:
     "@loglayer/shared": "npm:2.3.1"
     "@loglayer/transport": "npm:2.2.1"
   checksum: 10c0/516bdbdf09581acf8518e6db5905df17f1eeb51f4d5e5aa27dfc9f31fdfbc60426f925c9278702bf038cb00864f03d39d423159a4bdd4423c29f037c880b2dc6
+  languageName: node
+  linkType: hard
+
+"loglayer@npm:^6.6.0":
+  version: 6.6.0
+  resolution: "loglayer@npm:6.6.0"
+  dependencies:
+    "@loglayer/context-manager": "npm:1.1.1"
+    "@loglayer/plugin": "npm:2.1.1"
+    "@loglayer/shared": "npm:2.3.1"
+    "@loglayer/transport": "npm:2.2.1"
+  checksum: 10c0/414ca8b305a4c8c2d6b601ad0f979ade9813e9e79fc49b95413e3f51c972390f88d3a768da96b6b0d0c95b3f09fafd67f7931849179b6321799a85926ec052a3
   languageName: node
   linkType: hard
 
