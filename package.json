@@ -1,6 +1,6 @@
 {
   "name": "@springfield/radio-module-baofeng",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Radio module for Baofeng UV-5R series ham radios",
   "author": "Bryan Hunt",
   "license": "MIT",
