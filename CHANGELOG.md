@@ -1,3 +1,8 @@
+## <small>1.0.4 (2025-08-01)</small>
+
+* Merge branch 'renovate/loglayer-6.x' into 'main' ([51b9c8c](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/51b9c8c))
+* fix(deps): update dependency loglayer to ^6.6.0 ([11d0c5a](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/11d0c5a))
+
 ## <small>1.0.3 (2025-07-25)</small>
 
 * Merge branch 'renovate/springfield-ham-radio-utils-2.x' into 'main' ([554b6c4](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/554b6c4))
