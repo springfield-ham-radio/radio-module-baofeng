@@ -1197,7 +1197,7 @@ __metadata:
     chai: "npm:5.2.1"
     fishery: "npm:2.3.1"
     husky: "npm:9.1.7"
-    loglayer: "npm:^6.4.3"
+    loglayer: "npm:^6.6.0"
     oxlint: "npm:1.6.0"
     semantic-release: "npm:24.2.5"
     semantic-release-yarn: "npm:3.0.2"
