@@ -3,7 +3,7 @@ import type { CodecFactory, RadioCodec, RadioModelId } from '@springfield/ham-ra
 import type { ILogLayer } from 'loglayer';
 
 export class BaofengCodecFactory implements CodecFactory {
-  async createCodec(modelId: RadioModelId, config: { [key: string]: unknown }, logger: ILogLayer): Promise<RadioCodec> {
+  async createCodec(modelId: RadioModelId, config: Record<string, unknown>, logger: ILogLayer): Promise<RadioCodec> {
     const baofengConfig = config as unknown as BaofengConfig;
     return new BaofengCodec(modelId, baofengConfig, logger);
   }
