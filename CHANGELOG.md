@@ -1,3 +1,15 @@
+## <small>1.0.5 (2025-08-15)</small>
+
+* Merge branch 'renovate/springfield-ham-radio-utils-2.x' into 'main' ([6fa407c](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/6fa407c))
+* Merge branch 'renovate/tsx-4.x' into 'main' ([722338f](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/722338f))
+* Merge branch 'renovate/typescript-5.x' into 'main' ([e8cea74](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/e8cea74))
+* fix(deps): update dependency @springfield/ham-radio-utils to ^2.2.2 ([251a99b](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/251a99b))
+* chore: add documentation for coding standards and practices across various aspects including convent ([b1f1331](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/b1f1331))
+* chore: update .oxlintrc.json configuration to enhance linting rules and add new plugins ([8ed1d84](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/8ed1d84))
+* chore(deps): update dependency tsx to v4.20.4 ([da068cd](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/da068cd))
+* chore(deps): update dependency typescript to v5.9.2 ([1f9b9b0](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/1f9b9b0))
+* refactor: change config type to Record<string, unknown> in createCodec method ([4f41bec](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/4f41bec))
+
 ## <small>1.0.4 (2025-08-01)</small>
 
 * Merge branch 'renovate/loglayer-6.x' into 'main' ([51b9c8c](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/51b9c8c))
