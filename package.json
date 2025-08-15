@@ -95,7 +95,7 @@
     "oxlint": "1.6.0",
     "semantic-release": "24.2.5",
     "semantic-release-yarn": "3.0.2",
-    "tsx": "4.20.3",
+    "tsx": "4.20.4",
     "typescript": "5.9.2"
   },
   "engines": {
