@@ -18,12 +18,12 @@ export class BaofengDecoder {
       settings: {},
     };
 
-    for (let channelNumber = 0; channelNumber < this.config.numberChannels; channelNumber++) {
+    for (let channelNumber = 0; channelNumber < this.config.numberChannels; channelNumber += 1) {
       this.logger.debug(`Decoding channel: ${channelNumber}`);
 
       const channelAddress = this.getChannelAddress(channelNumber);
 
-      if (0xff != memory.contents[channelAddress]) {
+      if (memory.contents[channelAddress] !== 0xFF) {
         const channel = this.decodeChannel(memory, channelAddress, channelNumber);
         radioProgram.channels.push(channel);
       }
@@ -50,20 +50,20 @@ export class BaofengDecoder {
     return { channelNumber, radioChannel, settings: radioSpecificChannelSettings };
   }
 
-  private decodePower(power: number) {
-    return 0x0 == power ? 5 : 1;
+  private decodePower(power: number): number {
+    return power === 0x0 ? 5 : 1;
   }
 
-  private decodeChannelName(channelAddress: number, memory: RadioMemory) {
+  private decodeChannelName(channelAddress: number, memory: RadioMemory): string {
     const channelNameAddress = 0x10_00 + channelAddress;
 
     let channelName = "";
 
-    for (let i = 0; 7 > i; i++) {
-      const value = memory.contents[channelNameAddress + i];
+    for (let index = 0; index < 8; index += 1) {
+      const value = memory.contents[channelNameAddress + index];
 
-      if (0xff != value) {
-        channelName += String.fromCharCode(value);
+      if (value !== 0xFF) {
+        channelName += String.fromCodePoint(value);
       }
     }
 
@@ -71,26 +71,26 @@ export class BaofengDecoder {
   }
 
   private decodeFrequency(memoryData: Uint8Array, channelOffset: number, valueOffset: number): Frequency {
-    let bcd = 0;
+    let value = 0;
 
-    for (let i = 0; 4 > i; i++) {
-      bcd |= memoryData[channelOffset + valueOffset + i] << (8 * i);
+    for (let index = 0; index < 4; index += 1) {
+      value |= memoryData[channelOffset + valueOffset + index] << (8 * index);
     }
 
-    return Frequency(parseInt(bcd.toString(16), 10) * 10);
+    return Frequency(Number.parseInt(value.toString(16), 10) * 10);
   }
 
   private decodeTone(memoryData: Uint8Array, channelOffset: number, valueOffset: number): RadioTone {
     // DCS: 1 byte index, CTCSS: 2 bytes value
     const dcsIndex = memoryData[channelOffset + valueOffset];
-    const ctcssValue = (memoryData[channelOffset + valueOffset] & 0xff) | (memoryData[channelOffset + valueOffset + 1] << 8);
+    const ctcssValue = (memoryData[channelOffset + valueOffset] & 0xFF) | (memoryData[channelOffset + valueOffset + 1] << 8);
 
     // Heuristic: if the second byte is 0, treat as DCS (index), else CTCSS
-    if (0 === memoryData[channelOffset + valueOffset + 1]) {
+    if (memoryData[channelOffset + valueOffset + 1] === 0) {
       const dcs = dcsValues[dcsIndex] ?? 0;
       return { tone: dcs as DCS, type: RadioToneType.DCS };
-    } else {
-      return { tone: ctcssValue as CTCSS, type: RadioToneType.CTCSS };
     }
+
+    return { tone: ctcssValue as CTCSS, type: RadioToneType.CTCSS };
   }
 }

@@ -55,7 +55,7 @@ describe('Baofeng Module Integration', () => {
     // Handle the case where radioChannel can be either RadioChannel or string
     const radioChannel = decodedProgram.channels[0].radioChannel;
 
-    if ('object' === typeof radioChannel && null !== radioChannel) {
+    if (typeof radioChannel === 'object' && radioChannel !== undefined) {
       expect(radioChannel.name).to.equal('TEST');
       expect(radioChannel.receiveFrequency).to.equal(146_520_000);
       expect(radioChannel.transmitFrequency).to.equal(146_520_000);

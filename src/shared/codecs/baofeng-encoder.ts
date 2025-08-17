@@ -1,4 +1,4 @@
-import { type RadioChannel, type RadioMemory, type RadioModelId, type RadioProgram, type RadioProgrammedChannel, type RadioTone, RadioToneType } from "@springfield/ham-radio-api";
+import { type DCS, type RadioChannel, type RadioMemory, type RadioModelId, type RadioProgram, type RadioProgrammedChannel, type RadioTone, RadioToneType } from "@springfield/ham-radio-api";
 import type { BaofengConfig } from "./baofeng-codec.js";
 import type { ILogLayer } from "loglayer";
 import { formatChannel } from "@springfield/ham-radio-utils";
@@ -21,15 +21,13 @@ export class BaofengEncoder {
     const memory = new Uint8Array(totalSize);
 
     // Initialize memory with 0xff
-    for (let i = 0; i < totalSize; i++) {
-      memory[i] = 0xff;
+    for (let index = 0; index < totalSize; index += 1) {
+      memory[index] = 0xFF;
     }
 
     //---- Encode Channels ------------------------------------------------------------------------
 
-    console.log(`Channel size: ${this.config.channelSize.toString(16)}`);
-
-    for (let channel of radioProgram.channels.sort((a, b) => a.channelNumber - b.channelNumber)) {
+    for (let channel of radioProgram.channels.sort((channel1, channel2) => channel1.channelNumber - channel2.channelNumber)) {
       const channelAddress = this.getChannelAddress(channel.channelNumber);
       const encodedChannel = this.encodeChannel(channel);
       this.logger.debug(`Encoded channel ${formatChannel(channel.channelNumber, encodedChannel)}`);
@@ -59,8 +57,8 @@ export class BaofengEncoder {
 
     data[this.config.powerOffset] = this.encodePower(programmedChannel.settings?.transmitPower as number);
 
-    if ("string" == typeof programmedChannel.channelNumber) {
-      throw new Error("Channel references are not supported yet");
+    if (typeof programmedChannel.channelNumber === "string") {
+      throw new TypeError("Channel references are not supported yet");
     }
 
     const channel: RadioChannel = programmedChannel.radioChannel as RadioChannel;
@@ -79,40 +77,40 @@ export class BaofengEncoder {
     return data;
   }
 
-  private addData(memory: Uint8Array, data: Uint8Array, offset: number) {
-    for (let i = 0; i < data.length; i++) {
-      memory[offset + i] = data[i];
+  private addData(memory: Uint8Array, data: Uint8Array, offset: number): void {
+    for (let index = 0; index < data.length; index += 1) {
+      memory[offset + index] = data[index];
     }
   }
 
   private encodeChannelName(channelName: string): Uint8Array {
-    let i = 0;
+    let index = 0;
     const data = new Uint8Array(7);
 
-    for (i = 0; i < channelName.length; i++) {
-      data[i] = channelName.charCodeAt(i);
+    for (index = 0; index < channelName.length; index += 1) {
+      data[index] = channelName.codePointAt(index) ?? 0;
     }
 
-    for (let j = i; 7 > j; j++) {
-      data[j] = 0xff;
+    for (let paddingIndex = index; paddingIndex < 8; paddingIndex += 1) {
+      data[paddingIndex] = 0xFF;
     }
 
     return data;
   }
 
   private encodePower(power: number): number {
-    return 5 == power ? 0x0 : 0x1;
+    return power === 5 ? 0x0 : 0x1;
   }
 
   private encodeFrequency(frequency: number): Uint8Array {
     const data = new Uint8Array(4);
 
     const eightDigitFrequency = frequency / 10;
-    let bcd = parseInt(eightDigitFrequency.toString(10), 16);
+    let value = Number.parseInt(eightDigitFrequency.toString(10), 16);
 
-    for (let i = 0; 4 > i; i++) {
-      data[i] = bcd & 0xff;
-      bcd >>= 8;
+    for (let index = 0; index < 4; index += 1) {
+      data[index] = value & 0xFF;
+      value >>= 8;
     }
 
     return data;
@@ -120,23 +118,25 @@ export class BaofengEncoder {
 
   private encodeTone(tone: RadioTone): Uint8Array {
     // DCS: 1 byte index, CTCSS: 2 bytes value
-    if (tone.type == RadioToneType.DCS) {
-      const dcsIndex = valuesByDcs.get(tone.tone as any);
+    if (tone.type === RadioToneType.DCS) {
+      const dcsIndex = valuesByDcs.get(tone.tone as unknown as DCS);
+
       if (dcsIndex === undefined) {
         throw new Error(`Could not encode DCS tone '${tone.tone}'`);
       }
+
       const data = new Uint8Array(2);
       data[0] = dcsIndex;
       data[1] = 0; // second byte is 0 for DCS
       return data;
-    } else {
+    }
       // CTCSS: 2 bytes, as before
       const value = tone.tone * 10;
       const data = new Uint8Array(2);
-      data[0] = value & 0xff;
-      data[1] = (value >> 8) & 0xff;
+      data[0] = value & 0xFF;
+      data[1] = (value >> 8) & 0xFF;
       return data;
-    }
+
   }
 
   private debugMemory(memory: Uint8Array): void {
