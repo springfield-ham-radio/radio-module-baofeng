@@ -26,8 +26,8 @@
     "build": "tsc",
     "test": "tsx --test src/**/*.test.ts",
     "test:integration": "tsx --test test/integration/**/*.test.ts",
-    "lint": "oxlint --import-plugin --tsconfig tsconfig.json",
-    "lint:fix": "oxlint --import-plugin --tsconfig tsconfig.json --fix --fix-suggestions",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix --fix-suggestions",
     "release": "semantic-release",
     "prepare": "husky"
   },

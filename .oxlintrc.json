@@ -1,31 +1,4 @@
 {
-  "categories": {
-    "correctness": "error",
-    "suspicious": "error",
-    "pedantic": "warn",
-    "style": "warn",
-    "perf": "warn",
-    "restriction": "error",
-    "nursery": "off"
-  },
-  "rules": {
-    "new-cap": "off",
-    "no-barrel-file": "off",
-    "no-bitwise": "off",
-    "no-magic-numbers": "off",
-    "no-optional-chaining": "off",
-    "no-ternary": "off",
-    "no-undefined": "off",
-    "require-await": "off"
-  },
-  "ignorePatterns": ["dist/", "node_modules/", "build/", "coverage/", "test/"],
-  "env": {
-    "browser": true,
-    "node": true,
-    "es2022": true
-  },
-  "globals": {
-    "process": "readonly",
-    "__dirname": "readonly"
-  }
+  "plugins": ["import"],
+  "ignorePatterns": ["dist/", "node_modules/", "build/", "coverage/", "test/"]
 }
