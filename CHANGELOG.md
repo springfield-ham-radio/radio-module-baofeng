@@ -1,3 +1,7 @@
+## 1.2.0 (2025-08-18)
+
+* feat: remove supported models from index.ts ([dff52fe](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/dff52fe))
+
 ## 1.1.0 (2025-08-18)
 
 * feat: enhance configuration and model support for Baofeng radios ([6a380d7](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/6a380d7))
