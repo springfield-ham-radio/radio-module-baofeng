@@ -22,15 +22,15 @@
   "settingsSchema": {
     "model": "baofeng-uv5r",
     "settingsSchema": {
-      "$ref": "shared/schemas/settings-schema.json"
+      "$ref": "../src/shared/schemas/settings-schema.json"
     },
     "channelSchema": {
-      "$ref": "shared/schemas/channel-schema.json"
+      "$ref": "../src/shared/schemas/channel-schema.json"
     }
   },
   "codec": {
     "type": "shared",
-    "reference": "shared/codecs/baofeng-codec.ts",
+    "reference": "../src/shared/codecs/baofeng-codec.ts",
     "config": {
       "channelMemorySegment": {
         "startAddress": 0,
@@ -57,8 +57,8 @@
       "powerOffset": 12,
       "channelSize": 16,
       "numberChannels": 128,
-      "radioSettingsSchemaPath": "src/shared/schemas/settings-schema.json",
-      "channelSettingsSchemaPath": "src/shared/schemas/channel-schema.json"
+      "radioSettingsSchemaPath": "../src/shared/schemas/settings-schema.json",
+      "channelSettingsSchemaPath": "../src/shared/schemas/channel-schema.json"
     }
   },
   "serialConfig": {

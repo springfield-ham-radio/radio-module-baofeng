@@ -16,7 +16,8 @@
   "files": [
     "src/",
     "dist/",
-    "configs/"
+    "configs/",
+    "src/shared/schemas/"
   ],
   "keywords": [
     "ham-radio",
