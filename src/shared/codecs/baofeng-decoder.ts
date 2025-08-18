@@ -39,7 +39,7 @@ export class BaofengDecoder {
   private decodeChannel(memory: RadioMemory, channelAddress: number, channelNumber: number): RadioProgrammedChannel {
     const transmitPower = this.decodePower(memory.contents[channelAddress + this.config.powerOffset]);
 
-    const name = this.decodeChannelName(channelAddress, memory);
+    const name = this.decodeChannelName(channelNumber, memory);
     const receiveFrequency = this.decodeFrequency(memory.contents, channelAddress, this.config.receiveFrequencyOffset);
     const transmitFrequency = this.decodeFrequency(memory.contents, channelAddress, this.config.transmitFrequencyOffset);
     const receiveTone = this.decodeTone(memory.contents, channelAddress, this.config.receiveToneOffset);
@@ -54,20 +54,22 @@ export class BaofengDecoder {
     return power === 0x0 ? 5 : 1;
   }
 
-  private decodeChannelName(channelAddress: number, memory: RadioMemory): string {
-    const channelNameAddress = 0x10_00 + channelAddress;
+  private decodeChannelName(channelNumber: number, memory: RadioMemory): string {
+    // Channel names start at 0x1000 and each name is 16 bytes apart (0x10 offset)
+    const channelNameAddress = 0x1000 + (channelNumber * 0x10);
 
     let channelName = "";
 
-    for (let index = 0; index < 8; index += 1) {
+    // Read 7 characters (8th byte should be 0xFF terminator)
+    for (let index = 0; index < 7; index += 1) {
       const value = memory.contents[channelNameAddress + index];
 
-      if (value !== 0xFF) {
+      if (value !== 0xFF && value !== 0x00) {
         channelName += String.fromCodePoint(value);
       }
     }
 
-    return channelName;
+    return channelName.trim();
   }
 
   private decodeFrequency(memoryData: Uint8Array, channelOffset: number, valueOffset: number): Frequency {
