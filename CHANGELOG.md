@@ -1,3 +1,7 @@
+## 1.1.0 (2025-08-18)
+
+* feat: enhance configuration and model support for Baofeng radios ([6a380d7](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/6a380d7))
+
 ## <small>1.0.6 (2025-08-18)</small>
 
 * fix: correct channel name decoding logic in BaofengDecoder ([3b82935](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/3b82935))
