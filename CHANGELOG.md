@@ -1,3 +1,7 @@
+## <small>1.2.1 (2025-08-18)</small>
+
+* fix: update schema and codec references in baofeng-uv5r.json ([d36c8a0](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/d36c8a0))
+
 ## 1.2.0 (2025-08-18)
 
 * feat: remove supported models from index.ts ([dff52fe](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/dff52fe))
