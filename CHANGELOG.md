@@ -1,3 +1,9 @@
+## <small>1.0.6 (2025-08-18)</small>
+
+* fix: correct channel name decoding logic in BaofengDecoder ([3b82935](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/3b82935))
+* chore: better oxlint config ([6a38281](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/6a38281))
+* chore: update .oxlintrc.json and package.json for linting and dependency management ([a230ed2](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/a230ed2))
+
 ## <small>1.0.5 (2025-08-15)</small>
 
 * Merge branch 'renovate/springfield-ham-radio-utils-2.x' into 'main' ([6fa407c](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/6fa407c))
