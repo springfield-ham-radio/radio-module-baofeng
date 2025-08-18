@@ -15,7 +15,8 @@
   "types": "dist/index.d.ts",
   "files": [
     "src/",
-    "dist/"
+    "dist/",
+    "configs/"
   ],
   "keywords": [
     "ham-radio",
@@ -34,6 +35,8 @@
   "springfield": {
     "pluginType": "radio-module",
     "manufacturer": "Baofeng",
+    "configPath": "configs",
+    "sharedPath": "src/shared",
     "supportedRadios": [
       "uv5r",
       "uv5r-plus"

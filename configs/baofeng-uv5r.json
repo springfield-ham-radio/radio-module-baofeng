@@ -22,15 +22,15 @@
   "settingsSchema": {
     "model": "baofeng-uv5r",
     "settingsSchema": {
-      "$ref": "src/shared/schemas/settings-schema.json"
+      "$ref": "shared/schemas/settings-schema.json"
     },
     "channelSchema": {
-      "$ref": "src/shared/schemas/channel-schema.json"
+      "$ref": "shared/schemas/channel-schema.json"
     }
   },
   "codec": {
     "type": "shared",
-    "reference": "src/shared/codecs/baofeng-codec.ts",
+    "reference": "shared/codecs/baofeng-codec.ts",
     "config": {
       "channelMemorySegment": {
         "startAddress": 0,
@@ -115,8 +115,43 @@
     },
     {
       "readSegment": {
-        "description": "Read all memory segments (single chunk per segment)",
-        "segments": ["channels", "settings"],
+        "description": "Read channels segment",
+        "segments": ["channels"],
+        "startChunk": {
+          "send": ["S", "address:2", "segment.chunkSize"],
+          "receive": {
+            "type": "pattern",
+            "pattern": [
+              "X",
+              {
+                "field": "address",
+                "size": 2
+              },
+              {
+                "field": "length",
+                "size": 1
+              },
+              {
+                "field": "data",
+                "size": 0
+              }
+            ]
+          }
+        },
+        "endChunk": {
+          "send": [6],
+          "receive": {
+            "type": "exact",
+            "value": 6,
+            "length": 1
+          }
+        }
+      }
+    },
+    {
+      "readSegment": {
+        "description": "Read settings segment",
+        "segments": ["settings"],
         "startChunk": {
           "send": ["S", "address:2", "segment.chunkSize"],
           "receive": {
