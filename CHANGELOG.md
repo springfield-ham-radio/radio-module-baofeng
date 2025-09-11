@@ -1,3 +1,17 @@
+## <small>1.2.2 (2025-09-11)</small>
+
+* fix(deps): update dependencies and versions in package.json and yarn.lock ([e4f048a](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/e4f048a))
+* Merge branch 'renovate/oxlint-1.x' into 'main' ([9e31661](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/9e31661))
+* Merge branch 'renovate/semantic-release-monorepo' into 'main' ([47dc90c](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/47dc90c))
+* Merge branch 'renovate/semantic-release-monorepo' into 'main' ([f1dd79b](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/f1dd79b))
+* Merge branch 'renovate/tsx-4.x' into 'main' ([af7323d](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/af7323d))
+* Merge branch 'renovate/yarn-monorepo' into 'main' ([c987c3e](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/c987c3e))
+* chore(deps): update dependency @semantic-release/gitlab to v13.2.7 ([46d29e7](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/46d29e7))
+* chore(deps): update dependency @semantic-release/gitlab to v13.2.8 ([760f617](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/760f617))
+* chore(deps): update dependency oxlint to v1.14.0 ([0879678](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/0879678))
+* chore(deps): update dependency tsx to v4.20.5 ([6f7d29a](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/6f7d29a))
+* chore(deps): update yarn to v4.9.4 ([4c5c60c](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/4c5c60c))
+
 ## <small>1.2.1 (2025-08-18)</small>
 
 * fix: update schema and codec references in baofeng-uv5r.json ([d36c8a0](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/d36c8a0))
