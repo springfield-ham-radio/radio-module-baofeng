@@ -1,3 +1,7 @@
+## <small>1.2.3 (2025-09-12)</small>
+
+* fix: update codec reference to use compiled JavaScript file ([c3d346e](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/c3d346e))
+
 ## <small>1.2.2 (2025-09-11)</small>
 
 * fix(deps): update dependencies and versions in package.json and yarn.lock ([e4f048a](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/e4f048a))
