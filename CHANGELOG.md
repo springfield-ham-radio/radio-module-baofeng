@@ -1,3 +1,8 @@
+## <small>1.2.6 (2025-09-12)</small>
+
+* Merge branch 'renovate/springfield-ham-radio-api-16.x' into 'main' ([c30c063](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/c30c063))
+* fix(deps): update dependency @springfield/ham-radio-api to ^16.1.4 ([57d6fd7](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/57d6fd7))
+
 ## <small>1.2.5 (2025-09-12)</small>
 
 * fix: swap descriptions and segments for read settings and channels in baofeng-uv5r.json ([81b8975](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/81b8975))
