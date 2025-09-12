@@ -1,3 +1,8 @@
+## <small>1.2.4 (2025-09-12)</small>
+
+* Merge branch 'main' of https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng ([d0c1d9e](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/d0c1d9e))
+* fix: correct codec reference to point to CodecFactory ([245a56c](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/245a56c))
+
 ## <small>1.2.3 (2025-09-12)</small>
 
 * fix: update codec reference to use compiled JavaScript file ([c3d346e](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/c3d346e))
