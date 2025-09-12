@@ -1,3 +1,7 @@
+## <small>1.2.5 (2025-09-12)</small>
+
+* fix: swap descriptions and segments for read settings and channels in baofeng-uv5r.json ([81b8975](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/81b8975))
+
 ## <small>1.2.4 (2025-09-12)</small>
 
 * Merge branch 'main' of https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng ([d0c1d9e](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/d0c1d9e))
