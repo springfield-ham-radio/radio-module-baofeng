@@ -30,7 +30,7 @@
   },
   "codec": {
     "type": "shared",
-    "reference": "../src/shared/codecs/baofeng-codec.ts",
+    "reference": "../dist/shared/codecs/baofeng-codec.js",
     "config": {
       "channelMemorySegment": {
         "startAddress": 0,
@@ -115,14 +115,14 @@
     },
     {
       "readSegment": {
-        "description": "Read channels segment",
-        "segments": ["channels"],
+        "description": "Read settings segment",
+        "segments": ["settings"],
         "startChunk": {
-          "send": ["S", "address:2", "segment.chunkSize"],
+          "send": [83, "address:2", "segment.chunkSize"],
           "receive": {
             "type": "pattern",
             "pattern": [
-              "X",
+              88,
               {
                 "field": "address",
                 "size": 2
@@ -150,14 +150,14 @@
     },
     {
       "readSegment": {
-        "description": "Read settings segment",
-        "segments": ["settings"],
+        "description": "Read channels segment",
+        "segments": ["channels"],
         "startChunk": {
-          "send": ["S", "address:2", "segment.chunkSize"],
+          "send": [83, "address:2", "segment.chunkSize"],
           "receive": {
             "type": "pattern",
             "pattern": [
-              "X",
+              88,
               {
                 "field": "address",
                 "size": 2
