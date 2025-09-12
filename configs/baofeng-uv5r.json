@@ -30,7 +30,7 @@
   },
   "codec": {
     "type": "shared",
-    "reference": "../dist/shared/codecs/baofeng-codec.js",
+    "reference": "../dist/codec-factory.js",
     "config": {
       "channelMemorySegment": {
         "startAddress": 0,
