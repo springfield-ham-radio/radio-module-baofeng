@@ -69,6 +69,7 @@
   },
   "memoryConfig": {
     "chunkSize": 64,
+    "addressSize": 2,
     "segments": {
       "channels": {
         "startAddress": 0,
@@ -122,7 +123,7 @@
         "startChunk": {
           "send": [
             83,
-            "address:2",
+            "address",
             "segment.chunkSize"
           ],
           "receive": {
@@ -161,7 +162,7 @@
         "description": "Read settings segment",
         "segments": ["settings"],
         "startChunk": {
-          "send": [83, "address:2", "segment.chunkSize"],
+          "send": [83, "address", "segment.chunkSize"],
           "receive": {
             "type": "pattern",
             "pattern": [
@@ -208,7 +209,7 @@
       "writeSegment": {
         "description": "Write all memory segments (single chunk per segment)",
         "segments": ["channels", "settings"],
-        "send": ["X", "segment.startAddress:2", "segment.chunkSize"],
+        "send": ["X", "segment.startAddress:addressSize", "segment.chunkSize"],
         "data": "segment.data",
         "receive": {
           "type": "exact",
