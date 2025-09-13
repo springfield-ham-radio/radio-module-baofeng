@@ -1,3 +1,7 @@
+## <small>1.2.7 (2025-09-13)</small>
+
+* fix: update dependencies and configuration ([6f5923c](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/6f5923c))
+
 ## <small>1.2.6 (2025-09-12)</small>
 
 * Merge branch 'renovate/springfield-ham-radio-api-16.x' into 'main' ([c30c063](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/c30c063))
