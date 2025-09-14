@@ -1,3 +1,7 @@
+## 1.3.0 (2025-09-14)
+
+* feat: update dependencies and configuration ([41d6839](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/41d6839))
+
 ## <small>1.2.7 (2025-09-13)</small>
 
 * fix: update dependencies and configuration ([6f5923c](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/6f5923c))
