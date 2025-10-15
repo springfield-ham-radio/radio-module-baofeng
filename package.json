@@ -96,7 +96,7 @@
     "chai": "6.2.0",
     "fishery": "2.3.1",
     "husky": "9.1.7",
-    "oxlint": "1.19.0",
+    "oxlint": "1.23.0",
     "semantic-release": "24.2.8",
     "semantic-release-yarn": "3.0.2",
     "tsx": "4.20.6",
