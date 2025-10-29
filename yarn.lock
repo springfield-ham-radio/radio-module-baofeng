@@ -995,9 +995,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/gitlab@npm:13.2.8":
-  version: 13.2.8
-  resolution: "@semantic-release/gitlab@npm:13.2.8"
+"@semantic-release/gitlab@npm:13.2.9":
+  version: 13.2.9
+  resolution: "@semantic-release/gitlab@npm:13.2.9"
   dependencies:
     "@semantic-release/error": "npm:^4.0.0"
     aggregate-error: "npm:^5.0.0"
@@ -1014,7 +1014,7 @@ __metadata:
     url-join: "npm:^4.0.0"
   peerDependencies:
     semantic-release: ">=20.1.0"
-  checksum: 10c0/97550e0582a9b250acbf3111274ac7788a818a39a8ef1fd250846e8ece6757db4ff46b830a06da003ce1b41b71a82e2d8b2d10df9670ce29bafede10e39ca184
+  checksum: 10c0/e1a81d6916b893849f091cd8037ce416fba960cfdfbdb434d2666a493812febfd2d6f1b535d413ed63cb18adf8189d86ef741404e47f28f9f661759c01b201b1
   languageName: node
   linkType: hard
 
@@ -1179,7 +1179,7 @@ __metadata:
     "@commitlint/config-conventional": "npm:19.8.1"
     "@semantic-release/changelog": "npm:6.0.3"
     "@semantic-release/git": "npm:10.0.1"
-    "@semantic-release/gitlab": "npm:13.2.8"
+    "@semantic-release/gitlab": "npm:13.2.9"
     "@springfield/ham-radio-api": "npm:^16.3.0"
     "@springfield/ham-radio-utils": "npm:^3.2.0"
     "@types/chai": "npm:5.2.2"
