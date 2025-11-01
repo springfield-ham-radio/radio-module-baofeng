@@ -1,3 +1,20 @@
+## <small>1.3.1 (2025-11-01)</small>
+
+* Merge branch 'renovate/chai-5.x' into 'main' ([979cb74](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/979cb74))
+* Merge branch 'renovate/chai-6.x' into 'main' ([8f567e4](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/8f567e4))
+* Merge branch 'renovate/oxlint-1.x' into 'main' ([a5df795](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/a5df795))
+* Merge branch 'renovate/oxlint-1.x' into 'main' ([7292073](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/7292073))
+* Merge branch 'renovate/semantic-release-monorepo' into 'main' ([665171e](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/665171e))
+* Merge branch 'renovate/springfield-ham-radio-api-16.x' into 'main' ([66a341d](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/66a341d))
+* Merge branch 'renovate/tsx-4.x' into 'main' ([ec791a6](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/ec791a6))
+* fix(deps): update dependency @springfield/ham-radio-api to ^16.3.2 ([fbff58b](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/fbff58b))
+* chore(deps): update dependency @semantic-release/gitlab to v13.2.9 ([625d0dc](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/625d0dc))
+* chore(deps): update dependency @types/chai to v5.2.3 ([56ad065](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/56ad065))
+* chore(deps): update dependency chai to v6.2.0 ([3551ffe](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/3551ffe))
+* chore(deps): update dependency oxlint to v1.19.0 ([ef8fc1e](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/ef8fc1e))
+* chore(deps): update dependency oxlint to v1.23.0 ([79f32b0](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/79f32b0))
+* chore(deps): update dependency tsx to v4.20.6 ([3d75761](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/3d75761))
+
 ## 1.3.0 (2025-09-14)
 
 * feat: update dependencies and configuration ([41d6839](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/41d6839))
