@@ -1,3 +1,14 @@
+## <small>1.3.2 (2025-11-15)</small>
+
+* Merge branch 'renovate/chai-6.x' into 'main' ([55882fa](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/55882fa))
+* Merge branch 'renovate/springfield-ham-radio-utils-3.x' into 'main' ([c55e6bd](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/c55e6bd))
+* Merge branch 'renovate/typescript-5.x' into 'main' ([f770345](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/f770345))
+* Merge branch 'renovate/yarn-monorepo' into 'main' ([9c46dac](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/9c46dac))
+* chore(deps): update dependency chai to v6.2.1 ([e5b92e2](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/e5b92e2))
+* chore(deps): update dependency typescript to v5.9.3 ([d963a1f](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/d963a1f))
+* chore(deps): update yarn to v4.11.0 ([5aa2365](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/5aa2365))
+* fix(deps): update dependency @springfield/ham-radio-utils to ^3.2.2 ([c78ae18](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/c78ae18))
+
 ## <small>1.3.1 (2025-11-01)</small>
 
 * Merge branch 'renovate/chai-5.x' into 'main' ([979cb74](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/979cb74))
