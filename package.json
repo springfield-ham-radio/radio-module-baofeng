@@ -4,7 +4,7 @@
   "description": "Radio module for Baofeng UV-5R series ham radios",
   "author": "Bryan Hunt",
   "license": "MIT",
-  "packageManager": "yarn@4.9.4",
+  "packageManager": "yarn@4.11.0",
   "readme": "README.md",
   "type": "module",
   "repository": {
