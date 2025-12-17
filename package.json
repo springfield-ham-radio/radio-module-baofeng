@@ -13,6 +13,17 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/codec-factory.js": {
+      "import": "./dist/codec-factory.js",
+      "types": "./dist/codec-factory.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "src/",
     "dist/",
