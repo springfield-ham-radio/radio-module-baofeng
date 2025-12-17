@@ -4,7 +4,7 @@
   "description": "Radio module for Baofeng UV-5R series ham radios",
   "author": "Bryan Hunt",
   "license": "MIT",
-  "packageManager": "yarn@4.11.0",
+  "packageManager": "yarn@4.12.0",
   "readme": "README.md",
   "type": "module",
   "repository": {
@@ -81,25 +81,25 @@
     "access": "public"
   },
   "dependencies": {
-    "@springfield/ham-radio-api": "^16.3.2",
-    "@springfield/ham-radio-utils": "^3.2.2",
-    "loglayer": "^6.7.0"
+    "@springfield/ham-radio-api": "^16.3.3",
+    "@springfield/ham-radio-utils": "^3.2.4",
+    "loglayer": "^8.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.8.1",
-    "@commitlint/config-conventional": "19.8.1",
+    "@commitlint/cli": "20.2.0",
+    "@commitlint/config-conventional": "20.2.0",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "@semantic-release/gitlab": "13.2.9",
     "@types/chai": "5.2.3",
-    "@types/node": "24.3.3",
+    "@types/node": "24.10.4",
     "chai": "6.2.1",
-    "fishery": "2.3.1",
+    "fishery": "2.4.0",
     "husky": "9.1.7",
-    "oxlint": "1.23.0",
-    "semantic-release": "24.2.8",
+    "oxlint": "1.33.0",
+    "semantic-release": "25.0.2",
     "semantic-release-yarn": "3.0.2",
-    "tsx": "4.20.6",
+    "tsx": "4.21.0",
     "typescript": "5.9.3"
   },
   "engines": {

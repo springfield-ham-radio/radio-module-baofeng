@@ -1,4 +1,3 @@
 {
-  "plugins": ["import"],
-  "ignorePatterns": ["dist/", "node_modules/", "build/", "coverage/", "test/"]
+  "ignorePatterns": ["test/"]
 }
