@@ -1,3 +1,8 @@
+## <small>1.3.4 (2025-12-17)</small>
+
+* Merge branch 'main' of https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng ([770f81b](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/770f81b))
+* fix: add exports field to package.json for module resolution ([da77ba9](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/da77ba9))
+
 ## <small>1.3.3 (2025-12-17)</small>
 
 * fix: update dependencies ([b2ac1cf](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/b2ac1cf))
