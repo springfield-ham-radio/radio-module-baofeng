@@ -1,3 +1,7 @@
+## <small>1.3.3 (2025-12-17)</small>
+
+* fix: update dependencies ([b2ac1cf](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/b2ac1cf))
+
 ## <small>1.3.2 (2025-11-15)</small>
 
 * Merge branch 'renovate/chai-6.x' into 'main' ([55882fa](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/55882fa))
