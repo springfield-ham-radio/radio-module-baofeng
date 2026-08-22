@@ -1,3 +1,15 @@
+## [2.0.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v1.3.6...v2.0.0) (2026-08-22)
+
+### ⚠ BREAKING CHANGES
+
+* Baofeng protocol configs are incompatible with driver &lt; 3.0.0.
+
+Co-authored-by: Cursor <cursoragent@cursor.com>
+
+### Features
+
+* migrate UV-5R protocol config to send/expect DSL ([6072141](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/607214129ae05632e9245e3b3fee5f8fdc2dfee7))
+
 ## [1.3.6](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v1.3.5...v1.3.6) (2026-08-22)
 
 ### Bug Fixes
