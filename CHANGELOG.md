@@ -1,3 +1,9 @@
+## [2.0.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.0.0...v2.0.1) (2026-08-22)
+
+### Bug Fixes
+
+* update @springfield/ham-radio-utils to 4.1.1 ([b4e91df](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/b4e91dfd353f9ba767be93735fd4ea860f933a72))
+
 ## [2.0.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v1.3.6...v2.0.0) (2026-08-22)
 
 ### ⚠ BREAKING CHANGES
