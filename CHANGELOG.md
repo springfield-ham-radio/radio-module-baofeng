@@ -1,3 +1,9 @@
+## [1.3.6](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v1.3.5...v1.3.6) (2026-08-22)
+
+### Bug Fixes
+
+* update dependencies ([d579036](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/d5790369d30a1abe516c78f951fd69f810041ffd))
+
 ## [1.3.5](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v1.3.4...v1.3.5) (2026-08-22)
 
 ### Bug Fixes
