@@ -284,6 +284,11 @@
             "kind": "integer",
             "min": 0,
             "max": 15
+          },
+          "ui": {
+            "group": "channel",
+            "label": "PTT ID",
+            "widget": "integer"
           }
         },
         {
@@ -318,6 +323,11 @@
             "kind": "integer",
             "min": 0,
             "max": 3
+          },
+          "ui": {
+            "group": "channel",
+            "label": "Power",
+            "widget": "select"
           }
         },
         {
@@ -332,6 +342,11 @@
           "width": 1,
           "value": {
             "kind": "boolean"
+          },
+          "ui": {
+            "group": "channel",
+            "label": "Mode",
+            "widget": "switch"
           }
         },
         {
@@ -346,6 +361,11 @@
           "width": 1,
           "value": {
             "kind": "boolean"
+          },
+          "ui": {
+            "group": "channel",
+            "label": "BCL",
+            "widget": "switch"
           }
         },
         {
@@ -354,6 +374,11 @@
           "width": 1,
           "value": {
             "kind": "boolean"
+          },
+          "ui": {
+            "group": "channel",
+            "label": "Scan",
+            "widget": "switch"
           }
         },
         {
@@ -368,6 +393,11 @@
               "EOT",
               "Both"
             ]
+          },
+          "ui": {
+            "group": "channel",
+            "label": "PTT-ID",
+            "widget": "select"
           }
         }
       ]
