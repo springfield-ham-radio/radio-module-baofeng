@@ -1,3 +1,9 @@
+## [2.1.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.0.1...v2.1.0) (2026-08-22)
+
+### Features
+
+* decode UV-5R settings with a JSON memory map ([6b1fd74](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/6b1fd74ef858bdfc6e0d22777069023ef5f30f83))
+
 ## [2.0.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.0.0...v2.0.1) (2026-08-22)
 
 ### Bug Fixes
