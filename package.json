@@ -68,8 +68,8 @@
     }
   },
   "dependencies": {
-    "@springfield/ham-radio-api": "^17.1.0",
-    "@springfield/ham-radio-utils": "^4.2.0",
+    "@springfield/ham-radio-api": "^17.2.0",
+    "@springfield/ham-radio-utils": "^4.3.0",
     "loglayer": "^9.4.0"
   },
   "devDependencies": {
