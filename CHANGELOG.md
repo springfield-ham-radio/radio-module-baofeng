@@ -1,3 +1,9 @@
+## [1.3.5](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v1.3.4...v1.3.5) (2026-08-22)
+
+### Bug Fixes
+
+* migrate to TypeScript 7 and update dependencies ([0badc00](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/0badc00a4b1015f2d4e151c8c4409daaadf0aae3))
+
 ## <small>1.3.4 (2025-12-17)</small>
 
 * Merge branch 'main' of https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng ([770f81b](https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng/commit/770f81b))
