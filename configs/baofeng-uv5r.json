@@ -84,139 +84,45 @@
   },
   "readMemory": [
     {
-      "sendReceive": {
-        "description": "Send magic number",
-        "send": [80, 187, 255, 32, 18, 7, 37],
-        "receive": {
-          "type": "exact",
-          "value": 6,
-          "length": 1
-        }
-      }
+      "description": "Send magic number",
+      "send": ["0x50", "0xBB", "0xFF", "0x20", "0x12", "0x07", "0x25"],
+      "expect": "0x06"
     },
     {
-      "sendReceive": {
-        "description": "Get radio identifier",
-        "send": [2],
-        "receive": {
-          "type": "variable",
-          "length": 8
-        }
-      }
+      "description": "Get radio identifier",
+      "send": ["0x02"],
+      "expect": { "bytes": 8 }
     },
     {
-      "sendReceive": {
-        "description": "Begin clone operation",
-        "send": [6],
-        "receive": {
-          "type": "exact",
-          "value": 6,
-          "length": 1
-        }
-      }
+      "description": "Begin clone operation",
+      "send": ["0x06"],
+      "expect": "0x06"
     },
     {
-      "readSegment": {
-        "description": "Read channels segment",
-        "segments": [
-          "channels"
-        ],
-        "startChunk": {
-          "send": [
-            83,
-            "address",
-            "segment.chunkSize"
-          ],
-          "receive": {
-            "type": "pattern",
-            "pattern": [
-              88,
-              {
-                "field": "address",
-                "size": 2
-              },
-              {
-                "field": "length",
-                "size": 1
-              },
-              {
-                "field": "data",
-                "size": 0
-              }
-            ]
-          }
-        },
-        "endChunk": {
-          "send": [
-            6
-          ],
-          "receive": {
-            "type": "exact",
-            "value": 6,
-            "length": 1
-          }
-        }
-      }
-    },
-    {
-      "readSegment": {
-        "description": "Read settings segment",
-        "segments": ["settings"],
-        "startChunk": {
-          "send": [83, "address", "segment.chunkSize"],
-          "receive": {
-            "type": "pattern",
-            "pattern": [
-              88,
-              {
-                "field": "address",
-                "size": 2
-              },
-              {
-                "field": "length",
-                "size": 1
-              },
-              {
-                "field": "data",
-                "size": 0
-              }
-            ]
-          }
-        },
-        "endChunk": {
-          "send": [6],
-          "receive": {
-            "type": "exact",
-            "value": 6,
-            "length": 1
-          }
+      "description": "Read memory",
+      "read": {
+        "segments": ["channels", "settings"],
+        "send": ["S", "$address", "$chunkSize"],
+        "expect": ["X", "$address", "$length", "$data"],
+        "ack": {
+          "send": ["0x06"],
+          "expect": "0x06"
         }
       }
     }
   ],
   "writeMemory": [
     {
-      "sendReceive": {
-        "description": "Send magic number",
-        "send": [80, 187, 255, 32, 18, 7, 37],
-        "receive": {
-          "type": "exact",
-          "value": 6,
-          "length": 1
-        }
-      }
+      "description": "Send magic number",
+      "send": ["0x50", "0xBB", "0xFF", "0x20", "0x12", "0x07", "0x25"],
+      "expect": "0x06"
     },
     {
-      "writeSegment": {
-        "description": "Write all memory segments (single chunk per segment)",
+      "description": "Write memory",
+      "write": {
         "segments": ["channels", "settings"],
-        "send": ["X", "segment.startAddress:addressSize", "segment.chunkSize"],
-        "data": "segment.data",
-        "receive": {
-          "type": "exact",
-          "value": 6,
-          "length": 1
-        }
+        "send": ["X", "$address", "$chunkSize", "$data"],
+        "expect": "0x06"
       }
     }
   ]
