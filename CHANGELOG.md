@@ -1,3 +1,9 @@
+## [2.3.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.2.0...v2.3.0) (2026-08-22)
+
+### Features
+
+* add UI metadata for UV-5R channel table columns ([da32b72](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/da32b72bcfbde2a1b6f7385b3c7ced54b942ecaa))
+
 ## [2.2.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.1.0...v2.2.0) (2026-08-22)
 
 ### Features
