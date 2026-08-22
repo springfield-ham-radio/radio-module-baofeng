@@ -1,0 +1,659 @@
+{
+  "version": "1.0.0",
+  "description": "Baofeng UV-5R radio-wide settings (radio EEPROM addresses; Chirp image offset = radio + 8)",
+  "structs": [
+    {
+      "id": "pttid",
+      "seek": "0x0B00",
+      "count": 15,
+      "stride": 16,
+      "fields": [
+        {
+          "id": "code",
+          "type": "u8",
+          "value": { "kind": "dtmf", "length": 5, "charset": "0123456789 *#ABCD" },
+          "ui": { "group": "dtmf", "label": "PTT ID Code", "widget": "text", "description": "DTMF code sent as PTT-ID when selected by a channel or VFO." }
+        },
+        { "id": "_pad", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 11 } }
+      ]
+    },
+    {
+      "id": "ani",
+      "seek": "0x0C80",
+      "fields": [
+        { "id": "_code222", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 3 } },
+        { "id": "_unused222", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 2 } },
+        { "id": "_code333", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 3 } },
+        { "id": "_unused333", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 2 } },
+        {
+          "id": "alarmcode",
+          "type": "u8",
+          "value": { "kind": "dtmf", "length": 3, "charset": "0123456789 *#ABCD" },
+          "ui": { "group": "dtmf", "label": "Alarm Code", "widget": "text", "description": "Three-character DTMF code transmitted when the alarm is used in Code mode." }
+        },
+        { "id": "_unused119", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 2 } },
+        { "id": "_unknown1", "type": "u8", "reserved": true },
+        { "id": "_code555", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 3 } },
+        { "id": "_unused555", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 2 } },
+        { "id": "_code666", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 3 } },
+        { "id": "_unused666", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 2 } },
+        { "id": "_code777", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 3 } },
+        { "id": "_unused777", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 2 } },
+        { "id": "_unknown2", "type": "u8", "reserved": true },
+        { "id": "_code60606", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 5 } },
+        { "id": "_code70707", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 5 } },
+        {
+          "id": "code",
+          "type": "u8",
+          "value": { "kind": "dtmf", "length": 5, "charset": "0123456789" },
+          "ui": { "group": "dtmf", "label": "ANI Code", "widget": "text", "description": "Numeric Automatic Number Identification code." }
+        },
+        { "id": "_aniid_pad", "type": "bits", "width": 6, "reserved": true },
+        {
+          "id": "aniid",
+          "type": "bits",
+          "width": 2,
+          "value": { "kind": "enum", "values": ["Off", "BOT", "EOT", "Both"] },
+          "ui": { "group": "dtmf", "label": "ANI ID", "widget": "select", "description": "When the ANI code is sent: BOT, EOT, Both, or Off." }
+        },
+        { "id": "_unknown", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 2 } },
+        {
+          "id": "dtmfon",
+          "type": "u8",
+          "value": {
+            "kind": "enum",
+            "values": [
+              "50 ms", "60 ms", "70 ms", "80 ms", "90 ms", "100 ms", "110 ms", "120 ms", "130 ms", "140 ms",
+              "150 ms", "160 ms", "170 ms", "180 ms", "190 ms", "200 ms", "210 ms", "220 ms", "230 ms", "240 ms",
+              "250 ms", "260 ms", "270 ms", "280 ms", "290 ms", "300 ms", "310 ms", "320 ms", "330 ms", "340 ms",
+              "350 ms", "360 ms", "370 ms", "380 ms", "390 ms", "400 ms", "410 ms", "420 ms", "430 ms", "440 ms",
+              "450 ms", "460 ms", "470 ms", "480 ms", "490 ms", "500 ms", "510 ms", "520 ms", "530 ms", "540 ms",
+              "550 ms", "560 ms", "570 ms", "580 ms", "590 ms", "600 ms", "610 ms", "620 ms", "630 ms", "640 ms",
+              "650 ms", "660 ms", "670 ms", "680 ms", "690 ms", "700 ms", "710 ms", "720 ms", "730 ms", "740 ms",
+              "750 ms", "760 ms", "770 ms", "780 ms", "790 ms", "800 ms", "810 ms", "820 ms", "830 ms", "840 ms",
+              "850 ms", "860 ms", "870 ms", "880 ms", "890 ms", "900 ms", "910 ms", "920 ms", "930 ms", "940 ms",
+              "950 ms", "960 ms", "970 ms", "980 ms", "990 ms", "1000 ms", "1010 ms", "1020 ms", "1030 ms", "1040 ms",
+              "1050 ms", "1060 ms", "1070 ms", "1080 ms", "1090 ms", "1100 ms", "1110 ms", "1120 ms", "1130 ms", "1140 ms",
+              "1150 ms", "1160 ms", "1170 ms", "1180 ms", "1190 ms", "1200 ms", "1210 ms", "1220 ms", "1230 ms", "1240 ms",
+              "1250 ms", "1260 ms", "1270 ms", "1280 ms", "1290 ms", "1300 ms", "1310 ms", "1320 ms", "1330 ms", "1340 ms",
+              "1350 ms", "1360 ms", "1370 ms", "1380 ms", "1390 ms", "1400 ms", "1410 ms", "1420 ms", "1430 ms", "1440 ms",
+              "1450 ms", "1460 ms", "1470 ms", "1480 ms", "1490 ms", "1500 ms", "1510 ms", "1520 ms", "1530 ms", "1540 ms",
+              "1550 ms", "1560 ms", "1570 ms", "1580 ms", "1590 ms", "1600 ms", "1610 ms", "1620 ms", "1630 ms", "1640 ms",
+              "1650 ms", "1660 ms", "1670 ms", "1680 ms", "1690 ms", "1700 ms", "1710 ms", "1720 ms", "1730 ms", "1740 ms",
+              "1750 ms", "1760 ms", "1770 ms", "1780 ms", "1790 ms", "1800 ms", "1810 ms", "1820 ms", "1830 ms", "1840 ms",
+              "1850 ms", "1860 ms", "1870 ms", "1880 ms", "1890 ms", "1900 ms", "1910 ms", "1920 ms", "1930 ms", "1940 ms",
+              "1950 ms", "1960 ms", "1970 ms", "1980 ms", "1990 ms", "2000 ms"
+            ]
+          },
+          "ui": { "group": "dtmf", "label": "DTMF Speed (on)", "widget": "select", "description": "How long each DTMF tone is transmitted." }
+        },
+        {
+          "id": "dtmfoff",
+          "type": "u8",
+          "value": {
+            "kind": "enum",
+            "values": [
+              "50 ms", "60 ms", "70 ms", "80 ms", "90 ms", "100 ms", "110 ms", "120 ms", "130 ms", "140 ms",
+              "150 ms", "160 ms", "170 ms", "180 ms", "190 ms", "200 ms", "210 ms", "220 ms", "230 ms", "240 ms",
+              "250 ms", "260 ms", "270 ms", "280 ms", "290 ms", "300 ms", "310 ms", "320 ms", "330 ms", "340 ms",
+              "350 ms", "360 ms", "370 ms", "380 ms", "390 ms", "400 ms", "410 ms", "420 ms", "430 ms", "440 ms",
+              "450 ms", "460 ms", "470 ms", "480 ms", "490 ms", "500 ms", "510 ms", "520 ms", "530 ms", "540 ms",
+              "550 ms", "560 ms", "570 ms", "580 ms", "590 ms", "600 ms", "610 ms", "620 ms", "630 ms", "640 ms",
+              "650 ms", "660 ms", "670 ms", "680 ms", "690 ms", "700 ms", "710 ms", "720 ms", "730 ms", "740 ms",
+              "750 ms", "760 ms", "770 ms", "780 ms", "790 ms", "800 ms", "810 ms", "820 ms", "830 ms", "840 ms",
+              "850 ms", "860 ms", "870 ms", "880 ms", "890 ms", "900 ms", "910 ms", "920 ms", "930 ms", "940 ms",
+              "950 ms", "960 ms", "970 ms", "980 ms", "990 ms", "1000 ms", "1010 ms", "1020 ms", "1030 ms", "1040 ms",
+              "1050 ms", "1060 ms", "1070 ms", "1080 ms", "1090 ms", "1100 ms", "1110 ms", "1120 ms", "1130 ms", "1140 ms",
+              "1150 ms", "1160 ms", "1170 ms", "1180 ms", "1190 ms", "1200 ms", "1210 ms", "1220 ms", "1230 ms", "1240 ms",
+              "1250 ms", "1260 ms", "1270 ms", "1280 ms", "1290 ms", "1300 ms", "1310 ms", "1320 ms", "1330 ms", "1340 ms",
+              "1350 ms", "1360 ms", "1370 ms", "1380 ms", "1390 ms", "1400 ms", "1410 ms", "1420 ms", "1430 ms", "1440 ms",
+              "1450 ms", "1460 ms", "1470 ms", "1480 ms", "1490 ms", "1500 ms", "1510 ms", "1520 ms", "1530 ms", "1540 ms",
+              "1550 ms", "1560 ms", "1570 ms", "1580 ms", "1590 ms", "1600 ms", "1610 ms", "1620 ms", "1630 ms", "1640 ms",
+              "1650 ms", "1660 ms", "1670 ms", "1680 ms", "1690 ms", "1700 ms", "1710 ms", "1720 ms", "1730 ms", "1740 ms",
+              "1750 ms", "1760 ms", "1770 ms", "1780 ms", "1790 ms", "1800 ms", "1810 ms", "1820 ms", "1830 ms", "1840 ms",
+              "1850 ms", "1860 ms", "1870 ms", "1880 ms", "1890 ms", "1900 ms", "1910 ms", "1920 ms", "1930 ms", "1940 ms",
+              "1950 ms", "1960 ms", "1970 ms", "1980 ms", "1990 ms", "2000 ms"
+            ]
+          },
+          "ui": { "group": "dtmf", "label": "DTMF Speed (off)", "widget": "select", "description": "Silent gap between transmitted DTMF tones." }
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "seek": "0x0E20",
+      "fields": [
+        {
+          "id": "squelch",
+          "type": "u8",
+          "value": { "kind": "integer", "min": 0, "max": 9 },
+          "ui": { "group": "basic", "label": "Carrier Squelch Level", "widget": "integer", "description": "How strong a received signal must be before the speaker unmutes. 0 leaves squelch open." }
+        },
+        {
+          "id": "step",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["2.5", "5.0", "6.25", "10.0", "12.5", "25.0"] },
+          "ui": { "group": "advanced", "label": "Frequency Step (kHz)", "widget": "select" }
+        },
+        { "id": "_unknown1", "type": "u8", "reserved": true },
+        {
+          "id": "save",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Off", "1:1", "1:2", "1:3", "1:4"] },
+          "ui": { "group": "basic", "label": "Battery Saver", "widget": "select", "description": "Reduces standby battery use by periodically putting the receiver to sleep." }
+        },
+        {
+          "id": "vox",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["OFF", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] },
+          "ui": { "group": "advanced", "label": "VOX Sensitivity", "widget": "select", "description": "Voice-operated transmission without pressing PTT. Lower numbers are more sensitive." }
+        },
+        { "id": "_unknown2", "type": "u8", "reserved": true },
+        {
+          "id": "abr",
+          "type": "u8",
+          "value": { "kind": "integer", "min": 0, "max": 24 },
+          "ui": { "group": "basic", "label": "Backlight Timeout", "widget": "integer", "description": "Seconds the display backlight remains on. 0 disables automatic backlight." }
+        },
+        {
+          "id": "tdr",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "advanced", "label": "Dual Watch", "widget": "switch", "description": "Periodically checks both A and B displayed frequencies." }
+        },
+        {
+          "id": "beep",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "basic", "label": "Beep", "widget": "switch" }
+        },
+        {
+          "id": "timeout",
+          "type": "u8",
+          "value": {
+            "kind": "enum",
+            "values": [
+              "15 sec", "30 sec", "45 sec", "60 sec", "75 sec", "90 sec", "105 sec", "120 sec",
+              "135 sec", "150 sec", "165 sec", "180 sec", "195 sec", "210 sec", "225 sec", "240 sec",
+              "255 sec", "270 sec", "285 sec", "300 sec", "315 sec", "330 sec", "345 sec", "360 sec",
+              "375 sec", "390 sec", "405 sec", "420 sec", "435 sec", "450 sec", "465 sec", "480 sec",
+              "495 sec", "510 sec", "525 sec", "540 sec", "555 sec", "570 sec", "585 sec", "600 sec",
+              "Off (if supported by radio)"
+            ]
+          },
+          "ui": { "group": "basic", "label": "Timeout Timer", "widget": "select", "description": "Maximum continuous transmit time." }
+        },
+        { "id": "_unknown3", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 4 } },
+        {
+          "id": "voice",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Off", "English", "Chinese"] },
+          "ui": { "group": "advanced", "label": "Voice", "widget": "select" }
+        },
+        { "id": "_unknown4", "type": "u8", "reserved": true },
+        {
+          "id": "dtmfst",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["OFF", "DT-ST", "ANI-ST", "DT+ANI"] },
+          "ui": { "group": "dtmf", "label": "DTMF Sidetone", "widget": "select", "description": "Which transmitted DTMF tones are heard through the speaker." }
+        },
+        { "id": "_unknown5", "type": "u8", "reserved": true },
+        { "id": "_unknown12", "type": "bits", "width": 6, "reserved": true },
+        {
+          "id": "screv",
+          "type": "bits",
+          "width": 2,
+          "value": { "kind": "enum", "values": ["TO", "CO", "SE"] },
+          "ui": { "group": "advanced", "label": "Scan Resume", "widget": "select" }
+        },
+        {
+          "id": "pttid",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Off", "BOT", "EOT", "Both"] },
+          "ui": { "group": "advanced", "label": "PTT ID", "widget": "select" }
+        },
+        {
+          "id": "pttlt",
+          "type": "u8",
+          "value": { "kind": "integer", "min": 0, "max": 50 },
+          "ui": { "group": "dtmf", "label": "PTT ID Delay", "widget": "integer", "description": "Delay before sending ANI/PTT-ID after PTT is pressed." }
+        },
+        {
+          "id": "mdfa",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Channel", "Name", "Frequency"] },
+          "ui": { "group": "basic", "label": "Display Mode (A)", "widget": "select" }
+        },
+        {
+          "id": "mdfb",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Channel", "Name", "Frequency"] },
+          "ui": { "group": "basic", "label": "Display Mode (B)", "widget": "select" }
+        },
+        {
+          "id": "bcl",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "advanced", "label": "Busy Channel Lockout", "widget": "switch" }
+        },
+        {
+          "id": "autolk",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "advanced", "label": "Automatic Key Lock", "widget": "switch" }
+        },
+        {
+          "id": "sftd",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Off", "+", "-"] },
+          "ui": { "group": "advanced", "label": "Shift Direction", "widget": "select" }
+        },
+        { "id": "_unknown6", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 3 } },
+        {
+          "id": "wtled",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Off", "Blue", "Orange", "Purple"] },
+          "ui": { "group": "basic", "label": "Standby LED Color", "widget": "select" }
+        },
+        {
+          "id": "rxled",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Off", "Blue", "Orange", "Purple"] },
+          "ui": { "group": "basic", "label": "RX LED Color", "widget": "select" }
+        },
+        {
+          "id": "txled",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Off", "Blue", "Orange", "Purple"] },
+          "ui": { "group": "basic", "label": "TX LED Color", "widget": "select" }
+        },
+        {
+          "id": "almod",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Site", "Tone", "Code"] },
+          "ui": { "group": "advanced", "label": "Alarm Mode", "widget": "select" }
+        },
+        {
+          "id": "band",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "advanced", "label": "Band", "widget": "switch" }
+        },
+        {
+          "id": "tdrab",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Off", "A", "B"] },
+          "ui": { "group": "advanced", "label": "Dual Watch TX Priority", "widget": "select" }
+        },
+        {
+          "id": "ste",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "advanced", "label": "Squelch Tail Eliminate (HT to HT)", "widget": "switch" }
+        },
+        {
+          "id": "rpste",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["OFF", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"] },
+          "ui": { "group": "advanced", "label": "Squelch Tail Eliminate (repeater)", "widget": "select" }
+        },
+        {
+          "id": "rptrl",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["OFF", "100 ms", "200 ms", "300 ms", "400 ms", "500 ms", "600 ms", "700 ms", "800 ms", "900 ms", "1000 ms"] },
+          "ui": { "group": "advanced", "label": "STE Repeater Delay", "widget": "select" }
+        },
+        {
+          "id": "ponmsg",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Full", "Message"] },
+          "ui": { "group": "other", "label": "Power-On Message", "widget": "select", "description": "Full shows the normal startup screen; Message shows the programmed lines." }
+        },
+        {
+          "id": "roger",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "basic", "label": "Roger Beep", "widget": "switch", "description": "Sends a short tone at the end of each transmission." }
+        },
+        {
+          "id": "rogerrx",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Off", "A", "B"] },
+          "ui": { "group": "advanced", "label": "Roger Beep (RX)", "widget": "select" }
+        },
+        { "id": "_tdrch", "type": "u8", "reserved": true },
+        {
+          "id": "displayab",
+          "type": "bits",
+          "width": 1,
+          "value": { "kind": "enum", "values": ["A", "B"] },
+          "ui": { "group": "workmode", "label": "Display", "widget": "select", "description": "Active display line for tuning." }
+        },
+        { "id": "_unknown7", "type": "bits", "width": 2, "reserved": true },
+        {
+          "id": "fmradio",
+          "type": "bits",
+          "width": 1,
+          "value": { "kind": "boolean" },
+          "ui": { "group": "advanced", "label": "Broadcast FM Radio", "widget": "switch" }
+        },
+        {
+          "id": "alarm",
+          "type": "bits",
+          "width": 1,
+          "value": { "kind": "boolean" },
+          "ui": { "group": "advanced", "label": "Alarm Sound", "widget": "switch" }
+        },
+        { "id": "_unknown8", "type": "bits", "width": 1, "reserved": true },
+        {
+          "id": "reset",
+          "type": "bits",
+          "width": 1,
+          "value": { "kind": "boolean" },
+          "ui": { "group": "advanced", "label": "RESET Menu", "widget": "switch", "description": "Whether the front-panel RESET menu is available." }
+        },
+        {
+          "id": "menu",
+          "type": "bits",
+          "width": 1,
+          "value": { "kind": "boolean" },
+          "ui": { "group": "advanced", "label": "All Menus", "widget": "switch", "description": "Controls access to the full front-panel menu." }
+        },
+        { "id": "_unknown9", "type": "bits", "width": 6, "reserved": true },
+        { "id": "_singleptt", "type": "bits", "width": 1, "reserved": true },
+        { "id": "_vfomrlock", "type": "bits", "width": 1, "reserved": true },
+        {
+          "id": "workmode",
+          "type": "u8",
+          "value": { "kind": "enum", "values": ["Frequency", "Channel"] },
+          "ui": { "group": "workmode", "label": "VFO/MR Mode", "widget": "select", "description": "Operating mode used at startup." }
+        },
+        {
+          "id": "keylock",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "workmode", "label": "Keypad Lock", "widget": "switch" }
+        }
+      ]
+    },
+    {
+      "id": "wmchannel",
+      "seek": "0x0E76",
+      "fields": [
+        { "id": "_unused1", "type": "bits", "width": 1, "reserved": true },
+        {
+          "id": "mrcha",
+          "type": "bits",
+          "width": 7,
+          "value": { "kind": "integer", "min": 0, "max": 127 },
+          "ui": { "group": "workmode", "label": "MR A Channel", "widget": "integer" }
+        },
+        { "id": "_unused2", "type": "bits", "width": 1, "reserved": true },
+        {
+          "id": "mrchb",
+          "type": "bits",
+          "width": 7,
+          "value": { "kind": "integer", "min": 0, "max": 127 },
+          "ui": { "group": "workmode", "label": "MR B Channel", "widget": "integer" }
+        }
+      ]
+    },
+    {
+      "id": "vfoa",
+      "seek": "0x0F08",
+      "fields": [
+        {
+          "id": "freq",
+          "type": "u8",
+          "value": { "kind": "digits", "length": 8, "scale": 10 },
+          "ui": { "group": "workmode", "label": "VFO A Frequency", "widget": "number", "description": "Receive frequency on display line A in Frequency (VFO) mode (Hz)." }
+        },
+        {
+          "id": "offset",
+          "type": "u8",
+          "value": { "kind": "digits", "length": 6, "scale": 1000 },
+          "ui": { "group": "workmode", "label": "VFO A Offset", "widget": "number", "description": "Repeater offset in Hz." }
+        },
+        { "id": "rxtone", "type": "u16", "reserved": true },
+        { "id": "txtone", "type": "u16", "reserved": true },
+        { "id": "_unused1", "type": "bits", "width": 7, "reserved": true },
+        { "id": "band", "type": "bits", "width": 1, "reserved": true },
+        { "id": "_unknown3", "type": "u8", "reserved": true },
+        { "id": "_unused2", "type": "bits", "width": 2, "reserved": true },
+        {
+          "id": "sftd",
+          "type": "bits",
+          "width": 2,
+          "value": { "kind": "enum", "values": ["Off", "+", "-"] },
+          "ui": { "group": "workmode", "label": "VFO A Shift", "widget": "select" }
+        },
+        {
+          "id": "scode",
+          "type": "bits",
+          "width": 4,
+          "value": { "kind": "enum", "values": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"] },
+          "ui": { "group": "workmode", "label": "VFO A PTT-ID", "widget": "select" }
+        },
+        { "id": "_unknown4", "type": "u8", "reserved": true },
+        { "id": "_unused3", "type": "bits", "width": 1, "reserved": true },
+        {
+          "id": "step",
+          "type": "bits",
+          "width": 3,
+          "value": { "kind": "enum", "values": ["2.5", "5.0", "6.25", "10.0", "12.5", "20.0", "25.0", "50.0"] },
+          "ui": { "group": "workmode", "label": "VFO A Tuning Step", "widget": "select" }
+        },
+        { "id": "_unused4", "type": "bits", "width": 4, "reserved": true },
+        {
+          "id": "txpower",
+          "type": "bits",
+          "width": 1,
+          "value": { "kind": "enum", "values": ["High", "Low"] },
+          "ui": { "group": "workmode", "label": "VFO A Power", "widget": "select" }
+        },
+        {
+          "id": "widenarr",
+          "type": "bits",
+          "width": 1,
+          "value": { "kind": "enum", "values": ["Wide", "Narrow"] },
+          "ui": { "group": "workmode", "label": "VFO A Bandwidth", "widget": "select" }
+        },
+        { "id": "_unknown5", "type": "bits", "width": 4, "reserved": true },
+        { "id": "_txpower3", "type": "bits", "width": 2, "reserved": true }
+      ]
+    },
+    {
+      "id": "vfob",
+      "seek": "0x0F28",
+      "fields": [
+        {
+          "id": "freq",
+          "type": "u8",
+          "value": { "kind": "digits", "length": 8, "scale": 10 },
+          "ui": { "group": "workmode", "label": "VFO B Frequency", "widget": "number" }
+        },
+        {
+          "id": "offset",
+          "type": "u8",
+          "value": { "kind": "digits", "length": 6, "scale": 1000 },
+          "ui": { "group": "workmode", "label": "VFO B Offset", "widget": "number" }
+        },
+        { "id": "rxtone", "type": "u16", "reserved": true },
+        { "id": "txtone", "type": "u16", "reserved": true },
+        { "id": "_unused1", "type": "bits", "width": 7, "reserved": true },
+        { "id": "band", "type": "bits", "width": 1, "reserved": true },
+        { "id": "_unknown3", "type": "u8", "reserved": true },
+        { "id": "_unused2", "type": "bits", "width": 2, "reserved": true },
+        {
+          "id": "sftd",
+          "type": "bits",
+          "width": 2,
+          "value": { "kind": "enum", "values": ["Off", "+", "-"] },
+          "ui": { "group": "workmode", "label": "VFO B Shift", "widget": "select" }
+        },
+        {
+          "id": "scode",
+          "type": "bits",
+          "width": 4,
+          "value": { "kind": "enum", "values": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"] },
+          "ui": { "group": "workmode", "label": "VFO B PTT-ID", "widget": "select" }
+        },
+        { "id": "_unknown4", "type": "u8", "reserved": true },
+        { "id": "_unused3", "type": "bits", "width": 1, "reserved": true },
+        {
+          "id": "step",
+          "type": "bits",
+          "width": 3,
+          "value": { "kind": "enum", "values": ["2.5", "5.0", "6.25", "10.0", "12.5", "20.0", "25.0", "50.0"] },
+          "ui": { "group": "workmode", "label": "VFO B Tuning Step", "widget": "select" }
+        },
+        { "id": "_unused4", "type": "bits", "width": 4, "reserved": true },
+        {
+          "id": "txpower",
+          "type": "bits",
+          "width": 1,
+          "value": { "kind": "enum", "values": ["High", "Low"] },
+          "ui": { "group": "workmode", "label": "VFO B Power", "widget": "select" }
+        },
+        {
+          "id": "widenarr",
+          "type": "bits",
+          "width": 1,
+          "value": { "kind": "enum", "values": ["Wide", "Narrow"] },
+          "ui": { "group": "workmode", "label": "VFO B Bandwidth", "widget": "select" }
+        },
+        { "id": "_unknown5", "type": "bits", "width": 4, "reserved": true },
+        { "id": "_txpower3", "type": "bits", "width": 2, "reserved": true }
+      ]
+    },
+    {
+      "id": "sixpoweron_msg",
+      "seek": "0x1ED0",
+      "fields": [
+        {
+          "id": "line1",
+          "type": "u8",
+          "value": { "kind": "ascii", "length": 7 },
+          "ui": { "group": "other", "label": "6+Power-On Message 1", "widget": "text", "writable": false }
+        },
+        {
+          "id": "line2",
+          "type": "u8",
+          "value": { "kind": "ascii", "length": 7 },
+          "ui": { "group": "other", "label": "6+Power-On Message 2", "widget": "text", "writable": false }
+        }
+      ]
+    },
+    {
+      "id": "poweron_msg",
+      "seek": "0x1EE0",
+      "fields": [
+        {
+          "id": "line1",
+          "type": "u8",
+          "value": { "kind": "ascii", "length": 7 },
+          "ui": { "group": "other", "label": "Power-On Message 1", "widget": "text" }
+        },
+        {
+          "id": "line2",
+          "type": "u8",
+          "value": { "kind": "ascii", "length": 7 },
+          "ui": { "group": "other", "label": "Power-On Message 2", "widget": "text" }
+        }
+      ]
+    },
+    {
+      "id": "firmware_msg",
+      "seek": "0x1EF0",
+      "fields": [
+        {
+          "id": "line1",
+          "type": "u8",
+          "value": { "kind": "ascii", "length": 7 },
+          "ui": { "group": "other", "label": "Firmware Message 1", "widget": "text", "writable": false }
+        },
+        {
+          "id": "line2",
+          "type": "u8",
+          "value": { "kind": "ascii", "length": 7 },
+          "ui": { "group": "other", "label": "Firmware Message 2", "widget": "text", "writable": false }
+        }
+      ]
+    },
+    {
+      "id": "squelch_new",
+      "seek": "0x1F60",
+      "fields": [
+        {
+          "id": "vhf_sql0",
+          "type": "u8",
+          "value": { "kind": "integer", "min": 0, "max": 123 },
+          "ui": { "group": "service", "label": "VHF Squelch 0", "widget": "integer", "description": "Service calibration threshold. Change only with test equipment." }
+        },
+        { "id": "vhf_sql1", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "VHF Squelch 1", "widget": "integer" } },
+        { "id": "vhf_sql2", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "VHF Squelch 2", "widget": "integer" } },
+        { "id": "vhf_sql3", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "VHF Squelch 3", "widget": "integer" } },
+        { "id": "vhf_sql4", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "VHF Squelch 4", "widget": "integer" } },
+        { "id": "vhf_sql5", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "VHF Squelch 5", "widget": "integer" } },
+        { "id": "vhf_sql6", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "VHF Squelch 6", "widget": "integer" } },
+        { "id": "vhf_sql7", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "VHF Squelch 7", "widget": "integer" } },
+        { "id": "vhf_sql8", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "VHF Squelch 8", "widget": "integer" } },
+        { "id": "vhf_sql9", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "VHF Squelch 9", "widget": "integer" } },
+        { "id": "_unknown1", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 6 } },
+        { "id": "_unknown2", "type": "u8", "reserved": true, "value": { "kind": "ascii", "length": 16 } },
+        { "id": "uhf_sql0", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 0", "widget": "integer" } },
+        { "id": "uhf_sql1", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 1", "widget": "integer" } },
+        { "id": "uhf_sql2", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 2", "widget": "integer" } },
+        { "id": "uhf_sql3", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 3", "widget": "integer" } },
+        { "id": "uhf_sql4", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 4", "widget": "integer" } },
+        { "id": "uhf_sql5", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 5", "widget": "integer" } },
+        { "id": "uhf_sql6", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 6", "widget": "integer" } },
+        { "id": "uhf_sql7", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 7", "widget": "integer" } },
+        { "id": "uhf_sql8", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 8", "widget": "integer" } },
+        { "id": "uhf_sql9", "type": "u8", "value": { "kind": "integer", "min": 0, "max": 123 }, "ui": { "group": "service", "label": "UHF Squelch 9", "widget": "integer" } }
+      ]
+    },
+    {
+      "id": "limits_new",
+      "seek": "0x1FC0",
+      "fields": [
+        {
+          "id": "vhf_enable",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "other", "label": "VHF TX Enabled", "widget": "switch" }
+        },
+        {
+          "id": "vhf_lower",
+          "type": "u8",
+          "value": { "kind": "bbcd", "length": 2 },
+          "ui": { "group": "other", "label": "VHF Lower Limit (MHz)", "widget": "integer" }
+        },
+        {
+          "id": "vhf_upper",
+          "type": "u8",
+          "value": { "kind": "bbcd", "length": 2 },
+          "ui": { "group": "other", "label": "VHF Upper Limit (MHz)", "widget": "integer" }
+        },
+        {
+          "id": "uhf_enable",
+          "type": "u8",
+          "value": { "kind": "boolean" },
+          "ui": { "group": "other", "label": "UHF TX Enabled", "widget": "switch" }
+        },
+        {
+          "id": "uhf_lower",
+          "type": "u8",
+          "value": { "kind": "bbcd", "length": 2 },
+          "ui": { "group": "other", "label": "UHF Lower Limit (MHz)", "widget": "integer" }
+        },
+        {
+          "id": "uhf_upper",
+          "type": "u8",
+          "value": { "kind": "bbcd", "length": 2 },
+          "ui": { "group": "other", "label": "UHF Upper Limit (MHz)", "widget": "integer" }
+        }
+      ]
+    }
+  ]
+}

@@ -28,6 +28,9 @@
       "$ref": "../src/shared/schemas/channel-schema.json"
     }
   },
+  "memoryMap": {
+    "$ref": "../src/shared/memory-maps/uv5r-settings.json"
+  },
   "codec": {
     "type": "shared",
     "reference": "../dist/codec-factory.js",

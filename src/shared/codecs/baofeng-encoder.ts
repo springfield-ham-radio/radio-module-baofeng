@@ -1,13 +1,23 @@
-import { type DCS, type RadioChannel, type RadioMemory, type RadioModelId, type RadioProgram, type RadioProgrammedChannel, type RadioTone, RadioToneType } from "@springfield/ham-radio-api";
-import type { BaofengConfig } from "./baofeng-codec.js";
-import type { ILogLayer } from "loglayer";
-import { formatChannel } from "@springfield/ham-radio-utils";
-import { valuesByDcs } from "./baofeng-dcs-tones.js";
+import {
+  type DCS,
+  type RadioChannel,
+  type RadioMemory,
+  type RadioModelId,
+  type RadioProgram,
+  type RadioProgrammedChannel,
+  type RadioTone,
+  RadioToneType,
+} from '@springfield/ham-radio-api';
+import { encodeMemoryMap, formatChannel } from '@springfield/ham-radio-utils';
+import type { BaofengConfig } from './baofeng-codec.js';
+import { baofengMemoryConfig, baofengMemoryMap } from './baofeng-codec.js';
+import type { ILogLayer } from 'loglayer';
+import { valuesByDcs } from './baofeng-dcs-tones.js';
 
 export class BaofengEncoder {
-  private radioModel: RadioModelId;
-  private config: BaofengConfig;
-  private logger: ILogLayer;
+  private readonly radioModel: RadioModelId;
+  private readonly config: BaofengConfig;
+  private readonly logger: ILogLayer;
 
   constructor(radioModel: RadioModelId, config: BaofengConfig, logger: ILogLayer) {
     this.radioModel = radioModel;
@@ -15,24 +25,22 @@ export class BaofengEncoder {
     this.logger = logger;
   }
 
-  public encode(radioProgram: RadioProgram): RadioMemory {
-    // Calculate total memory size
+  /**
+   * Encode a program into memory.
+   * When `existingMemory` is provided, channels and settings are patched in place
+   * so unread regions (and decoded settings) are preserved.
+   */
+  public encode(radioProgram: RadioProgram, existingMemory?: RadioMemory): RadioMemory {
     const totalSize = this.config.settingsMemorySegment.endAddress + 1;
-    const memory = new Uint8Array(totalSize);
+    const memory = existingMemory?.contents
+      ? new Uint8Array(existingMemory.contents)
+      : this.createEmptyImage(totalSize);
 
-    // Initialize memory with 0xff
-    for (let index = 0; index < totalSize; index += 1) {
-      memory[index] = 0xFF;
-    }
-
-    //---- Encode Channels ------------------------------------------------------------------------
-
-    for (let channel of radioProgram.channels.sort((channel1, channel2) => channel1.channelNumber - channel2.channelNumber)) {
+    for (const channel of radioProgram.channels.sort((channel1, channel2) => channel1.channelNumber - channel2.channelNumber)) {
       const channelAddress = this.getChannelAddress(channel.channelNumber);
       const encodedChannel = this.encodeChannel(channel);
       this.logger.debug(`Encoded channel ${formatChannel(channel.channelNumber, encodedChannel)}`);
 
-      // Write channel data to memory
       this.addData(memory, encodedChannel, channelAddress);
 
       const radioChannel: RadioChannel = channel.radioChannel as RadioChannel;
@@ -44,8 +52,26 @@ export class BaofengEncoder {
       }
     }
 
+    if (radioProgram.settings && Object.keys(radioProgram.settings).length > 0) {
+      try {
+        encodeMemoryMap(baofengMemoryMap(this.config), radioProgram.settings, memory, baofengMemoryConfig(this.config));
+      } catch (error) {
+        this.logger.withError(error).warn('Failed to encode radio settings into memory map');
+      }
+    }
+
     this.debugMemory(memory);
     return { contents: memory, radioModel: this.radioModel };
+  }
+
+  private createEmptyImage(totalSize: number): Uint8Array {
+    const memory = new Uint8Array(totalSize);
+
+    for (let index = 0; index < totalSize; index += 1) {
+      memory[index] = 0xff;
+    }
+
+    return memory;
   }
 
   private getChannelAddress(channelNumber: number): number {
@@ -57,8 +83,8 @@ export class BaofengEncoder {
 
     data[this.config.powerOffset] = this.encodePower(programmedChannel.settings?.transmitPower as number);
 
-    if (typeof programmedChannel.channelNumber === "string") {
-      throw new TypeError("Channel references are not supported yet");
+    if (typeof programmedChannel.channelNumber === 'string') {
+      throw new TypeError('Channel references are not supported yet');
     }
 
     const channel: RadioChannel = programmedChannel.radioChannel as RadioChannel;
@@ -92,7 +118,7 @@ export class BaofengEncoder {
     }
 
     for (let paddingIndex = index; paddingIndex < 8; paddingIndex += 1) {
-      data[paddingIndex] = 0xFF;
+      data[paddingIndex] = 0xff;
     }
 
     return data;
@@ -109,7 +135,7 @@ export class BaofengEncoder {
     let value = Number.parseInt(eightDigitFrequency.toString(10), 16);
 
     for (let index = 0; index < 4; index += 1) {
-      data[index] = value & 0xFF;
+      data[index] = value & 0xff;
       value >>= 8;
     }
 
@@ -117,7 +143,6 @@ export class BaofengEncoder {
   }
 
   private encodeTone(tone: RadioTone): Uint8Array {
-    // DCS: 1 byte index, CTCSS: 2 bytes value
     if (tone.type === RadioToneType.DCS) {
       const dcsIndex = valuesByDcs.get(tone.tone as unknown as DCS);
 
@@ -127,16 +152,15 @@ export class BaofengEncoder {
 
       const data = new Uint8Array(2);
       data[0] = dcsIndex;
-      data[1] = 0; // second byte is 0 for DCS
+      data[1] = 0;
       return data;
     }
-      // CTCSS: 2 bytes, as before
-      const value = tone.tone * 10;
-      const data = new Uint8Array(2);
-      data[0] = value & 0xFF;
-      data[1] = (value >> 8) & 0xFF;
-      return data;
 
+    const value = tone.tone * 10;
+    const data = new Uint8Array(2);
+    data[0] = value & 0xff;
+    data[1] = (value >> 8) & 0xff;
+    return data;
   }
 
   private debugMemory(memory: Uint8Array): void {

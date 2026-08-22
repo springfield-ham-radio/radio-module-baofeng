@@ -1,11 +1,23 @@
-import { type CTCSS, type DCS, Frequency, type RadioChannel, type RadioMemory, type RadioProgram, type RadioProgrammedChannel, type RadioTone, RadioToneType } from "@springfield/ham-radio-api";
-import type { BaofengConfig } from "./baofeng-codec.js";
-import type { ILogLayer } from "loglayer";
-import { dcsValues } from "./baofeng-dcs-tones.js";
+import {
+  type CTCSS,
+  type DCS,
+  Frequency,
+  type RadioChannel,
+  type RadioMemory,
+  type RadioProgram,
+  type RadioProgrammedChannel,
+  type RadioTone,
+  RadioToneType,
+} from '@springfield/ham-radio-api';
+import { decodeMemoryMap } from '@springfield/ham-radio-utils';
+import type { BaofengConfig } from './baofeng-codec.js';
+import { baofengMemoryConfig, baofengMemoryMap } from './baofeng-codec.js';
+import type { ILogLayer } from 'loglayer';
+import { dcsValues } from './baofeng-dcs-tones.js';
 
 export class BaofengDecoder {
-  private config: BaofengConfig;
-  private logger: ILogLayer;
+  private readonly config: BaofengConfig;
+  private readonly logger: ILogLayer;
 
   constructor(config: BaofengConfig, logger: ILogLayer) {
     this.config = config;
@@ -23,10 +35,21 @@ export class BaofengDecoder {
 
       const channelAddress = this.getChannelAddress(channelNumber);
 
-      if (memory.contents[channelAddress] !== 0xFF) {
+      if (memory.contents[channelAddress] !== 0xff) {
         const channel = this.decodeChannel(memory, channelAddress, channelNumber);
         radioProgram.channels.push(channel);
       }
+    }
+
+    try {
+      radioProgram.settings = decodeMemoryMap(
+        baofengMemoryMap(this.config),
+        memory.contents,
+        baofengMemoryConfig(this.config),
+      );
+    } catch (error) {
+      this.logger.withError(error).warn('Failed to decode radio settings from memory map');
+      radioProgram.settings = {};
     }
 
     return radioProgram;
@@ -55,16 +78,14 @@ export class BaofengDecoder {
   }
 
   private decodeChannelName(channelNumber: number, memory: RadioMemory): string {
-    // Channel names start at 0x1000 and each name is 16 bytes apart (0x10 offset)
-    const channelNameAddress = 0x1000 + (channelNumber * 0x10);
+    const channelNameAddress = 0x1000 + channelNumber * 0x10;
 
-    let channelName = "";
+    let channelName = '';
 
-    // Read 7 characters (8th byte should be 0xFF terminator)
     for (let index = 0; index < 7; index += 1) {
       const value = memory.contents[channelNameAddress + index];
 
-      if (value !== 0xFF && value !== 0x00) {
+      if (value !== 0xff && value !== 0x00) {
         channelName += String.fromCodePoint(value);
       }
     }
@@ -83,11 +104,9 @@ export class BaofengDecoder {
   }
 
   private decodeTone(memoryData: Uint8Array, channelOffset: number, valueOffset: number): RadioTone {
-    // DCS: 1 byte index, CTCSS: 2 bytes value
     const dcsIndex = memoryData[channelOffset + valueOffset];
-    const ctcssValue = (memoryData[channelOffset + valueOffset] & 0xFF) | (memoryData[channelOffset + valueOffset + 1] << 8);
+    const ctcssValue = (memoryData[channelOffset + valueOffset] & 0xff) | (memoryData[channelOffset + valueOffset + 1] << 8);
 
-    // Heuristic: if the second byte is 0, treat as DCS (index), else CTCSS
     if (memoryData[channelOffset + valueOffset + 1] === 0) {
       const dcs = dcsValues[dcsIndex] ?? 0;
       return { tone: dcs as DCS, type: RadioToneType.DCS };

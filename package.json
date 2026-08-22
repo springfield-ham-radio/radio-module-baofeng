@@ -9,7 +9,8 @@
     "src/",
     "dist/",
     "configs/",
-    "src/shared/schemas/"
+    "src/shared/schemas/",
+    "src/shared/memory-maps/"
   ],
   "type": "module",
   "main": "dist/index.js",
@@ -38,7 +39,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && mkdir -p dist/shared/memory-maps && cp src/shared/memory-maps/*.json dist/shared/memory-maps/ && mkdir -p dist/shared/schemas && cp src/shared/schemas/*.json dist/shared/schemas/",
     "commitlint": "commitlint --edit",
     "format": "oxfmt",
     "lint": "oxlint",
@@ -67,8 +68,8 @@
     }
   },
   "dependencies": {
-    "@springfield/ham-radio-api": "^17.0.0",
-    "@springfield/ham-radio-utils": "^4.1.1",
+    "@springfield/ham-radio-api": "^17.1.0",
+    "@springfield/ham-radio-utils": "^4.2.0",
     "loglayer": "^9.4.0"
   },
   "devDependencies": {
