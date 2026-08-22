@@ -1,3 +1,9 @@
+## [2.2.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.1.0...v2.2.0) (2026-08-22)
+
+### Features
+
+* decode UV-5R channels via memory-map bindings ([543d28d](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/543d28d3ec512c509474d87f1a1b91cbed237944))
+
 ## [2.1.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.0.1...v2.1.0) (2026-08-22)
 
 ### Features
