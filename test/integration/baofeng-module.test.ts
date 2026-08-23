@@ -1,31 +1,34 @@
-import { Frequency, type RadioModelId, type RadioProgram, RadioToneType } from '@springfield/ham-radio-api';
+import { Frequency, type RadioModelId, type RadioProgram, RadioToneType, type RadioMemoryConfig, type RadioMemoryMap } from '@springfield/ham-radio-api';
 import { describe, it } from 'node:test';
-import { CodecFactory } from '../../src/codec-factory.js';
+import { createMemoryMapCodec } from '@springfield/ham-radio-utils';
 import { MockLogLayer } from 'loglayer';
 import { expect } from 'chai';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const baseConfig = {
-  channelMemorySegment: { endAddress: 6143, startAddress: 0 },
-  channelSettingsSchemaPath: 'shared/schemas/channel-schema.json',
-  channelSize: 16,
-  magicNumber: [80, 187, 255, 32, 18, 7, 37],
-  memorySegmentSize: 64,
-  numberChannels: 128,
-  powerOffset: 12,
-  radioSettingsSchemaPath: 'shared/schemas/settings-schema.json',
-  receiveFrequencyOffset: 0,
-  receiveToneOffset: 8,
-  settingsMemorySegment: { endAddress: 8191, startAddress: 7872 },
-  transmitFrequencyOffset: 4,
-  transmitToneOffset: 10,
+const rootDirectory = join(dirname(fileURLToPath(import.meta.url)), '../..');
+const memoryMap = JSON.parse(
+  readFileSync(join(rootDirectory, 'src/shared/memory-maps/uv5r-settings.json'), 'utf8'),
+) as RadioMemoryMap;
+const radioConfig = JSON.parse(readFileSync(join(rootDirectory, 'configs/baofeng-uv5r.json'), 'utf8')) as {
+  memoryConfig: RadioMemoryConfig;
 };
+const memoryConfig = radioConfig.memoryConfig;
+const modelId: RadioModelId = 'baofeng-uv5r' as RadioModelId;
+
+function createCodec() {
+  return createMemoryMapCodec({
+    radioModel: modelId,
+    memoryMap,
+    memoryConfig,
+    logger: new MockLogLayer(),
+  });
+}
 
 describe('Baofeng Module Integration', () => {
-  it('should encode and decode a simple channel program', async () => {
-    const factory = new CodecFactory();
-    const logger = new MockLogLayer();
-    const modelId: RadioModelId = 'baofeng-uv5r' as RadioModelId;
-    const codec = await factory.createCodec(modelId, baseConfig, logger);
+  it('should encode and decode a simple channel program', () => {
+    const codec = createCodec();
 
     const originalProgram: RadioProgram = {
       channels: [
@@ -73,11 +76,8 @@ describe('Baofeng Module Integration', () => {
     expect(decodedProgram.channels[0].settings?.skip).to.equal('');
   });
 
-  it('should clear omitted channels to 0xFF', async () => {
-    const factory = new CodecFactory();
-    const logger = new MockLogLayer();
-    const modelId: RadioModelId = 'baofeng-uv5r' as RadioModelId;
-    const codec = await factory.createCodec(modelId, baseConfig, logger);
+  it('should clear omitted channels to 0xFF', () => {
+    const codec = createCodec();
 
     const contents = new Uint8Array(8192).fill(0xff);
     let word = Number.parseInt((146_520_000 / 10).toString(10), 16);
@@ -90,11 +90,8 @@ describe('Baofeng Module Integration', () => {
     expect(encoded.contents[16]).to.equal(0xff);
   });
 
-  it('should decode and encode radio-wide settings via the memory map', async () => {
-    const factory = new CodecFactory();
-    const logger = new MockLogLayer();
-    const modelId: RadioModelId = 'baofeng-uv5r' as RadioModelId;
-    const codec = await factory.createCodec(modelId, baseConfig, logger);
+  it('should decode and encode radio-wide settings via the memory map', () => {
+    const codec = createCodec();
     const contents = new Uint8Array(8192).fill(0xff);
     contents[0x0e20] = 5;
     contents[0x0e23] = 2;

@@ -32,37 +32,7 @@
     "$ref": "../src/shared/memory-maps/uv5r-settings.json"
   },
   "codec": {
-    "type": "shared",
-    "reference": "../dist/codec-factory.js",
-    "config": {
-      "channelMemorySegment": {
-        "startAddress": 0,
-        "endAddress": 6143
-      },
-      "settingsMemorySegment": {
-        "startAddress": 7872,
-        "endAddress": 8191
-      },
-      "memorySegmentSize": 64,
-      "magicNumber": [
-        80,
-        187,
-        255,
-        32,
-        18,
-        7,
-        37
-      ],
-      "receiveFrequencyOffset": 0,
-      "transmitFrequencyOffset": 4,
-      "receiveToneOffset": 8,
-      "transmitToneOffset": 10,
-      "powerOffset": 12,
-      "channelSize": 16,
-      "numberChannels": 128,
-      "radioSettingsSchemaPath": "../src/shared/schemas/settings-schema.json",
-      "channelSettingsSchemaPath": "../src/shared/schemas/channel-schema.json"
-    }
+    "type": "memoryMap"
   },
   "serialConfig": {
     "baudRate": 9600,

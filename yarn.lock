@@ -1523,16 +1523,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@springfield/ham-radio-api@npm:^17.2.0":
-  version: 17.2.0
-  resolution: "@springfield/ham-radio-api@npm:17.2.0"
-  dependencies:
-    loglayer: "npm:^8.5.0"
-    ts-brand: "npm:^0.2.0"
-  checksum: 10c0/98a9327433a8f99c3150b720a85fc18a804c4f60d53fe801f67290c5b66e9b99c4a5eebecf33f64c168649a3cb6179309a0c00906f0078026a4b47bd796d8fd8
-  languageName: node
-  linkType: hard
-
 "@springfield/ham-radio-api@npm:^17.3.0":
   version: 17.3.0
   resolution: "@springfield/ham-radio-api@npm:17.3.0"
@@ -1543,17 +1533,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@springfield/ham-radio-utils@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "@springfield/ham-radio-utils@npm:4.5.0"
+"@springfield/ham-radio-utils@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "@springfield/ham-radio-utils@npm:4.6.0"
   dependencies:
-    "@springfield/ham-radio-api": "npm:^17.2.0"
+    "@springfield/ham-radio-api": "npm:^17.3.0"
     ajv: "npm:^8.20.0"
     ajv-formats: "npm:^3.0.1"
     fishery: "npm:^2.4.0"
     loglayer: "npm:^9.4.0"
     sprintf-js: "npm:^1.1.3"
-  checksum: 10c0/74dce5883ffe6e82fb1dd5b3c0b6f76509ea05b041ffd659972b06e43b193fff34f54c3627549ade6017c12a37fb4aa670d569e97cd371c4fad89b86dc1c3be6
+  checksum: 10c0/ae3f25588a5df03588f1071ea05cb4a8795055b0ec955428a8550bb49071e6df0aa1206abc9419ddeba45403e81cfd381862e97e3f0ce0ca61e07bf5c91b0d3e
   languageName: node
   linkType: hard
 
@@ -1568,11 +1558,10 @@ __metadata:
     "@semantic-release/github": "npm:12.0.9"
     "@semantic-release/npm": "npm:13.1.5"
     "@springfield/ham-radio-api": "npm:^17.3.0"
-    "@springfield/ham-radio-utils": "npm:^4.5.0"
+    "@springfield/ham-radio-utils": "npm:^4.6.0"
     "@types/chai": "npm:5.2.3"
     "@types/node": "npm:26.2.0"
     chai: "npm:6.2.2"
-    fishery: "npm:2.4.0"
     husky: "npm:9.1.7"
     loglayer: "npm:^9.4.0"
     oxfmt: "npm:^0.64.0"
@@ -2893,7 +2882,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fishery@npm:2.4.0, fishery@npm:^2.4.0":
+"fishery@npm:^2.4.0":
   version: 2.4.0
   resolution: "fishery@npm:2.4.0"
   dependencies:

@@ -1,37 +1,39 @@
 import { describe, it } from 'node:test';
-import { CodecFactory } from '../../src/codec-factory.js';
-import { MockLogLayer } from 'loglayer';
-import { RadioModelId } from '@springfield/ham-radio-api';
 import { expect } from 'chai';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import type { RadioMemoryConfig, RadioMemoryMap } from '@springfield/ham-radio-api';
+import { createMemoryMapCodec } from '@springfield/ham-radio-utils';
+import { MockLogLayer } from 'loglayer';
 
+const rootDirectory = join(dirname(fileURLToPath(import.meta.url)), '../..');
 
-describe('BaofengCodecFactory', () => {
-  it('should create a BaofengCodec instance', async () => {
-    const factory = new CodecFactory();
-    const logger = new MockLogLayer();
-    const modelId = RadioModelId('baofeng-uv5r');
-    const config = {
-      channelMemorySegment: { endAddress: 6143, startAddress: 0 },
-      channelSettingsSchemaPath: 'shared/schemas/channel-schema.json',
-      channelSize: 16,
-      magicNumber: [80, 187, 255, 32, 18, 7, 37],
-      memorySegmentSize: 64,
-      numberChannels: 128,
-      powerOffset: 12,
-      radioSettingsSchemaPath: 'shared/schemas/settings-schema.json',
-      receiveFrequencyOffset: 0,
-      receiveToneOffset: 8,
-      settingsMemorySegment: { endAddress: 8191, startAddress: 7872 },
-      transmitFrequencyOffset: 4,
-      transmitToneOffset: 10,
+function readJson(relativePath: string): unknown {
+  return JSON.parse(readFileSync(join(rootDirectory, relativePath), 'utf8'));
+}
+
+describe('Baofeng UV-5R DSL module', () => {
+  it('should declare a memoryMap codec and hydrate with the shipped map', () => {
+    const config = readJson('configs/baofeng-uv5r.json') as {
+      codec: { type: string };
+      memoryMap: { $ref: string };
+      memoryConfig: RadioMemoryConfig;
+      id: { model: string };
     };
 
-    const codec = await factory.createCodec(modelId, config, logger);
+    expect(config.codec.type).to.equal('memoryMap');
+    expect(config.memoryMap.$ref).to.equal('../src/shared/memory-maps/uv5r-settings.json');
 
-    expect(codec).to.not.be.undefined;
-    expect(codec).to.have.property('decode');
-    expect(codec).to.have.property('encode');
-    expect(typeof codec.decode).to.equal('function');
-    expect(typeof codec.encode).to.equal('function');
+    const memoryMap = readJson('src/shared/memory-maps/uv5r-settings.json') as RadioMemoryMap;
+    const codec = createMemoryMapCodec({
+      radioModel: config.id.model as never,
+      memoryMap,
+      memoryConfig: config.memoryConfig,
+      logger: new MockLogLayer(),
+    });
+
+    expect(codec.decode).to.be.a('function');
+    expect(codec.encode).to.be.a('function');
   });
 });

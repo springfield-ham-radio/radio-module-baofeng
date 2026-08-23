@@ -29,41 +29,23 @@ yarn add radio-module-baofeng
 
 ### Basic Usage
 
+Radio modules are JSON. Load the config (and resolve `$ref`s), then use the generic memory-map codec:
+
 ```typescript
-import { CodecFactory } from 'radio-module-baofeng';
+import { createMemoryMapCodec } from '@springfield/ham-radio-utils';
 import { MockLogLayer } from 'loglayer';
+import config from '@springfield/radio-module-baofeng/configs/baofeng-uv5r.json';
+import memoryMap from './src/shared/memory-maps/uv5r-settings.json';
 
-const factory = new CodecFactory();
 const logger = new MockLogLayer();
-const modelId = { 
-  model: 'baofeng-uv5r', 
-  name: 'Baofeng UV-5R', 
-  manufacturer: 'Baofeng' 
-};
+const codec = createMemoryMapCodec({
+  radioModel: config.id.model,
+  memoryMap,
+  memoryConfig: config.memoryConfig,
+  logger,
+});
 
-const codec = await factory.createCodec(modelId, config, logger);
-
-// Encode a radio program
-const program = {
-  channels: [
-    {
-      channelNumber: 0,
-      radioChannel: {
-        name: 'REPEAT',
-        receiveFrequency: 146520000,
-        transmitFrequency: 146520000,
-        receiveTone: { type: 'CTCSS', tone: 100.0 },
-        transmitTone: { type: 'CTCSS', tone: 100.0 },
-      },
-      settings: { transmitPower: 5 },
-    },
-  ],
-  settings: {},
-};
-
-const memory = codec.encode(program);
-
-// Decode radio memory
+const memory = codec.encode(program, { contents: new Uint8Array(8192).fill(0xff), radioModel: config.id.model });
 const decodedProgram = codec.decode(memory);
 ```
 
@@ -114,25 +96,21 @@ yarn build
 
 ```
 radio-module-baofeng/
-├── configs/                    # Radio configuration files
+├── configs/                    # Radio configuration files (Protocol DSL)
 │   └── baofeng-uv5r.json      # UV-5R configuration
-├── src/                        # Module source code
-│   ├── shared/                 # Shared components
-│   │   ├── schemas/           # JSON schemas
-│   │   │   ├── channel-schema.json
-│   │   │   └── settings-schema.json
-│   │   └── codecs/            # Codec implementations
-│   │       ├── baofeng-codec.ts
-│   │       ├── baofeng-decoder.ts
-│   │       ├── baofeng-encoder.ts
-│   │       └── baofeng-dcs-tones.ts
-│   ├── index.ts               # Main entry point
-│   └── codec-factory.ts       # Codec factory
-├── test/                       # Tests
+├── src/shared/                 # Shared JSON assets
+│   ├── schemas/               # JSON schemas
+│   │   ├── channel-schema.json
+│   │   └── settings-schema.json
+│   └── memory-maps/           # Memory-Map DSL
+│       └── uv5r-settings.json
+├── test/                       # Tests (use MemoryMapRadioCodec from ham-radio-utils)
 │   ├── unit/
 │   └── integration/
 └── package.json
 ```
+
+Encode/decode uses the generic `MemoryMapRadioCodec` from `@springfield/ham-radio-utils`. This package ships **JSON only** — no radio-specific TypeScript.
 
 ## Protocol Details
 

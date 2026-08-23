@@ -1,29 +1,18 @@
 {
   "name": "@springfield/radio-module-baofeng",
   "version": "2.4.1",
-  "description": "Radio module for Baofeng UV-5R series ham radios",
+  "description": "Radio module for Baofeng UV-5R series ham radios (DSL JSON configs)",
   "author": "Bryan Hunt",
   "license": "MIT",
   "readme": "README.md",
   "files": [
-    "src/",
-    "dist/",
     "configs/",
     "src/shared/schemas/",
     "src/shared/memory-maps/"
   ],
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./dist/codec-factory.js": {
-      "import": "./dist/codec-factory.js",
-      "types": "./dist/codec-factory.d.ts"
-    },
+    "./configs/*": "./configs/*",
     "./package.json": "./package.json"
   },
   "keywords": [
@@ -39,11 +28,11 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc && mkdir -p dist/shared/memory-maps && cp src/shared/memory-maps/*.json dist/shared/memory-maps/ && mkdir -p dist/shared/schemas && cp src/shared/schemas/*.json dist/shared/schemas/",
+    "build": "node -e \"console.log('json-only radio module; nothing to build')\"",
     "commitlint": "commitlint --edit",
     "format": "oxfmt",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix --fix-suggestions",
+    "lint": "oxlint configs src test",
+    "lint:fix": "oxlint --fix --fix-suggestions configs src test",
     "release": "semantic-release",
     "prepare": "husky",
     "test": "yarn test:unit",
@@ -67,11 +56,6 @@
       "settingsProgramming": true
     }
   },
-  "dependencies": {
-    "@springfield/ham-radio-api": "^17.3.0",
-    "@springfield/ham-radio-utils": "^4.5.0",
-    "loglayer": "^9.4.0"
-  },
   "devDependencies": {
     "@commitlint/cli": "21.2.2",
     "@commitlint/config-conventional": "21.2.2",
@@ -79,11 +63,13 @@
     "@semantic-release/git": "11.0.1",
     "@semantic-release/github": "12.0.9",
     "@semantic-release/npm": "13.1.5",
+    "@springfield/ham-radio-api": "^17.3.0",
+    "@springfield/ham-radio-utils": "^4.6.0",
     "@types/chai": "5.2.3",
     "@types/node": "26.2.0",
     "chai": "6.2.2",
-    "fishery": "2.4.0",
     "husky": "9.1.7",
+    "loglayer": "^9.4.0",
     "oxfmt": "^0.64.0",
     "oxlint": "1.79.0",
     "semantic-release": "25.0.9",
