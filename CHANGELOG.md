@@ -1,3 +1,21 @@
+## [3.0.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.4.1...v3.0.0) (2026-08-23)
+
+### ⚠ BREAKING CHANGES
+
+* @springfield/radio-module-baofeng no longer exports CodecFactory
+or other TypeScript entry points. Import createMemoryMapCodec from
+@springfield/ham-radio-utils and load JSON configs/memory maps instead.
+
+Co-authored-by: Cursor <cursoragent@cursor.com>
+
+### Features
+
+* ship Baofeng UV-5R as DSL JSON only ([dd61e5e](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/dd61e5eb427014ab99d25b02cf08baee61edcd1c))
+
+### Bug Fixes
+
+* lint test TypeScript in the JSON-only Baofeng module ([2148a7b](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/2148a7b54a0b701f41d28ec03d2fbc309039e6b1))
+
 ## [2.4.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.4.0...v2.4.1) (2026-08-23)
 
 ### Bug Fixes
