@@ -1,3 +1,9 @@
+## [2.4.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.4.0...v2.4.1) (2026-08-23)
+
+### Bug Fixes
+
+* update @springfield/ham-radio-api to ^17.3.0 ([5bb0ecc](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/5bb0ecc521392a61b98fdffce89a2a38b86ebb4b))
+
 ## [2.4.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.3.0...v2.4.0) (2026-08-23)
 
 ### Features
