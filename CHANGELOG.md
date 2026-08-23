@@ -1,3 +1,9 @@
+## [2.4.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.3.0...v2.4.0) (2026-08-23)
+
+### Features
+
+* add Chirp-faithful UV-5R write protocol ([7022687](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/7022687947eeed6486cc8f41662c2ee5c5e5aee8))
+
 ## [2.3.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.2.0...v2.3.0) (2026-08-22)
 
 ### Features
