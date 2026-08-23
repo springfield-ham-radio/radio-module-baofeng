@@ -144,6 +144,8 @@ The module implements the Baofeng UV-5R communication protocol:
 - **Memory Segments**: 
   - Channels: 0x0000 - 0x17FF (6144 bytes)
   - Settings: 0x1EC0 - 0x1FFF (320 bytes)
+- **Read**: 64-byte `S` blocks after ident handshake
+- **Write**: ident handshake, then 16-byte `X` blocks with a 50ms pause; skips radio addresses `0x0CF0–0x0CFF` and `0x0DF0–0x0DFF`
 
 ## Contributing
 
