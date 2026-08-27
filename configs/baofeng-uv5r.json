@@ -17,7 +17,7 @@
     "author": "Springfield Ham Radio",
     "license": "MIT",
     "homepage": "https://springfield-ham-radio.com",
-    "repository": "https://gitlab.com/springfield-ham-radio/drivers/radio-module-baofeng"
+    "repository": "https://github.com/springfield-ham-radio/radio-module-baofeng"
   },
   "settingsSchema": {
     "model": "baofeng-uv5r",
