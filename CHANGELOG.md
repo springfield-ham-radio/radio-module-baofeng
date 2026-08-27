@@ -1,3 +1,9 @@
+## [3.1.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.0.0...v3.1.0) (2026-08-27)
+
+### Features
+
+* publish JSON-only module zip on GitHub Releases for in-app install ([715f2bc](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/715f2bc886249c6c35490ebbc864bf6b2b445e8b))
+
 ## [3.0.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v2.4.1...v3.0.0) (2026-08-23)
 
 ### ⚠ BREAKING CHANGES
