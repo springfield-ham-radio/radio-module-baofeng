@@ -24,9 +24,6 @@
     "type": "git",
     "url": "git+https://github.com/springfield-ham-radio/radio-module-baofeng.git"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "build": "node -e \"console.log('json-only radio module; nothing to build')\"",
     "pack:release": "node scripts/pack-release-zip.mjs",
@@ -107,7 +104,12 @@
         }
       ],
       "@semantic-release/changelog",
-      "@semantic-release/npm",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
       [
         "@semantic-release/exec",
         {

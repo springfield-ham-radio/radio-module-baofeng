@@ -25,12 +25,6 @@ This module provides support for programming and managing Baofeng UV-5R and UV-5
 
 Install from **Preferences → Radios** (or the first-launch Install radios dialog). The app downloads the JSON-only zip from GitHub Releases listed in the official catalog.
 
-### npm (developers)
-
-```bash
-yarn add @springfield/radio-module-baofeng
-```
-
 ### Release zip
 
 Each GitHub Release attaches `radio-module-baofeng-<version>.zip` (configs + shared schemas/memory maps). Build it locally with:
