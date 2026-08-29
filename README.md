@@ -1,6 +1,6 @@
 # radio-module-baofeng
 
-A radio module for Baofeng UV-5R series ham radios, compatible with the Springfield Ham Radio Registry.
+A radio module for Baofeng UV-5R series ham radios, compatible with the HamBench registry.
 
 ## Description
 
@@ -148,7 +148,7 @@ The module implements the Baofeng UV-5R communication protocol:
 
 For issues and questions:
 - Create an issue in the [GitHub repository](https://github.com/springfield-ham-radio/radio-module-baofeng)
-- Check the [Springfield Ham Radio documentation](https://springfield-ham-radio.com)
+- Check the [HamBench documentation](https://springfield-ham-radio.com)
 
 ## License
 
