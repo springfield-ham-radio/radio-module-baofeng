@@ -1,3 +1,9 @@
+## [3.1.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.1.0...v3.1.1) (2026-09-08)
+
+### Bug Fixes
+
+* rename UV-5R scode labels from PTT ID to S-CODE ([a4a04d7](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/a4a04d7c0b0397c76ff1dea300f0c204a8f09bd2))
+
 ## [3.1.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.0.0...v3.1.0) (2026-08-27)
 
 ### Features
