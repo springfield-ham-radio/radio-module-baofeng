@@ -127,7 +127,16 @@
           ]
         }
       ],
-      "@semantic-release/git"
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json",
+            "configs/*.json"
+          ]
+        }
+      ]
     ]
   },
   "packageManager": "yarn@4.18.0"

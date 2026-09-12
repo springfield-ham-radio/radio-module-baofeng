@@ -33,6 +33,8 @@ Each GitHub Release attaches `radio-module-baofeng-<version>.zip` (configs + sha
 yarn pack:release
 ```
 
+`pack:release` (and semantic-release) write the module version into every `configs/*.json` `version` field before zipping. Do not bump those fields by hand; HamBench shows that value when you install a JSON file.
+
 Update the official `radio-module-catalog` with the printed `sha256:…` integrity after release.
 
 ## Usage
