@@ -5,7 +5,7 @@
     "name": "Baofeng UV-5R",
     "manufacturer": "Baofeng"
   },
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "UV-5R and UV-5RE Plus models",
   "capabilities": {
     "memoryRead": true,

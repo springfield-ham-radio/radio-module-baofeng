@@ -1,3 +1,9 @@
+## [3.2.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.1.1...v3.2.0) (2026-09-12)
+
+### Features
+
+* stamp radio JSON version from the module release ([8e91f9e](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/8e91f9e60bdfb1393f2f8c84b8c9e76939062ad4))
+
 ## [3.1.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.1.0...v3.1.1) (2026-09-08)
 
 ### Bug Fixes
