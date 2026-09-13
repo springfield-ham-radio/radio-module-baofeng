@@ -1,3 +1,9 @@
+## [3.5.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.4.1...v3.5.0) (2026-09-13)
+
+### Features
+
+* generate catalog-module.json from configs ([aa80715](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/aa80715a728b63defd9a40192ad380f000e4bb71))
+
 ## [3.4.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.4.0...v3.4.1) (2026-09-13)
 
 ### Bug Fixes
