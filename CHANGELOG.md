@@ -1,3 +1,9 @@
+## [3.4.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.4.0...v3.4.1) (2026-09-13)
+
+### Bug Fixes
+
+* drop Settings suffix from UV-5R group labels ([fc9d75d](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/fc9d75d0121e71adb038ef2585d136c6a8d8cd2b))
+
 ## [3.4.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.3.0...v3.4.0) (2026-09-13)
 
 ### Features
