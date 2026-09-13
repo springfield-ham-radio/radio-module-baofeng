@@ -1,6 +1,130 @@
 {
   "version": "1.0.0",
   "description": "Baofeng UV-5R channels + radio-wide settings (radio EEPROM addresses; Chirp image offset = radio + 8)",
+  "groups": [
+    {
+      "id": "basic",
+      "label": "Basic Settings",
+      "icon": "i-lucide-sliders-horizontal",
+      "groups": [
+        {
+          "id": "receive",
+          "label": "Receive"
+        },
+        {
+          "id": "power",
+          "label": "Power"
+        },
+        {
+          "id": "audio",
+          "label": "Audio"
+        },
+        {
+          "id": "display",
+          "label": "Display"
+        }
+      ]
+    },
+    {
+      "id": "dtmf",
+      "label": "DTMF Settings",
+      "icon": "i-lucide-hash",
+      "groups": [
+        {
+          "id": "codes",
+          "label": "Codes"
+        },
+        {
+          "id": "timing",
+          "label": "Timing"
+        }
+      ]
+    },
+    {
+      "id": "advanced",
+      "label": "Advanced Settings",
+      "icon": "i-lucide-settings-2",
+      "groups": [
+        {
+          "id": "vfo",
+          "label": "VFO"
+        },
+        {
+          "id": "watch",
+          "label": "Dual Watch / Scan"
+        },
+        {
+          "id": "transmit",
+          "label": "Transmit"
+        },
+        {
+          "id": "tail",
+          "label": "Squelch Tail"
+        },
+        {
+          "id": "alerts",
+          "label": "Alerts"
+        },
+        {
+          "id": "menus",
+          "label": "Menus and Keys"
+        }
+      ]
+    },
+    {
+      "id": "workmode",
+      "label": "Work Mode Settings",
+      "icon": "i-lucide-waypoints",
+      "groups": [
+        {
+          "id": "general",
+          "label": "General"
+        },
+        {
+          "id": "vfo-a",
+          "label": "VFO A"
+        },
+        {
+          "id": "vfo-b",
+          "label": "VFO B"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "label": "Other Settings",
+      "icon": "i-lucide-ellipsis",
+      "groups": [
+        {
+          "id": "messages",
+          "label": "Messages"
+        },
+        {
+          "id": "limits",
+          "label": "Band Limits"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "label": "Service Settings",
+      "icon": "i-lucide-wrench",
+      "warning": {
+        "title": "Service calibration values",
+        "description": "Change only with appropriate test equipment."
+      },
+      "groups": [
+        {
+          "id": "vhf",
+          "label": "VHF Squelch"
+        },
+        {
+          "id": "uhf",
+          "label": "UHF Squelch"
+        }
+      ]
+    }
+  ],
   "structs": [
     {
       "id": "channels",
@@ -449,7 +573,8 @@
             "group": "dtmf",
             "label": "PTT ID Code",
             "widget": "text",
-            "description": "DTMF code sent as PTT-ID when selected by a channel or VFO."
+            "description": "DTMF code sent as PTT-ID when selected by a channel or VFO.",
+            "subgroup": "codes"
           }
         },
         {
@@ -515,7 +640,8 @@
             "group": "dtmf",
             "label": "Alarm Code",
             "widget": "text",
-            "description": "Three-character DTMF code transmitted when the alarm is used in Code mode."
+            "description": "Three-character DTMF code transmitted when the alarm is used in Code mode.",
+            "subgroup": "codes"
           }
         },
         {
@@ -621,7 +747,8 @@
             "group": "dtmf",
             "label": "ANI Code",
             "widget": "text",
-            "description": "Numeric Automatic Number Identification code."
+            "description": "Numeric Automatic Number Identification code.",
+            "subgroup": "codes"
           }
         },
         {
@@ -647,7 +774,8 @@
             "group": "dtmf",
             "label": "ANI ID",
             "widget": "select",
-            "description": "When the ANI code is sent: BOT, EOT, Both, or Off."
+            "description": "When the ANI code is sent: BOT, EOT, Both, or Off.",
+            "subgroup": "codes"
           }
         },
         {
@@ -867,7 +995,8 @@
             "group": "dtmf",
             "label": "DTMF Speed (on)",
             "widget": "select",
-            "description": "How long each DTMF tone is transmitted."
+            "description": "How long each DTMF tone is transmitted.",
+            "subgroup": "timing"
           }
         },
         {
@@ -1078,7 +1207,8 @@
             "group": "dtmf",
             "label": "DTMF Speed (off)",
             "widget": "select",
-            "description": "Silent gap between transmitted DTMF tones."
+            "description": "Silent gap between transmitted DTMF tones.",
+            "subgroup": "timing"
           }
         }
       ]
@@ -1099,7 +1229,8 @@
             "group": "basic",
             "label": "Carrier Squelch Level",
             "widget": "integer",
-            "description": "How strong a received signal must be before the speaker unmutes. 0 leaves squelch open."
+            "description": "How strong a received signal must be before the speaker unmutes. 0 leaves squelch open.",
+            "subgroup": "receive"
           }
         },
         {
@@ -1119,7 +1250,8 @@
           "ui": {
             "group": "advanced",
             "label": "Frequency Step (kHz)",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo"
           }
         },
         {
@@ -1144,7 +1276,8 @@
             "group": "basic",
             "label": "Battery Saver",
             "widget": "select",
-            "description": "Reduces standby battery use by periodically putting the receiver to sleep."
+            "description": "Reduces standby battery use by periodically putting the receiver to sleep.",
+            "subgroup": "power"
           }
         },
         {
@@ -1170,7 +1303,8 @@
             "group": "advanced",
             "label": "VOX Sensitivity",
             "widget": "select",
-            "description": "Voice-operated transmission without pressing PTT. Lower numbers are more sensitive."
+            "description": "Voice-operated transmission without pressing PTT. Lower numbers are more sensitive.",
+            "subgroup": "transmit"
           }
         },
         {
@@ -1190,7 +1324,8 @@
             "group": "basic",
             "label": "Backlight Timeout",
             "widget": "integer",
-            "description": "Seconds the display backlight remains on. 0 disables automatic backlight."
+            "description": "Seconds the display backlight remains on. 0 disables automatic backlight.",
+            "subgroup": "display"
           }
         },
         {
@@ -1203,7 +1338,8 @@
             "group": "advanced",
             "label": "Dual Watch",
             "widget": "switch",
-            "description": "Periodically checks both A and B displayed frequencies."
+            "description": "Periodically checks both A and B displayed frequencies.",
+            "subgroup": "watch"
           }
         },
         {
@@ -1215,7 +1351,8 @@
           "ui": {
             "group": "basic",
             "label": "Beep",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "audio"
           }
         },
         {
@@ -1271,7 +1408,8 @@
             "group": "basic",
             "label": "Timeout Timer",
             "widget": "select",
-            "description": "Maximum continuous transmit time."
+            "description": "Maximum continuous transmit time.",
+            "subgroup": "power"
           }
         },
         {
@@ -1297,7 +1435,8 @@
           "ui": {
             "group": "advanced",
             "label": "Voice",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "alerts"
           }
         },
         {
@@ -1321,7 +1460,8 @@
             "group": "dtmf",
             "label": "DTMF Sidetone",
             "widget": "select",
-            "description": "Which transmitted DTMF tones are heard through the speaker."
+            "description": "Which transmitted DTMF tones are heard through the speaker.",
+            "subgroup": "timing"
           }
         },
         {
@@ -1350,7 +1490,8 @@
           "ui": {
             "group": "advanced",
             "label": "Scan Resume",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "watch"
           }
         },
         {
@@ -1368,7 +1509,8 @@
           "ui": {
             "group": "advanced",
             "label": "PTT ID",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "transmit"
           }
         },
         {
@@ -1383,7 +1525,8 @@
             "group": "dtmf",
             "label": "PTT ID Delay",
             "widget": "integer",
-            "description": "Delay before sending ANI/PTT-ID after PTT is pressed."
+            "description": "Delay before sending ANI/PTT-ID after PTT is pressed.",
+            "subgroup": "timing"
           }
         },
         {
@@ -1400,7 +1543,8 @@
           "ui": {
             "group": "basic",
             "label": "Display Mode (A)",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "display"
           }
         },
         {
@@ -1417,7 +1561,8 @@
           "ui": {
             "group": "basic",
             "label": "Display Mode (B)",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "display"
           }
         },
         {
@@ -1429,7 +1574,8 @@
           "ui": {
             "group": "advanced",
             "label": "Busy Channel Lockout",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "transmit"
           }
         },
         {
@@ -1441,7 +1587,8 @@
           "ui": {
             "group": "advanced",
             "label": "Automatic Key Lock",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "menus"
           }
         },
         {
@@ -1458,7 +1605,8 @@
           "ui": {
             "group": "advanced",
             "label": "Shift Direction",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo"
           }
         },
         {
@@ -1485,7 +1633,8 @@
           "ui": {
             "group": "basic",
             "label": "Standby LED Color",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "display"
           }
         },
         {
@@ -1503,7 +1652,8 @@
           "ui": {
             "group": "basic",
             "label": "RX LED Color",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "display"
           }
         },
         {
@@ -1521,7 +1671,8 @@
           "ui": {
             "group": "basic",
             "label": "TX LED Color",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "display"
           }
         },
         {
@@ -1538,7 +1689,8 @@
           "ui": {
             "group": "advanced",
             "label": "Alarm Mode",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "alerts"
           }
         },
         {
@@ -1550,7 +1702,8 @@
           "ui": {
             "group": "advanced",
             "label": "Band",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "vfo"
           }
         },
         {
@@ -1567,7 +1720,8 @@
           "ui": {
             "group": "advanced",
             "label": "Dual Watch TX Priority",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "watch"
           }
         },
         {
@@ -1579,7 +1733,8 @@
           "ui": {
             "group": "advanced",
             "label": "Squelch Tail Eliminate (HT to HT)",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "tail"
           }
         },
         {
@@ -1604,7 +1759,8 @@
           "ui": {
             "group": "advanced",
             "label": "Squelch Tail Eliminate (repeater)",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "tail"
           }
         },
         {
@@ -1629,7 +1785,8 @@
           "ui": {
             "group": "advanced",
             "label": "STE Repeater Delay",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "tail"
           }
         },
         {
@@ -1646,7 +1803,8 @@
             "group": "other",
             "label": "Power-On Message",
             "widget": "select",
-            "description": "Full shows the normal startup screen; Message shows the programmed lines."
+            "description": "Full shows the normal startup screen; Message shows the programmed lines.",
+            "subgroup": "messages"
           }
         },
         {
@@ -1659,7 +1817,8 @@
             "group": "basic",
             "label": "Roger Beep",
             "widget": "switch",
-            "description": "Sends a short tone at the end of each transmission."
+            "description": "Sends a short tone at the end of each transmission.",
+            "subgroup": "audio"
           }
         },
         {
@@ -1676,7 +1835,8 @@
           "ui": {
             "group": "advanced",
             "label": "Roger Beep (RX)",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "alerts"
           }
         },
         {
@@ -1699,7 +1859,8 @@
             "group": "workmode",
             "label": "Display",
             "widget": "select",
-            "description": "Active display line for tuning."
+            "description": "Active display line for tuning.",
+            "subgroup": "general"
           }
         },
         {
@@ -1718,7 +1879,8 @@
           "ui": {
             "group": "advanced",
             "label": "Broadcast FM Radio",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "menus"
           }
         },
         {
@@ -1731,7 +1893,8 @@
           "ui": {
             "group": "advanced",
             "label": "Alarm Sound",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "alerts"
           }
         },
         {
@@ -1751,7 +1914,8 @@
             "group": "advanced",
             "label": "RESET Menu",
             "widget": "switch",
-            "description": "Whether the front-panel RESET menu is available."
+            "description": "Whether the front-panel RESET menu is available.",
+            "subgroup": "menus"
           }
         },
         {
@@ -1765,7 +1929,8 @@
             "group": "advanced",
             "label": "All Menus",
             "widget": "switch",
-            "description": "Controls access to the full front-panel menu."
+            "description": "Controls access to the full front-panel menu.",
+            "subgroup": "menus"
           }
         },
         {
@@ -1800,7 +1965,8 @@
             "group": "workmode",
             "label": "VFO/MR Mode",
             "widget": "select",
-            "description": "Operating mode used at startup."
+            "description": "Operating mode used at startup.",
+            "subgroup": "general"
           }
         },
         {
@@ -1812,7 +1978,8 @@
           "ui": {
             "group": "workmode",
             "label": "Keypad Lock",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "general"
           }
         }
       ]
@@ -1839,7 +2006,8 @@
           "ui": {
             "group": "workmode",
             "label": "MR A Channel",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "general"
           }
         },
         {
@@ -1860,7 +2028,8 @@
           "ui": {
             "group": "workmode",
             "label": "MR B Channel",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "general"
           }
         }
       ]
@@ -1881,7 +2050,8 @@
             "group": "workmode",
             "label": "VFO A Frequency",
             "widget": "number",
-            "description": "Receive frequency on display line A in Frequency (VFO) mode (Hz)."
+            "description": "Receive frequency on display line A in Frequency (VFO) mode (Hz).",
+            "subgroup": "vfo-a"
           }
         },
         {
@@ -1896,7 +2066,8 @@
             "group": "workmode",
             "label": "VFO A Offset",
             "widget": "number",
-            "description": "Repeater offset in Hz."
+            "description": "Repeater offset in Hz.",
+            "subgroup": "vfo-a"
           }
         },
         {
@@ -1947,7 +2118,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO A Shift",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-a"
           }
         },
         {
@@ -1978,7 +2150,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO A S-CODE",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-a"
           }
         },
         {
@@ -2012,7 +2185,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO A Tuning Step",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-a"
           }
         },
         {
@@ -2035,7 +2209,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO A Power",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-a"
           }
         },
         {
@@ -2052,7 +2227,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO A Bandwidth",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-a"
           }
         },
         {
@@ -2084,7 +2260,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO B Frequency",
-            "widget": "number"
+            "widget": "number",
+            "subgroup": "vfo-b"
           }
         },
         {
@@ -2098,7 +2275,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO B Offset",
-            "widget": "number"
+            "widget": "number",
+            "subgroup": "vfo-b"
           }
         },
         {
@@ -2149,7 +2327,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO B Shift",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-b"
           }
         },
         {
@@ -2180,7 +2359,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO B S-CODE",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-b"
           }
         },
         {
@@ -2214,7 +2394,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO B Tuning Step",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-b"
           }
         },
         {
@@ -2237,7 +2418,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO B Power",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-b"
           }
         },
         {
@@ -2254,7 +2436,8 @@
           "ui": {
             "group": "workmode",
             "label": "VFO B Bandwidth",
-            "widget": "select"
+            "widget": "select",
+            "subgroup": "vfo-b"
           }
         },
         {
@@ -2286,7 +2469,8 @@
             "group": "other",
             "label": "6+Power-On Message 1",
             "widget": "text",
-            "writable": false
+            "writable": false,
+            "subgroup": "messages"
           }
         },
         {
@@ -2300,7 +2484,8 @@
             "group": "other",
             "label": "6+Power-On Message 2",
             "widget": "text",
-            "writable": false
+            "writable": false,
+            "subgroup": "messages"
           }
         }
       ]
@@ -2319,7 +2504,8 @@
           "ui": {
             "group": "other",
             "label": "Power-On Message 1",
-            "widget": "text"
+            "widget": "text",
+            "subgroup": "messages"
           }
         },
         {
@@ -2332,7 +2518,8 @@
           "ui": {
             "group": "other",
             "label": "Power-On Message 2",
-            "widget": "text"
+            "widget": "text",
+            "subgroup": "messages"
           }
         }
       ]
@@ -2352,7 +2539,8 @@
             "group": "other",
             "label": "Firmware Message 1",
             "widget": "text",
-            "writable": false
+            "writable": false,
+            "subgroup": "messages"
           }
         },
         {
@@ -2366,7 +2554,8 @@
             "group": "other",
             "label": "Firmware Message 2",
             "widget": "text",
-            "writable": false
+            "writable": false,
+            "subgroup": "messages"
           }
         }
       ]
@@ -2387,7 +2576,8 @@
             "group": "service",
             "label": "VHF Squelch 0",
             "widget": "integer",
-            "description": "Service calibration threshold. Change only with test equipment."
+            "description": "Service calibration threshold. Change only with test equipment.",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2401,7 +2591,8 @@
           "ui": {
             "group": "service",
             "label": "VHF Squelch 1",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2415,7 +2606,8 @@
           "ui": {
             "group": "service",
             "label": "VHF Squelch 2",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2429,7 +2621,8 @@
           "ui": {
             "group": "service",
             "label": "VHF Squelch 3",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2443,7 +2636,8 @@
           "ui": {
             "group": "service",
             "label": "VHF Squelch 4",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2457,7 +2651,8 @@
           "ui": {
             "group": "service",
             "label": "VHF Squelch 5",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2471,7 +2666,8 @@
           "ui": {
             "group": "service",
             "label": "VHF Squelch 6",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2485,7 +2681,8 @@
           "ui": {
             "group": "service",
             "label": "VHF Squelch 7",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2499,7 +2696,8 @@
           "ui": {
             "group": "service",
             "label": "VHF Squelch 8",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2513,7 +2711,8 @@
           "ui": {
             "group": "service",
             "label": "VHF Squelch 9",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "vhf"
           }
         },
         {
@@ -2545,7 +2744,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 0",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         },
         {
@@ -2559,7 +2759,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 1",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         },
         {
@@ -2573,7 +2774,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 2",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         },
         {
@@ -2587,7 +2789,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 3",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         },
         {
@@ -2601,7 +2804,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 4",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         },
         {
@@ -2615,7 +2819,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 5",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         },
         {
@@ -2629,7 +2834,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 6",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         },
         {
@@ -2643,7 +2849,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 7",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         },
         {
@@ -2657,7 +2864,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 8",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         },
         {
@@ -2671,7 +2879,8 @@
           "ui": {
             "group": "service",
             "label": "UHF Squelch 9",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "uhf"
           }
         }
       ]
@@ -2689,7 +2898,8 @@
           "ui": {
             "group": "other",
             "label": "VHF TX Enabled",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "limits"
           }
         },
         {
@@ -2702,7 +2912,8 @@
           "ui": {
             "group": "other",
             "label": "VHF Lower Limit (MHz)",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "limits"
           }
         },
         {
@@ -2715,7 +2926,8 @@
           "ui": {
             "group": "other",
             "label": "VHF Upper Limit (MHz)",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "limits"
           }
         },
         {
@@ -2727,7 +2939,8 @@
           "ui": {
             "group": "other",
             "label": "UHF TX Enabled",
-            "widget": "switch"
+            "widget": "switch",
+            "subgroup": "limits"
           }
         },
         {
@@ -2740,7 +2953,8 @@
           "ui": {
             "group": "other",
             "label": "UHF Lower Limit (MHz)",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "limits"
           }
         },
         {
@@ -2753,7 +2967,8 @@
           "ui": {
             "group": "other",
             "label": "UHF Upper Limit (MHz)",
-            "widget": "integer"
+            "widget": "integer",
+            "subgroup": "limits"
           }
         }
       ]
