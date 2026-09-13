@@ -1,3 +1,9 @@
+## [3.4.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.3.0...v3.4.0) (2026-09-13)
+
+### Features
+
+* move UV-5R DTMF after Other and reorder Band Limits ([80d71fc](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/80d71fc1841a3129e303cfe4f25666b9476909a1))
+
 ## [3.3.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.2.0...v3.3.0) (2026-09-13)
 
 ### Features
