@@ -26,21 +26,6 @@
       ]
     },
     {
-      "id": "dtmf",
-      "label": "DTMF Settings",
-      "icon": "i-lucide-hash",
-      "groups": [
-        {
-          "id": "codes",
-          "label": "Codes"
-        },
-        {
-          "id": "timing",
-          "label": "Timing"
-        }
-      ]
-    },
-    {
       "id": "advanced",
       "label": "Advanced Settings",
       "icon": "i-lucide-settings-2",
@@ -102,6 +87,21 @@
         {
           "id": "limits",
           "label": "Band Limits"
+        }
+      ]
+    },
+    {
+      "id": "dtmf",
+      "label": "DTMF Settings",
+      "icon": "i-lucide-hash",
+      "groups": [
+        {
+          "id": "codes",
+          "label": "Codes"
+        },
+        {
+          "id": "timing",
+          "label": "Timing"
         }
       ]
     },
@@ -2899,7 +2899,8 @@
             "group": "other",
             "label": "VHF TX Enabled",
             "widget": "switch",
-            "subgroup": "limits"
+            "subgroup": "limits",
+            "order": 1
           }
         },
         {
@@ -2913,7 +2914,8 @@
             "group": "other",
             "label": "VHF Lower Limit (MHz)",
             "widget": "integer",
-            "subgroup": "limits"
+            "subgroup": "limits",
+            "order": 3
           }
         },
         {
@@ -2927,7 +2929,8 @@
             "group": "other",
             "label": "VHF Upper Limit (MHz)",
             "widget": "integer",
-            "subgroup": "limits"
+            "subgroup": "limits",
+            "order": 4
           }
         },
         {
@@ -2940,7 +2943,8 @@
             "group": "other",
             "label": "UHF TX Enabled",
             "widget": "switch",
-            "subgroup": "limits"
+            "subgroup": "limits",
+            "order": 2
           }
         },
         {
@@ -2954,7 +2958,8 @@
             "group": "other",
             "label": "UHF Lower Limit (MHz)",
             "widget": "integer",
-            "subgroup": "limits"
+            "subgroup": "limits",
+            "order": 5
           }
         },
         {
@@ -2968,7 +2973,8 @@
             "group": "other",
             "label": "UHF Upper Limit (MHz)",
             "widget": "integer",
-            "subgroup": "limits"
+            "subgroup": "limits",
+            "order": 6
           }
         }
       ]

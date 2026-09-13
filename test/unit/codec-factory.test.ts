@@ -26,6 +26,16 @@ describe('Baofeng UV-5R DSL module', () => {
     expect(config.memoryMap.$ref).to.equal('../src/shared/memory-maps/uv5r-settings.json');
 
     const memoryMap = readJson('src/shared/memory-maps/uv5r-settings.json') as RadioMemoryMap;
+
+    expect((memoryMap.groups ?? []).map((group) => group.id)).to.deep.equal([
+      'basic',
+      'advanced',
+      'workmode',
+      'other',
+      'dtmf',
+      'service',
+    ]);
+
     const codec = createMemoryMapCodec({
       radioModel: config.id.model as never,
       memoryMap,
