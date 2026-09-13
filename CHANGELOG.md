@@ -1,3 +1,9 @@
+## [3.3.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.2.0...v3.3.0) (2026-09-13)
+
+### Features
+
+* declare UV-5R settings groups and sub-groups ([85bdb8a](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/85bdb8a9d56d583037c222dbf9ee1f8ae2d4d77c))
+
 ## [3.2.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.1.1...v3.2.0) (2026-09-12)
 
 ### Features
