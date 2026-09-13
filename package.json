@@ -43,8 +43,7 @@
     "configPath": "configs",
     "sharedPath": "src/shared",
     "supportedRadios": [
-      "uv5r",
-      "uv5r-plus"
+      "baofeng-uv5r"
     ],
     "capabilities": {
       "dslProtocols": true,
