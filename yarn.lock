@@ -1539,27 +1539,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@springfield/ham-radio-api@npm:^17.9.0":
-  version: 17.9.0
-  resolution: "@springfield/ham-radio-api@npm:17.9.0"
+"@springfield/ham-radio-api@npm:^17.9.1":
+  version: 17.9.1
+  resolution: "@springfield/ham-radio-api@npm:17.9.1"
   dependencies:
-    loglayer: "npm:^8.5.0"
+    loglayer: "npm:^9.4.0"
     ts-brand: "npm:^0.2.0"
-  checksum: 10c0/3ae00673dfccef4b6eeee27e38bd1a68a7e85f11139e0e8f26f834b325babdb0672ab8826035f7b4f34199620c88e2bcf8a57a94ead86ed0f79ba270b344353a
+  checksum: 10c0/f43fb7ffa7d80716c1792e909115837f5829ac9f4ae0728ad5fe54f249c63fc33bbc1fe03ef0f5f5ce9a59f29fddca8669e5b0e8dbd2ac5910565d25c3693062
   languageName: node
   linkType: hard
 
-"@springfield/ham-radio-utils@npm:^4.12.0":
-  version: 4.12.0
-  resolution: "@springfield/ham-radio-utils@npm:4.12.0"
+"@springfield/ham-radio-utils@npm:^4.12.1":
+  version: 4.12.1
+  resolution: "@springfield/ham-radio-utils@npm:4.12.1"
   dependencies:
-    "@springfield/ham-radio-api": "npm:^17.9.0"
+    "@springfield/ham-radio-api": "npm:^17.9.1"
     ajv: "npm:^8.20.0"
     ajv-formats: "npm:^3.0.1"
     fishery: "npm:^2.4.0"
     loglayer: "npm:^9.4.0"
     sprintf-js: "npm:^1.1.3"
-  checksum: 10c0/25a9c4bc4bab8229cfc105801be69a11d2c9d0cb9321a17f0cae730bd889232e5458bfbbfc693f290abc42d9710eeec4f3d2ee771abd2c08d54370ed0817c53d
+  checksum: 10c0/e3fa5be0ee63f0c6f2105033716571148a54abf8a0bbcf3dd771e6d5da9b1b287c8c52a7393915d9a59a4c953d232d52ef12e2f6f3402f1fe2743781fc16789f
   languageName: node
   linkType: hard
 
@@ -1574,8 +1574,8 @@ __metadata:
     "@semantic-release/git": "npm:11.0.1"
     "@semantic-release/github": "npm:12.0.9"
     "@semantic-release/npm": "npm:13.1.5"
-    "@springfield/ham-radio-api": "npm:^17.9.0"
-    "@springfield/ham-radio-utils": "npm:^4.12.0"
+    "@springfield/ham-radio-api": "npm:^17.9.1"
+    "@springfield/ham-radio-utils": "npm:^4.12.1"
     "@types/chai": "npm:5.2.3"
     "@types/node": "npm:26.5.1"
     chai: "npm:6.2.2"
@@ -2826,9 +2826,9 @@ __metadata:
   linkType: hard
 
 "fast-uri@npm:^3.0.1":
-  version: 3.0.6
-  resolution: "fast-uri@npm:3.0.6"
-  checksum: 10c0/74a513c2af0584448aee71ce56005185f81239eab7a2343110e5bad50c39ad4fb19c5a6f99783ead1cac7ccaf3461a6034fda89fffa2b30b6d99b9f21c2f9d29
+  version: 3.1.7
+  resolution: "fast-uri@npm:3.1.7"
+  checksum: 10c0/ca2baa4bde48fc7322bdc692c6636975943ebe4f6dd97e07d70b14e0ab85af2ff30de90f550f5ec2956684fe208e150d85d6cb5f3c74438c8ac1bf86bd435c13
   languageName: node
   linkType: hard
 
@@ -3508,13 +3508,13 @@ __metadata:
   linkType: hard
 
 "js-yaml@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "js-yaml@npm:4.1.0"
+  version: 4.3.2
+  resolution: "js-yaml@npm:4.3.2"
   dependencies:
     argparse: "npm:^2.0.1"
   bin:
     js-yaml: bin/js-yaml.js
-  checksum: 10c0/184a24b4eaacfce40ad9074c64fd42ac83cf74d8c8cd137718d456ced75051229e5061b8633c3366b8aada17945a7a356b337828c19da92b51ae62126575018f
+  checksum: 10c0/dedd34c2e8fef1d504687f1bc94ed0ee1311a1f78770fa2800352c6d59c635ccf555009d74e9afe529ae62199da2b1ccef30e53dc84dcd8d2d8187c22574bc97
   languageName: node
   linkType: hard
 
@@ -4862,12 +4862,12 @@ __metadata:
   linkType: hard
 
 "postcss-selector-parser@npm:^7.0.0":
-  version: 7.1.0
-  resolution: "postcss-selector-parser@npm:7.1.0"
+  version: 7.1.6
+  resolution: "postcss-selector-parser@npm:7.1.6"
   dependencies:
     cssesc: "npm:^3.0.0"
     util-deprecate: "npm:^1.0.2"
-  checksum: 10c0/0fef257cfd1c0fe93c18a3f8a6e739b4438b527054fd77e9a62730a89b2d0ded1b59314a7e4aaa55bc256204f40830fecd2eb50f20f8cb7ab3a10b52aa06c8aa
+  checksum: 10c0/fc8279859896b96ef25b24d0289b2bfff7bce6647b247aa983939ff872e226663788d1ea57bddf9d1695119c071e5cdcb8b2a364ed4313502efe4b0319879154
   languageName: node
   linkType: hard
 
