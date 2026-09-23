@@ -32,7 +32,7 @@
     "lint": "oxlint test",
     "lint:fix": "oxlint --fix --fix-suggestions test",
     "release": "semantic-release",
-    "prepare": "husky",
+    "prepare": "husky && yarn build",
     "test": "yarn test:unit",
     "test:unit": "tsx --test test/unit/**/*.test.ts",
     "test:integration": "tsx --test test/integration/**/*.test.ts"
