@@ -1,3 +1,9 @@
+## [3.6.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.5.0...v3.6.0) (2026-09-24)
+
+### Features
+
+* add UV-5R menu numbers and setting descriptions ([5035b01](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/5035b01cc22f2545a2af7e67b7ff1743f97f2e65))
+
 ## [3.5.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.4.1...v3.5.0) (2026-09-13)
 
 ### Features
