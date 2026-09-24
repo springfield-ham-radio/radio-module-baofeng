@@ -1,8 +1,7 @@
 import { Frequency, type RadioModelId, type RadioProgram, RadioToneType, type RadioMemoryConfig, type RadioMemoryMap } from '@springfield/ham-radio-api';
-import { describe, it } from 'node:test';
+import { describe, expect, it } from 'vitest';
 import { createMemoryMapCodec } from '@springfield/ham-radio-utils';
 import { MockLogLayer } from 'loglayer';
-import { expect } from 'chai';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -58,22 +57,22 @@ describe('Baofeng Module Integration', () => {
     const encodedMemory = codec.encode(originalProgram, mockMemory);
     const decodedProgram = codec.decode(encodedMemory);
 
-    expect(decodedProgram.channels).to.have.length(1);
-    expect(decodedProgram.channels[0].channelNumber).to.equal(0);
+    expect(decodedProgram.channels).toHaveLength(1);
+    expect(decodedProgram.channels[0].channelNumber).toBe(0);
 
     const radioChannel = decodedProgram.channels[0].radioChannel;
 
     if (typeof radioChannel === 'object' && radioChannel !== undefined) {
-      expect(radioChannel.name).to.equal('TEST');
-      expect(radioChannel.receiveFrequency).to.equal(146_520_000);
-      expect(radioChannel.transmitFrequency).to.equal(146_520_000);
-      expect(radioChannel.receiveTone).to.deep.equal({ tone: 885, type: RadioToneType.CTCSS });
-      expect(radioChannel.transmitTone).to.deep.equal({ tone: 23, type: RadioToneType.DCS });
+      expect(radioChannel.name).toBe('TEST');
+      expect(radioChannel.receiveFrequency).toBe(146_520_000);
+      expect(radioChannel.transmitFrequency).toBe(146_520_000);
+      expect(radioChannel.receiveTone).toEqual({ tone: 885, type: RadioToneType.CTCSS });
+      expect(radioChannel.transmitTone).toEqual({ tone: 23, type: RadioToneType.DCS });
     }
 
-    expect(decodedProgram.channels[0].settings?.transmitPower).to.equal(5);
-    expect(decodedProgram.channels[0].settings?.mode).to.equal('FM');
-    expect(decodedProgram.channels[0].settings?.skip).to.equal('');
+    expect(decodedProgram.channels[0].settings?.transmitPower).toBe(5);
+    expect(decodedProgram.channels[0].settings?.mode).toBe('FM');
+    expect(decodedProgram.channels[0].settings?.skip).toBe('');
   });
 
   it('should clear omitted channels to 0xFF', () => {
@@ -87,7 +86,7 @@ describe('Baofeng Module Integration', () => {
     }
 
     const encoded = codec.encode({ channels: [], settings: {} }, { contents, radioModel: modelId });
-    expect(encoded.contents[16]).to.equal(0xff);
+    expect(encoded.contents[16]).toBe(0xff);
   });
 
   it('should decode and encode radio-wide settings via the memory map', () => {
@@ -98,14 +97,14 @@ describe('Baofeng Module Integration', () => {
     contents[0x0e27] = 1;
 
     const decoded = codec.decode({ contents, radioModel: modelId });
-    expect((decoded.settings.settings as { squelch: number }).squelch).to.equal(5);
-    expect((decoded.settings.settings as { save: string }).save).to.equal('1:2');
-    expect((decoded.settings.settings as { tdr: boolean }).tdr).to.equal(true);
+    expect((decoded.settings.settings as { squelch: number }).squelch).toBe(5);
+    expect((decoded.settings.settings as { save: string }).save).toBe('1:2');
+    expect((decoded.settings.settings as { tdr: boolean }).tdr).toBe(true);
 
     (decoded.settings.settings as { squelch: number }).squelch = 7;
     const encoded = codec.encode(decoded, { contents, radioModel: modelId });
-    expect(encoded.contents[0x0e20]).to.equal(7);
-    expect(encoded.contents[0x0e23]).to.equal(2);
-    expect(encoded.contents[0x0e27]).to.equal(1);
+    expect(encoded.contents[0x0e20]).toBe(7);
+    expect(encoded.contents[0x0e23]).toBe(2);
+    expect(encoded.contents[0x0e27]).toBe(1);
   });
 });

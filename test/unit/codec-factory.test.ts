@@ -1,5 +1,4 @@
-import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,12 +21,12 @@ describe('Baofeng UV-5R DSL module', () => {
       id: { model: string };
     };
 
-    expect(config.codec.type).to.equal('memoryMap');
-    expect(config.memoryMap.$ref).to.equal('../src/shared/memory-maps/uv5r-settings.json');
+    expect(config.codec.type).toBe('memoryMap');
+    expect(config.memoryMap.$ref).toBe('../src/shared/memory-maps/uv5r-settings.json');
 
     const memoryMap = readJson('src/shared/memory-maps/uv5r-settings.json') as RadioMemoryMap;
 
-    expect((memoryMap.groups ?? []).map((group) => group.id)).to.deep.equal([
+    expect((memoryMap.groups ?? []).map((group) => group.id)).toEqual([
       'basic',
       'advanced',
       'workmode',
@@ -43,7 +42,7 @@ describe('Baofeng UV-5R DSL module', () => {
       logger: new MockLogLayer(),
     });
 
-    expect(codec.decode).to.be.a('function');
-    expect(codec.encode).to.be.a('function');
+    expect(codec.decode).toBeTypeOf('function');
+    expect(codec.encode).toBeTypeOf('function');
   });
 });
