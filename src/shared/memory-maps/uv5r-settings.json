@@ -412,7 +412,12 @@
           "ui": {
             "group": "channel",
             "label": "S-CODE",
-            "widget": "integer"
+            "widget": "integer",
+            "menu": {
+              "number": 17,
+              "code": "S-CODE"
+            },
+            "description": "Which stored PTT-ID code this memory channel sends. The codes themselves are edited under DTMF."
           }
         },
         {
@@ -451,7 +456,12 @@
           "ui": {
             "group": "channel",
             "label": "Power",
-            "widget": "select"
+            "widget": "select",
+            "menu": {
+              "number": 2,
+              "code": "TXP"
+            },
+            "description": "Transmit power for this memory channel. High is full power. Low reduces power and battery use."
           }
         },
         {
@@ -470,7 +480,12 @@
           "ui": {
             "group": "channel",
             "label": "Mode",
-            "widget": "switch"
+            "widget": "switch",
+            "menu": {
+              "number": 5,
+              "code": "WN"
+            },
+            "description": "FM bandwidth for this memory channel. Wide is the broader channel. Narrow is the tighter 12.5 kHz channel."
           }
         },
         {
@@ -489,7 +504,12 @@
           "ui": {
             "group": "channel",
             "label": "BCL",
-            "widget": "switch"
+            "widget": "switch",
+            "menu": {
+              "number": 23,
+              "code": "BCL"
+            },
+            "description": "Busy channel lockout for this memory channel. When on, the radio will not transmit if it is already receiving a signal."
           }
         },
         {
@@ -502,7 +522,8 @@
           "ui": {
             "group": "channel",
             "label": "Scan",
-            "widget": "switch"
+            "widget": "switch",
+            "description": "Includes this memory channel when you start a scan. Menu 18 (SC-REV) chooses whether scan resumes on a timer, when the carrier drops, or stops on the first signal."
           }
         },
         {
@@ -521,7 +542,12 @@
           "ui": {
             "group": "channel",
             "label": "PTT-ID",
-            "widget": "select"
+            "widget": "select",
+            "menu": {
+              "number": 19,
+              "code": "PTT-ID"
+            },
+            "description": "When this memory channel sends its PTT-ID. Off sends nothing. BOT sends it when you press PTT, EOT when you release, and Both at both times."
           }
         }
       ]
@@ -573,7 +599,7 @@
             "group": "dtmf",
             "label": "PTT ID Code",
             "widget": "text",
-            "description": "DTMF code sent as PTT-ID when selected by a channel or VFO.",
+            "description": "DTMF digits sent as the PTT-ID for this code slot. A channel or VFO S-CODE setting chooses which slot is sent.",
             "subgroup": "codes"
           }
         },
@@ -640,7 +666,7 @@
             "group": "dtmf",
             "label": "Alarm Code",
             "widget": "text",
-            "description": "Three-character DTMF code transmitted when the alarm is used in Code mode.",
+            "description": "DTMF code transmitted when alarm mode is set to Code (menu 32, AL-MOD).",
             "subgroup": "codes"
           }
         },
@@ -747,8 +773,12 @@
             "group": "dtmf",
             "label": "ANI Code",
             "widget": "text",
-            "description": "Numeric Automatic Number Identification code.",
-            "subgroup": "codes"
+            "description": "Automatic Number Identification sent with PTT-ID. The radio shows this code on menu 15. Digits only.",
+            "subgroup": "codes",
+            "menu": {
+              "number": 15,
+              "code": "ANI-ID"
+            }
           }
         },
         {
@@ -774,7 +804,7 @@
             "group": "dtmf",
             "label": "ANI ID",
             "widget": "select",
-            "description": "When the ANI code is sent: BOT, EOT, Both, or Off.",
+            "description": "When the ANI code is sent. Off sends nothing. BOT sends it when you press PTT, EOT when you release, and Both at both times.",
             "subgroup": "codes"
           }
         },
@@ -1229,8 +1259,12 @@
             "group": "basic",
             "label": "Carrier Squelch Level",
             "widget": "integer",
-            "description": "How strong a received signal must be before the speaker unmutes. 0 leaves squelch open.",
-            "subgroup": "receive"
+            "description": "How strong a received signal must be before the speaker opens. 0 leaves the squelch open, so you hear all noise. Higher numbers mute weaker signals.",
+            "subgroup": "receive",
+            "menu": {
+              "number": 0,
+              "code": "SQL"
+            }
           }
         },
         {
@@ -1251,7 +1285,12 @@
             "group": "advanced",
             "label": "Frequency Step (kHz)",
             "widget": "select",
-            "subgroup": "vfo"
+            "subgroup": "vfo",
+            "menu": {
+              "number": 1,
+              "code": "STEP"
+            },
+            "description": "Tuning step, in kHz, used when you turn the knob or press up and down in frequency mode."
           }
         },
         {
@@ -1276,8 +1315,12 @@
             "group": "basic",
             "label": "Battery Saver",
             "widget": "select",
-            "description": "Reduces standby battery use by periodically putting the receiver to sleep.",
-            "subgroup": "power"
+            "description": "How long the receiver listens versus how long it sleeps. Off keeps it awake. 1:1 listens as long as it sleeps. 1:4 sleeps four times longer than it listens, which saves the most battery and can miss the start of a short call.",
+            "subgroup": "power",
+            "menu": {
+              "number": 3,
+              "code": "SAVE"
+            }
           }
         },
         {
@@ -1303,8 +1346,12 @@
             "group": "advanced",
             "label": "VOX Sensitivity",
             "widget": "select",
-            "description": "Voice-operated transmission without pressing PTT. Lower numbers are more sensitive.",
-            "subgroup": "transmit"
+            "description": "Transmits when the radio hears your voice, without the PTT key. Off disables it. 1 is the most sensitive; 10 needs a louder voice.",
+            "subgroup": "transmit",
+            "menu": {
+              "number": 4,
+              "code": "VOX"
+            }
           }
         },
         {
@@ -1324,8 +1371,12 @@
             "group": "basic",
             "label": "Backlight Timeout",
             "widget": "integer",
-            "description": "Seconds the display backlight remains on. 0 disables automatic backlight.",
-            "subgroup": "display"
+            "description": "How long the display backlight stays on after a keypress, in seconds. 0 turns the backlight off. Some UV-5R firmware only offers a shorter list from the keypad.",
+            "subgroup": "display",
+            "menu": {
+              "number": 6,
+              "code": "ABR"
+            }
           }
         },
         {
@@ -1338,8 +1389,12 @@
             "group": "advanced",
             "label": "Dual Watch",
             "widget": "switch",
-            "description": "Periodically checks both A and B displayed frequencies.",
-            "subgroup": "watch"
+            "description": "Dual watch. The radio checks both the A and B frequencies and opens the speaker for whichever one is busy.",
+            "subgroup": "watch",
+            "menu": {
+              "number": 7,
+              "code": "TDR"
+            }
           }
         },
         {
@@ -1352,7 +1407,12 @@
             "group": "basic",
             "label": "Beep",
             "widget": "switch",
-            "subgroup": "audio"
+            "subgroup": "audio",
+            "menu": {
+              "number": 8,
+              "code": "BEEP"
+            },
+            "description": "Beeps when you press a key. Turn this off for a silent keypad."
           }
         },
         {
@@ -1408,8 +1468,12 @@
             "group": "basic",
             "label": "Timeout Timer",
             "widget": "select",
-            "description": "Maximum continuous transmit time.",
-            "subgroup": "power"
+            "description": "Stops a transmission that runs longer than this, so a stuck PTT cannot hold the channel. The radio then returns to receive.",
+            "subgroup": "power",
+            "menu": {
+              "number": 9,
+              "code": "TOT"
+            }
           }
         },
         {
@@ -1436,7 +1500,12 @@
             "group": "advanced",
             "label": "Voice",
             "widget": "select",
-            "subgroup": "alerts"
+            "subgroup": "alerts",
+            "menu": {
+              "number": 14,
+              "code": "VOICE"
+            },
+            "description": "Spoken prompts for keys and menus. Off is silent. English or Chinese speaks the selection."
           }
         },
         {
@@ -1460,8 +1529,12 @@
             "group": "dtmf",
             "label": "DTMF Sidetone",
             "widget": "select",
-            "description": "Which transmitted DTMF tones are heard through the speaker.",
-            "subgroup": "timing"
+            "description": "Which DTMF tones you hear in the speaker while transmitting. Off is silent. DT-ST plays keypad tones, ANI-ST plays the ANI or PTT-ID, and DT+ANI plays both.",
+            "subgroup": "timing",
+            "menu": {
+              "number": 16,
+              "code": "DTMFST"
+            }
           }
         },
         {
@@ -1491,7 +1564,12 @@
             "group": "advanced",
             "label": "Scan Resume",
             "widget": "select",
-            "subgroup": "watch"
+            "subgroup": "watch",
+            "menu": {
+              "number": 18,
+              "code": "SC-REV"
+            },
+            "description": "What scan does after it stops on a signal. TO resumes after a few seconds. CO resumes when the carrier drops. SE stops and stays on the first signal."
           }
         },
         {
@@ -1510,7 +1588,12 @@
             "group": "advanced",
             "label": "PTT ID",
             "widget": "select",
-            "subgroup": "transmit"
+            "subgroup": "transmit",
+            "menu": {
+              "number": 19,
+              "code": "PTT-ID"
+            },
+            "description": "When the selected PTT-ID code is sent. Off sends nothing. BOT sends it when you press PTT, EOT when you release PTT, and Both at both times."
           }
         },
         {
@@ -1525,8 +1608,12 @@
             "group": "dtmf",
             "label": "PTT ID Delay",
             "widget": "integer",
-            "description": "Delay before sending ANI/PTT-ID after PTT is pressed.",
-            "subgroup": "timing"
+            "description": "How long the radio waits after you press PTT before it sends the ANI or PTT-ID code.",
+            "subgroup": "timing",
+            "menu": {
+              "number": 20,
+              "code": "PTT-LT"
+            }
           }
         },
         {
@@ -1544,7 +1631,12 @@
             "group": "basic",
             "label": "Display Mode (A)",
             "widget": "select",
-            "subgroup": "display"
+            "subgroup": "display",
+            "menu": {
+              "number": 21,
+              "code": "MDF-A"
+            },
+            "description": "What display line A shows for a memory channel: the channel number, the stored name, or the frequency."
           }
         },
         {
@@ -1562,7 +1654,12 @@
             "group": "basic",
             "label": "Display Mode (B)",
             "widget": "select",
-            "subgroup": "display"
+            "subgroup": "display",
+            "menu": {
+              "number": 22,
+              "code": "MDF-B"
+            },
+            "description": "What display line B shows for a memory channel: the channel number, the stored name, or the frequency."
           }
         },
         {
@@ -1575,7 +1672,12 @@
             "group": "advanced",
             "label": "Busy Channel Lockout",
             "widget": "switch",
-            "subgroup": "transmit"
+            "subgroup": "transmit",
+            "menu": {
+              "number": 23,
+              "code": "BCL"
+            },
+            "description": "Busy channel lockout. When on, the radio will not transmit if it is already receiving a signal."
           }
         },
         {
@@ -1588,7 +1690,12 @@
             "group": "advanced",
             "label": "Automatic Key Lock",
             "widget": "switch",
-            "subgroup": "menus"
+            "subgroup": "menus",
+            "menu": {
+              "number": 24,
+              "code": "AUTOLK"
+            },
+            "description": "Locks the keypad after a few seconds with no keypress. The PTT key still works. Hold # to unlock."
           }
         },
         {
@@ -1606,7 +1713,12 @@
             "group": "advanced",
             "label": "Shift Direction",
             "widget": "select",
-            "subgroup": "vfo"
+            "subgroup": "vfo",
+            "menu": {
+              "number": 25,
+              "code": "SFT-D"
+            },
+            "description": "Repeater shift for the VFO. Off transmits on the receive frequency. + transmits above it by the offset, and − transmits below it."
           }
         },
         {
@@ -1634,7 +1746,12 @@
             "group": "basic",
             "label": "Standby LED Color",
             "widget": "select",
-            "subgroup": "display"
+            "subgroup": "display",
+            "menu": {
+              "number": 29,
+              "code": "WT-LED"
+            },
+            "description": "LED color while the radio is idle, not receiving or transmitting."
           }
         },
         {
@@ -1653,7 +1770,12 @@
             "group": "basic",
             "label": "RX LED Color",
             "widget": "select",
-            "subgroup": "display"
+            "subgroup": "display",
+            "menu": {
+              "number": 30,
+              "code": "RX-LED"
+            },
+            "description": "LED color while the radio is receiving a signal."
           }
         },
         {
@@ -1672,7 +1794,12 @@
             "group": "basic",
             "label": "TX LED Color",
             "widget": "select",
-            "subgroup": "display"
+            "subgroup": "display",
+            "menu": {
+              "number": 31,
+              "code": "TX-LED"
+            },
+            "description": "LED color while the radio is transmitting."
           }
         },
         {
@@ -1690,7 +1817,12 @@
             "group": "advanced",
             "label": "Alarm Mode",
             "widget": "select",
-            "subgroup": "alerts"
+            "subgroup": "alerts",
+            "menu": {
+              "number": 32,
+              "code": "AL-MOD"
+            },
+            "description": "What the alarm does. Site sounds only in your speaker. Tone transmits an alarm tone. Code transmits the programmed alarm DTMF code."
           }
         },
         {
@@ -1703,7 +1835,12 @@
             "group": "advanced",
             "label": "Band",
             "widget": "switch",
-            "subgroup": "vfo"
+            "subgroup": "vfo",
+            "menu": {
+              "number": 33,
+              "code": "BAND"
+            },
+            "description": "Band for the VFO. The keypad menu offers VHF or UHF."
           }
         },
         {
@@ -1721,7 +1858,12 @@
             "group": "advanced",
             "label": "Dual Watch TX Priority",
             "widget": "select",
-            "subgroup": "watch"
+            "subgroup": "watch",
+            "menu": {
+              "number": 34,
+              "code": "TDR-AB"
+            },
+            "description": "Which display transmits while dual watch is on. Off uses the display you selected. A or B forces transmit on that line."
           }
         },
         {
@@ -1734,7 +1876,12 @@
             "group": "advanced",
             "label": "Squelch Tail Eliminate (HT to HT)",
             "widget": "switch",
-            "subgroup": "tail"
+            "subgroup": "tail",
+            "menu": {
+              "number": 35,
+              "code": "STE"
+            },
+            "description": "Squelch tail elimination between two handhelds. Removes the noise burst you hear when the other station releases PTT on a tone-coded channel."
           }
         },
         {
@@ -1760,7 +1907,12 @@
             "group": "advanced",
             "label": "Squelch Tail Eliminate (repeater)",
             "widget": "select",
-            "subgroup": "tail"
+            "subgroup": "tail",
+            "menu": {
+              "number": 36,
+              "code": "RP-STE"
+            },
+            "description": "Squelch tail elimination for a repeater. Off leaves the noise burst when the repeater drops. Higher numbers hold your squelch closed longer."
           }
         },
         {
@@ -1786,7 +1938,12 @@
             "group": "advanced",
             "label": "STE Repeater Delay",
             "widget": "select",
-            "subgroup": "tail"
+            "subgroup": "tail",
+            "menu": {
+              "number": 37,
+              "code": "RPT-RL"
+            },
+            "description": "Delay before repeater squelch-tail elimination. Off disables the delay."
           }
         },
         {
@@ -1803,8 +1960,12 @@
             "group": "other",
             "label": "Power-On Message",
             "widget": "select",
-            "description": "Full shows the normal startup screen; Message shows the programmed lines.",
-            "subgroup": "messages"
+            "description": "What you see at power-on. Full shows the normal startup screen. Message shows the two programmed lines.",
+            "subgroup": "messages",
+            "menu": {
+              "number": 38,
+              "code": "PONMSG"
+            }
           }
         },
         {
@@ -1817,8 +1978,12 @@
             "group": "basic",
             "label": "Roger Beep",
             "widget": "switch",
-            "description": "Sends a short tone at the end of each transmission.",
-            "subgroup": "audio"
+            "description": "Sends a short courtesy tone when you release PTT, so the other station can tell you are done.",
+            "subgroup": "audio",
+            "menu": {
+              "number": 39,
+              "code": "ROGER"
+            }
           }
         },
         {
@@ -1836,7 +2001,8 @@
             "group": "advanced",
             "label": "Roger Beep (RX)",
             "widget": "select",
-            "subgroup": "alerts"
+            "subgroup": "alerts",
+            "description": "Which display line indicates a received roger beep. This is not a numbered item on the stock UV-5R keypad menu."
           }
         },
         {
@@ -1859,7 +2025,7 @@
             "group": "workmode",
             "label": "Display",
             "widget": "select",
-            "description": "Active display line for tuning.",
+            "description": "Which display line the knob and keypad tune. A is the top line and B is the bottom line. The A/B key switches this.",
             "subgroup": "general"
           }
         },
@@ -1880,7 +2046,8 @@
             "group": "advanced",
             "label": "Broadcast FM Radio",
             "widget": "switch",
-            "subgroup": "menus"
+            "subgroup": "menus",
+            "description": "Turns the broadcast FM receiver on. On the radio this is the CALL key, not a numbered menu. A ham signal interrupts the broadcast."
           }
         },
         {
@@ -1894,7 +2061,8 @@
             "group": "advanced",
             "label": "Alarm Sound",
             "widget": "switch",
-            "subgroup": "alerts"
+            "subgroup": "alerts",
+            "description": "Allows the alarm tone. Menu 32 (AL-MOD) chooses whether that alarm stays local or is transmitted."
           }
         },
         {
@@ -1914,8 +2082,12 @@
             "group": "advanced",
             "label": "RESET Menu",
             "widget": "switch",
-            "description": "Whether the front-panel RESET menu is available.",
-            "subgroup": "menus"
+            "description": "Shows or hides keypad menu 40. Turn this off to keep a VFO or full reset from being started on the radio.",
+            "subgroup": "menus",
+            "menu": {
+              "number": 40,
+              "code": "RESET"
+            }
           }
         },
         {
@@ -1929,7 +2101,7 @@
             "group": "advanced",
             "label": "All Menus",
             "widget": "switch",
-            "description": "Controls access to the full front-panel menu.",
+            "description": "When off, the keypad menu is locked so numbered settings cannot be changed from the radio.",
             "subgroup": "menus"
           }
         },
@@ -1965,7 +2137,7 @@
             "group": "workmode",
             "label": "VFO/MR Mode",
             "widget": "select",
-            "description": "Operating mode used at startup.",
+            "description": "Mode restored at power-on. Frequency is VFO tuning. Channel is memory mode. The VFO/MR key switches this on the radio.",
             "subgroup": "general"
           }
         },
@@ -1979,7 +2151,8 @@
             "group": "workmode",
             "label": "Keypad Lock",
             "widget": "switch",
-            "subgroup": "general"
+            "subgroup": "general",
+            "description": "Current keypad lock. Hold # on the radio to lock or unlock. Menu 24 (AUTOLK) can lock it automatically."
           }
         }
       ]
@@ -2007,7 +2180,8 @@
             "group": "workmode",
             "label": "MR A Channel",
             "widget": "integer",
-            "subgroup": "general"
+            "subgroup": "general",
+            "description": "Memory channel selected on display A in channel mode."
           }
         },
         {
@@ -2029,7 +2203,8 @@
             "group": "workmode",
             "label": "MR B Channel",
             "widget": "integer",
-            "subgroup": "general"
+            "subgroup": "general",
+            "description": "Memory channel selected on display B in channel mode."
           }
         }
       ]
@@ -2050,7 +2225,7 @@
             "group": "workmode",
             "label": "VFO A Frequency",
             "widget": "number",
-            "description": "Receive frequency on display line A in Frequency (VFO) mode (Hz).",
+            "description": "Receive frequency on display line A while the radio is in frequency mode, in Hz.",
             "subgroup": "vfo-a"
           }
         },
@@ -2066,8 +2241,12 @@
             "group": "workmode",
             "label": "VFO A Offset",
             "widget": "number",
-            "description": "Repeater offset in Hz.",
-            "subgroup": "vfo-a"
+            "description": "How far the transmit frequency sits from the receive frequency when shift is + or −, in Hz.",
+            "subgroup": "vfo-a",
+            "menu": {
+              "number": 26,
+              "code": "OFFSET"
+            }
           }
         },
         {
@@ -2119,7 +2298,12 @@
             "group": "workmode",
             "label": "VFO A Shift",
             "widget": "select",
-            "subgroup": "vfo-a"
+            "subgroup": "vfo-a",
+            "menu": {
+              "number": 25,
+              "code": "SFT-D"
+            },
+            "description": "Repeater shift for VFO A. Off transmits on the receive frequency. + transmits above it, and − transmits below it."
           }
         },
         {
@@ -2151,7 +2335,12 @@
             "group": "workmode",
             "label": "VFO A S-CODE",
             "widget": "select",
-            "subgroup": "vfo-a"
+            "subgroup": "vfo-a",
+            "menu": {
+              "number": 17,
+              "code": "S-CODE"
+            },
+            "description": "Which stored PTT-ID code VFO A sends. The codes themselves are edited under DTMF."
           }
         },
         {
@@ -2186,7 +2375,12 @@
             "group": "workmode",
             "label": "VFO A Tuning Step",
             "widget": "select",
-            "subgroup": "vfo-a"
+            "subgroup": "vfo-a",
+            "menu": {
+              "number": 1,
+              "code": "STEP"
+            },
+            "description": "Tuning step for VFO A, in kHz."
           }
         },
         {
@@ -2210,7 +2404,12 @@
             "group": "workmode",
             "label": "VFO A Power",
             "widget": "select",
-            "subgroup": "vfo-a"
+            "subgroup": "vfo-a",
+            "menu": {
+              "number": 2,
+              "code": "TXP"
+            },
+            "description": "Transmit power for VFO A. High is full power. Low reduces power and battery use."
           }
         },
         {
@@ -2228,7 +2427,12 @@
             "group": "workmode",
             "label": "VFO A Bandwidth",
             "widget": "select",
-            "subgroup": "vfo-a"
+            "subgroup": "vfo-a",
+            "menu": {
+              "number": 5,
+              "code": "WN"
+            },
+            "description": "FM bandwidth for VFO A. Wide is the broader channel. Narrow is the tighter 12.5 kHz channel."
           }
         },
         {
@@ -2261,7 +2465,8 @@
             "group": "workmode",
             "label": "VFO B Frequency",
             "widget": "number",
-            "subgroup": "vfo-b"
+            "subgroup": "vfo-b",
+            "description": "Receive frequency on display line B while the radio is in frequency mode, in Hz."
           }
         },
         {
@@ -2276,7 +2481,12 @@
             "group": "workmode",
             "label": "VFO B Offset",
             "widget": "number",
-            "subgroup": "vfo-b"
+            "subgroup": "vfo-b",
+            "menu": {
+              "number": 26,
+              "code": "OFFSET"
+            },
+            "description": "How far the transmit frequency sits from the receive frequency when shift is + or −, in Hz."
           }
         },
         {
@@ -2328,7 +2538,12 @@
             "group": "workmode",
             "label": "VFO B Shift",
             "widget": "select",
-            "subgroup": "vfo-b"
+            "subgroup": "vfo-b",
+            "menu": {
+              "number": 25,
+              "code": "SFT-D"
+            },
+            "description": "Repeater shift for VFO B. Off transmits on the receive frequency. + transmits above it, and − transmits below it."
           }
         },
         {
@@ -2360,7 +2575,12 @@
             "group": "workmode",
             "label": "VFO B S-CODE",
             "widget": "select",
-            "subgroup": "vfo-b"
+            "subgroup": "vfo-b",
+            "menu": {
+              "number": 17,
+              "code": "S-CODE"
+            },
+            "description": "Which stored PTT-ID code VFO B sends. The codes themselves are edited under DTMF."
           }
         },
         {
@@ -2395,7 +2615,12 @@
             "group": "workmode",
             "label": "VFO B Tuning Step",
             "widget": "select",
-            "subgroup": "vfo-b"
+            "subgroup": "vfo-b",
+            "menu": {
+              "number": 1,
+              "code": "STEP"
+            },
+            "description": "Tuning step for VFO B, in kHz."
           }
         },
         {
@@ -2419,7 +2644,12 @@
             "group": "workmode",
             "label": "VFO B Power",
             "widget": "select",
-            "subgroup": "vfo-b"
+            "subgroup": "vfo-b",
+            "menu": {
+              "number": 2,
+              "code": "TXP"
+            },
+            "description": "Transmit power for VFO B. High is full power. Low reduces power and battery use."
           }
         },
         {
@@ -2437,7 +2667,12 @@
             "group": "workmode",
             "label": "VFO B Bandwidth",
             "widget": "select",
-            "subgroup": "vfo-b"
+            "subgroup": "vfo-b",
+            "menu": {
+              "number": 5,
+              "code": "WN"
+            },
+            "description": "FM bandwidth for VFO B. Wide is the broader channel. Narrow is the tighter 12.5 kHz channel."
           }
         },
         {
@@ -2470,7 +2705,8 @@
             "label": "6+Power-On Message 1",
             "widget": "text",
             "writable": false,
-            "subgroup": "messages"
+            "subgroup": "messages",
+            "description": "First power-on line used by some UV-5R firmware. Shown when menu 38 (PONMSG) is set to Message."
           }
         },
         {
@@ -2485,7 +2721,8 @@
             "label": "6+Power-On Message 2",
             "widget": "text",
             "writable": false,
-            "subgroup": "messages"
+            "subgroup": "messages",
+            "description": "Second power-on line used by some UV-5R firmware. Shown when menu 38 (PONMSG) is set to Message."
           }
         }
       ]
@@ -2505,7 +2742,8 @@
             "group": "other",
             "label": "Power-On Message 1",
             "widget": "text",
-            "subgroup": "messages"
+            "subgroup": "messages",
+            "description": "First line shown at power-on when menu 38 (PONMSG) is set to Message."
           }
         },
         {
@@ -2519,7 +2757,8 @@
             "group": "other",
             "label": "Power-On Message 2",
             "widget": "text",
-            "subgroup": "messages"
+            "subgroup": "messages",
+            "description": "Second line shown at power-on when menu 38 (PONMSG) is set to Message."
           }
         }
       ]
@@ -2540,7 +2779,8 @@
             "label": "Firmware Message 1",
             "widget": "text",
             "writable": false,
-            "subgroup": "messages"
+            "subgroup": "messages",
+            "description": "Firmware banner stored in the radio. The radio displays this; it cannot be edited here."
           }
         },
         {
@@ -2555,7 +2795,8 @@
             "label": "Firmware Message 2",
             "widget": "text",
             "writable": false,
-            "subgroup": "messages"
+            "subgroup": "messages",
+            "description": "Second line of the firmware banner stored in the radio."
           }
         }
       ]
@@ -2576,7 +2817,7 @@
             "group": "service",
             "label": "VHF Squelch 0",
             "widget": "integer",
-            "description": "Service calibration threshold. Change only with test equipment.",
+            "description": "Factory threshold for carrier-squelch level 0 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment.",
             "subgroup": "vhf"
           }
         },
@@ -2592,7 +2833,8 @@
             "group": "service",
             "label": "VHF Squelch 1",
             "widget": "integer",
-            "subgroup": "vhf"
+            "subgroup": "vhf",
+            "description": "Factory threshold for carrier-squelch level 1 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2607,7 +2849,8 @@
             "group": "service",
             "label": "VHF Squelch 2",
             "widget": "integer",
-            "subgroup": "vhf"
+            "subgroup": "vhf",
+            "description": "Factory threshold for carrier-squelch level 2 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2622,7 +2865,8 @@
             "group": "service",
             "label": "VHF Squelch 3",
             "widget": "integer",
-            "subgroup": "vhf"
+            "subgroup": "vhf",
+            "description": "Factory threshold for carrier-squelch level 3 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2637,7 +2881,8 @@
             "group": "service",
             "label": "VHF Squelch 4",
             "widget": "integer",
-            "subgroup": "vhf"
+            "subgroup": "vhf",
+            "description": "Factory threshold for carrier-squelch level 4 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2652,7 +2897,8 @@
             "group": "service",
             "label": "VHF Squelch 5",
             "widget": "integer",
-            "subgroup": "vhf"
+            "subgroup": "vhf",
+            "description": "Factory threshold for carrier-squelch level 5 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2667,7 +2913,8 @@
             "group": "service",
             "label": "VHF Squelch 6",
             "widget": "integer",
-            "subgroup": "vhf"
+            "subgroup": "vhf",
+            "description": "Factory threshold for carrier-squelch level 6 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2682,7 +2929,8 @@
             "group": "service",
             "label": "VHF Squelch 7",
             "widget": "integer",
-            "subgroup": "vhf"
+            "subgroup": "vhf",
+            "description": "Factory threshold for carrier-squelch level 7 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2697,7 +2945,8 @@
             "group": "service",
             "label": "VHF Squelch 8",
             "widget": "integer",
-            "subgroup": "vhf"
+            "subgroup": "vhf",
+            "description": "Factory threshold for carrier-squelch level 8 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2712,7 +2961,8 @@
             "group": "service",
             "label": "VHF Squelch 9",
             "widget": "integer",
-            "subgroup": "vhf"
+            "subgroup": "vhf",
+            "description": "Factory threshold for carrier-squelch level 9 on VHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2745,7 +2995,8 @@
             "group": "service",
             "label": "UHF Squelch 0",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 0 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2760,7 +3011,8 @@
             "group": "service",
             "label": "UHF Squelch 1",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 1 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2775,7 +3027,8 @@
             "group": "service",
             "label": "UHF Squelch 2",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 2 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2790,7 +3043,8 @@
             "group": "service",
             "label": "UHF Squelch 3",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 3 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2805,7 +3059,8 @@
             "group": "service",
             "label": "UHF Squelch 4",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 4 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2820,7 +3075,8 @@
             "group": "service",
             "label": "UHF Squelch 5",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 5 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2835,7 +3091,8 @@
             "group": "service",
             "label": "UHF Squelch 6",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 6 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2850,7 +3107,8 @@
             "group": "service",
             "label": "UHF Squelch 7",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 7 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2865,7 +3123,8 @@
             "group": "service",
             "label": "UHF Squelch 8",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 8 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         },
         {
@@ -2880,7 +3139,8 @@
             "group": "service",
             "label": "UHF Squelch 9",
             "widget": "integer",
-            "subgroup": "uhf"
+            "subgroup": "uhf",
+            "description": "Factory threshold for carrier-squelch level 9 on UHF. Menu 0 (SQL) selects which threshold is used. Change only with test equipment."
           }
         }
       ]
@@ -2900,7 +3160,8 @@
             "label": "VHF TX Enabled",
             "widget": "switch",
             "subgroup": "limits",
-            "order": 1
+            "order": 1,
+            "description": "Allows transmit on VHF. This is not a keypad menu item."
           }
         },
         {
@@ -2915,7 +3176,8 @@
             "label": "VHF Lower Limit (MHz)",
             "widget": "integer",
             "subgroup": "limits",
-            "order": 3
+            "order": 3,
+            "description": "Lowest VHF frequency the radio will transmit, in MHz."
           }
         },
         {
@@ -2930,7 +3192,8 @@
             "label": "VHF Upper Limit (MHz)",
             "widget": "integer",
             "subgroup": "limits",
-            "order": 4
+            "order": 4,
+            "description": "Highest VHF frequency the radio will transmit, in MHz."
           }
         },
         {
@@ -2944,7 +3207,8 @@
             "label": "UHF TX Enabled",
             "widget": "switch",
             "subgroup": "limits",
-            "order": 2
+            "order": 2,
+            "description": "Allows transmit on UHF. This is not a keypad menu item."
           }
         },
         {
@@ -2959,7 +3223,8 @@
             "label": "UHF Lower Limit (MHz)",
             "widget": "integer",
             "subgroup": "limits",
-            "order": 5
+            "order": 5,
+            "description": "Lowest UHF frequency the radio will transmit, in MHz."
           }
         },
         {
@@ -2974,7 +3239,8 @@
             "label": "UHF Upper Limit (MHz)",
             "widget": "integer",
             "subgroup": "limits",
-            "order": 6
+            "order": 6,
+            "description": "Highest UHF frequency the radio will transmit, in MHz."
           }
         }
       ]
