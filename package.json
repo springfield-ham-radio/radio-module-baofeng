@@ -27,6 +27,7 @@
   "scripts": {
     "build": "node -e \"console.log('json-only radio module; nothing to build')\"",
     "pack:release": "node scripts/pack-release-zip.mjs",
+    "check:driver-versions": "node scripts/check-driver-versions.mjs",
     "commitlint": "commitlint --edit",
     "format": "oxfmt",
     "lint": "oxlint test",
@@ -130,8 +131,7 @@
         {
           "assets": [
             "CHANGELOG.md",
-            "package.json",
-            "configs/*.json"
+            "package.json"
           ]
         }
       ]

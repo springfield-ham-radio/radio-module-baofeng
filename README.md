@@ -10,4 +10,4 @@ Docs: [Install radios](https://springfield-ham-radio.github.io/ham-radio-docs/gu
 yarn pack:release
 ```
 
-`pack:release` stamps `package.json`'s version into every `configs/*.json` `version` field before zipping.
+`pack:release` writes the zip and `dist-release/catalog-module.json`. Each `configs/*.json` `version` stays that radio's driver version. The zip version comes from `package.json`.
