@@ -1,3 +1,9 @@
+## [3.6.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.6.0...v3.6.1) (2026-09-25)
+
+### Bug Fixes
+
+* continue a UV-5R read when the block ack stays silent ([658bf99](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/658bf9905aae46284d4258e8fb917e3773ba2baf))
+
 ## [3.6.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.5.0...v3.6.0) (2026-09-24)
 
 ### Features
