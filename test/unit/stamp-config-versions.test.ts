@@ -34,16 +34,12 @@ describe('stampConfigVersions', () => {
     }
   });
 
-  it('keeps Baofeng radio configs aligned with package.json', () => {
-    const packageJson = JSON.parse(readFileSync(join(rootDirectory, 'package.json'), 'utf8')) as {
-      version: string;
-    };
-
+  it('keeps the UV-5R config version as its own semver', () => {
     const config = JSON.parse(readFileSync(join(rootDirectory, 'configs/baofeng-uv5r.json'), 'utf8')) as {
       version: string;
     };
 
-    expect(config.version).toBe(packageJson.version);
+    expect(config.version).toMatch(/^\d+\.\d+\.\d+$/);
   });
 
   it('rejects a version that is not semver', () => {

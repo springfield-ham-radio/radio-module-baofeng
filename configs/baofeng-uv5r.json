@@ -5,7 +5,7 @@
     "name": "Baofeng UV-5R",
     "manufacturer": "Baofeng"
   },
-  "version": "3.6.0",
+  "version": "3.6.1",
   "description": "UV-5R and UV-5RE Plus models",
   "capabilities": {
     "memoryRead": true,
@@ -77,9 +77,12 @@
         "segments": ["channels", "settings"],
         "send": ["S", "$address", "$chunkSize"],
         "expect": ["X", "$address", "$length", "$data"],
+        "delay": 50,
+        "ready": "0x06",
         "ack": {
           "send": ["0x06"],
-          "expect": "0x06"
+          "expect": "0x06",
+          "timeout": 50
         }
       }
     }
