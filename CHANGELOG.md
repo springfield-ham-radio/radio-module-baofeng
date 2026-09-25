@@ -1,3 +1,9 @@
+## [3.6.2](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.6.1...v3.6.2) (2026-09-25)
+
+### Bug Fixes
+
+* keep radio driver versions independent of the module zip ([00e938a](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/00e938a8ade4f07cdc3af8636d9d4674a35f583b))
+
 ## [3.6.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.6.0...v3.6.1) (2026-09-25)
 
 ### Bug Fixes
