@@ -1,3 +1,9 @@
+## [3.7.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.6.2...v3.7.0) (2026-10-03)
+
+### Features
+
+* **uv5r:** declare 2 m and 70 cm transmit bands ([1704cfa](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/1704cfa8e0d55eae134b59b1d08e832404eb3eb5))
+
 ## [3.6.2](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.6.1...v3.6.2) (2026-09-25)
 
 ### Bug Fixes
