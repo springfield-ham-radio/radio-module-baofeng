@@ -1,3 +1,9 @@
+## [3.7.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.7.0...v3.7.1) (2026-10-03)
+
+### Bug Fixes
+
+* **deps:** bump brace-expansion from 2.1.4 to 2.1.7 ([#15](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/15)) ([502f9d2](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/502f9d2df2b81e8b62e7e270b1d28f565501063e))
+
 ## [3.7.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.6.2...v3.7.0) (2026-10-03)
 
 ### Features
