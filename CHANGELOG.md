@@ -1,3 +1,9 @@
+## [3.7.2](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.7.1...v3.7.2) (2026-10-04)
+
+### Bug Fixes
+
+* **release:** dedupe @semantic-release/github so release zips upload on Node 26 ([#18](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/18)) ([0771014](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/0771014ee95faa76db35e1de5ee7d4d09be91b7a))
+
 ## [3.7.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.7.0...v3.7.1) (2026-10-03)
 
 ### Bug Fixes
