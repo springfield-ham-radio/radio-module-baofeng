@@ -62,13 +62,14 @@
     "@semantic-release/git": "11.0.1",
     "@semantic-release/github": "12.0.10",
     "@semantic-release/npm": "13.2.0",
-    "@springfield/ham-radio-api": "^17.12.0",
+    "@springfield/ham-radio-api": "^18.0.1",
+    "@springfield/ham-radio-registry": "^2.0.0",
     "@springfield/ham-radio-utils": "^4.15.0",
-    "@types/node": "26.6.5",
+    "@types/node": "26.6.4",
     "husky": "9.1.7",
     "loglayer": "^9.4.0",
-    "oxfmt": "^0.72.0",
-    "oxlint": "1.87.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "1.86.0",
     "semantic-release": "25.0.9",
     "typescript": "7.0.2",
     "vite": "^8.3.0",
@@ -120,7 +121,7 @@
         {
           "assets": [
             {
-              "path": "dist-release/radio-module-baofeng-*.zip",
+              "path": "dist-release/radio-module-*.zip",
               "label": "Radio module JSON package (zip)"
             }
           ]

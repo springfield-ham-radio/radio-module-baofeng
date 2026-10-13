@@ -142,7 +142,7 @@ function canonicalConfig(parsed) {
     return JSON.stringify(parsed);
   }
 
-  const { version: _version, ...rest } = parsed;
+  const { version: _version, minApiVersion: _minApiVersion, ...rest } = parsed;
   return JSON.stringify(rest);
 }
 
