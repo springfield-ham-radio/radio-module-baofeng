@@ -6,6 +6,7 @@
     "manufacturer": "Baofeng"
   },
   "version": "3.7.0",
+  "minApiVersion": "18.0.1",
   "description": "UV-5R and UV-5RE Plus models",
   "capabilities": {
     "memoryRead": true,

@@ -141,6 +141,60 @@ describe('driverVersionBumpFailures', () => {
     }
   });
 
+  it('allows introducing minApiVersion without a driver bump', () => {
+    const root = initRepo();
+
+    try {
+      writeFileSync(
+        join(root, 'configs/radio.json'),
+        `{
+  "version": "1.0.0",
+  "minApiVersion": "18.0.1",
+  "memoryMap": { "$ref": "../src/shared/memory-maps/radio.json" },
+  "settingsSchema": { "settingsSchema": { "$ref": "../src/shared/schemas/settings.json" } }
+}
+`,
+      );
+
+      expect(driverVersionBumpFailures(root, 'HEAD')).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('requires a bump when an existing minApiVersion changes', () => {
+    const root = initRepo();
+
+    try {
+      writeFileSync(
+        join(root, 'configs/radio.json'),
+        `{
+  "version": "1.0.0",
+  "minApiVersion": "18.0.1",
+  "memoryMap": { "$ref": "../src/shared/memory-maps/radio.json" },
+  "settingsSchema": { "settingsSchema": { "$ref": "../src/shared/schemas/settings.json" } }
+}
+`,
+      );
+      git(root, ['add', '.']);
+      git(root, ['-c', 'user.email=dev@example.com', '-c', 'user.name=Dev', 'commit', '-m', 'add floor']);
+      writeFileSync(
+        join(root, 'configs/radio.json'),
+        `{
+  "version": "1.0.0",
+  "minApiVersion": "19.0.0",
+  "memoryMap": { "$ref": "../src/shared/memory-maps/radio.json" },
+  "settingsSchema": { "settingsSchema": { "$ref": "../src/shared/schemas/settings.json" } }
+}
+`,
+      );
+
+      expect(driverVersionBumpFailures(root, 'HEAD')[0]).toContain('configs/radio.json is still 1.0.0');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it('keeps the UV-5R config version as its own semver', () => {
     const config = JSON.parse(readFileSync(join(rootDirectory, 'configs/baofeng-uv5r.json'), 'utf8')) as {
       version: string;
