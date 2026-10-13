@@ -188,9 +188,22 @@ describe('packRadioModuleReleases', () => {
   });
 });
 
+const adr0009SquashMessage = `feat!: publish one module zip per radio (#28)
+
+BREAKING CHANGE: releases publish radio-module-<modelId>-<version>.zip per radio instead of one manufacturer zip. Implements ADR 0009.`;
+
+async function analyzeReleaseType(commitMessages: string[]) {
+  const commits = commitMessages.map((message) => ({ message }));
+
+  return analyzeCommits(
+    { preset: 'conventionalcommits' },
+    { commits, logger: { log() {}, error() {} } },
+  );
+}
+
 describe('semantic-release', () => {
   it('classifies the ADR 0009 commit as a major release', async () => {
-    const log = spawnSync('git', ['log', 'origin/main..HEAD', '--format=%B%x00'], {
+    const log = spawnSync('git', ['log', '563b6f2^..HEAD', '--format=%B%x00'], {
       cwd: rootDirectory,
       encoding: 'utf8',
     });
@@ -199,17 +212,18 @@ describe('semantic-release', () => {
       throw new Error(log.stderr || 'git log failed');
     }
 
-    const commits = log.stdout
+    const commitMessages = log.stdout
       .split('\0')
       .map((message) => message.trim())
-      .filter((message) => message.length > 0)
-      .map((message) => ({ message }));
+      .filter((message) => message.length > 0);
 
-    const releaseType = await analyzeCommits(
-      { preset: 'conventionalcommits' },
-      { commits, logger: { log() {}, error() {} } },
-    );
+    expect(await analyzeReleaseType(commitMessages)).toBe('major');
 
-    expect(releaseType).toBe('major');
+    expect(
+      await analyzeReleaseType([
+        adr0009SquashMessage,
+        'fix: treat the unreleased per-radio major commit as major on main',
+      ]),
+    ).toBe('major');
   });
 });
