@@ -1,3 +1,19 @@
+## [4.0.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.7.2...v4.0.0) (2026-10-13)
+
+### ⚠ BREAKING CHANGES
+
+* releases publish radio-module-<modelId>-<version>.zip per radio instead of one manufacturer zip. Implements ADR 0009.
+
+### Features
+
+* publish one module zip per radio ([#28](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/28)) ([563b6f2](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/563b6f24d08fcef92808f260dac789b5ee494d27))
+
+### Bug Fixes
+
+* **deps:** bump handlebars from 4.7.8 to 4.7.10 ([#22](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/22)) ([eefbac4](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/eefbac4b5d2186f5fce6cd0dadb57c1300cde84f))
+* **deps:** bump source-map-js from 1.2.1 to 1.2.2 ([#23](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/23)) ([f66f5cc](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/f66f5ccddf9a53d3b370dabec383dbcc1c0c00b1))
+* treat the unreleased per-radio major commit as major on main ([#29](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/29)) ([9187a38](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/9187a38d86075602821fb283f78e4ce59610064b))
+
 ## [3.7.2](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.7.1...v3.7.2) (2026-10-04)
 
 ### Bug Fixes
