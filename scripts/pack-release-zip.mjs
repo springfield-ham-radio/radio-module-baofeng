@@ -24,7 +24,11 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { compareDriverSemver } from './check-driver-versions.mjs';
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/;
-const ASSET_VERSION_PATTERN = /^radio-module-.+-(\d+\.\d+\.\d+)\.zip$/;
+/**
+ * Per-radio assets only. Model id must contain a hyphen (`baofeng-uv5r`), matching
+ * registry schema v3. Manufacturer bundles (`radio-module-baofeng-3.7.2.zip`) do not match.
+ */
+const PER_RADIO_ASSET_PATTERN = /^radio-module-([a-z0-9]+(?:-[a-z0-9]+)+)-(\d+\.\d+\.\d+)\.zip$/;
 
 /**
  * @param {string} moduleRoot
@@ -165,22 +169,48 @@ function isConfigVersion(version) {
 }
 
 function closureRepoPaths(moduleRoot, relativeConfig, parsed) {
-  const configDirectory = dirname(join(moduleRoot, relativeConfig));
-  const absoluteRefs = localRefPaths(parsed, configDirectory);
   const paths = new Set([relativeConfig]);
+  const seenAbsolute = new Set();
+  const queue = [{ value: parsed, fromDirectory: dirname(join(moduleRoot, relativeConfig)) }];
 
-  for (const absolutePath of absoluteRefs) {
-    const relativePath = toRepoRelative(moduleRoot, absolutePath);
+  while (queue.length > 0) {
+    const current = queue.shift();
 
-    if (relativePath === undefined) {
-      throw new Error(`${relativeConfig} $ref escapes the repository: ${absolutePath}`);
+    if (!current) {
+      continue;
     }
 
-    if (!existsSync(join(moduleRoot, relativePath))) {
-      throw new Error(`${relativeConfig} $ref target is missing: ${relativePath}`);
-    }
+    for (const absolutePath of localRefPaths(current.value, current.fromDirectory)) {
+      if (seenAbsolute.has(absolutePath)) {
+        continue;
+      }
 
-    paths.add(relativePath);
+      seenAbsolute.add(absolutePath);
+
+      const relativePath = toRepoRelative(moduleRoot, absolutePath);
+
+      if (relativePath === undefined) {
+        throw new Error(`${relativeConfig} $ref escapes the repository: ${absolutePath}`);
+      }
+
+      const absoluteFile = join(moduleRoot, relativePath);
+
+      if (!existsSync(absoluteFile)) {
+        throw new Error(`${relativeConfig} $ref target is missing: ${relativePath}`);
+      }
+
+      paths.add(relativePath);
+
+      let nested;
+
+      try {
+        nested = JSON.parse(readFileSync(absoluteFile, 'utf8'));
+      } catch {
+        continue;
+      }
+
+      queue.push({ value: nested, fromDirectory: dirname(absoluteFile) });
+    }
   }
 
   return [...paths].sort();
@@ -283,6 +313,47 @@ function githubRepoSlug(pkg) {
 }
 
 /**
+ * Parse a GitHub Release asset name. Manufacturer bundles such as
+ * `radio-module-baofeng-3.7.2.zip` return undefined.
+ *
+ * @param {string} name
+ * @returns {{ modelId: string, configVersion: string } | undefined}
+ */
+export function releaseAssetModelVersion(name) {
+  const match = PER_RADIO_ASSET_PATTERN.exec(name);
+
+  if (!match) {
+    return undefined;
+  }
+
+  return { modelId: match[1], configVersion: match[2] };
+}
+
+/**
+ * @param {string[]} assetNames
+ * @returns {Record<string, string>} Highest config version per model id
+ */
+export function highestPublishedConfigVersions(assetNames) {
+  const maxByModel = {};
+
+  for (const name of assetNames) {
+    const parsed = releaseAssetModelVersion(name);
+
+    if (!parsed) {
+      continue;
+    }
+
+    const previous = maxByModel[parsed.modelId];
+
+    if (previous === undefined || compareDriverSemver(parsed.configVersion, previous) > 0) {
+      maxByModel[parsed.modelId] = parsed.configVersion;
+    }
+  }
+
+  return maxByModel;
+}
+
+/**
  * @param {string | undefined} slug owner/repo
  * @returns {Record<string, string>}
  */
@@ -292,9 +363,7 @@ export function publishedConfigVersionsByModel(slug) {
   }
 
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
-  const args = ['api', `repos/${slug}/releases`, '-f', 'per_page=100'];
-
-  const result = spawnSync('gh', args, {
+  const result = spawnSync('gh', ['api', '--paginate', '--slurp', `repos/${slug}/releases?per_page=100`], {
     encoding: 'utf8',
     env: token ? { ...process.env, GH_TOKEN: token, GITHUB_TOKEN: token } : process.env,
   });
@@ -303,19 +372,21 @@ export function publishedConfigVersionsByModel(slug) {
     return {};
   }
 
-  let releases;
+  let pages;
 
   try {
-    releases = JSON.parse(result.stdout);
+    pages = JSON.parse(result.stdout);
   } catch {
     return {};
   }
+
+  const releases = Array.isArray(pages) && Array.isArray(pages[0]) ? pages.flat() : pages;
 
   if (!Array.isArray(releases)) {
     return {};
   }
 
-  const maxByModel = {};
+  const assetNames = [];
 
   for (const release of releases) {
     if (release?.draft || release?.prerelease) {
@@ -325,34 +396,13 @@ export function publishedConfigVersionsByModel(slug) {
     const assets = Array.isArray(release.assets) ? release.assets : [];
 
     for (const asset of assets) {
-      const name = asset?.name;
-
-      if (typeof name !== 'string' || !name.startsWith('radio-module-') || !name.endsWith('.zip')) {
-        continue;
-      }
-
-      const versionMatch = ASSET_VERSION_PATTERN.exec(name);
-
-      if (!versionMatch) {
-        continue;
-      }
-
-      const configVersion = versionMatch[1];
-      const modelId = name.slice('radio-module-'.length, name.length - `-${configVersion}.zip`.length);
-
-      if (modelId.length === 0) {
-        continue;
-      }
-
-      const previous = maxByModel[modelId];
-
-      if (previous === undefined || compareDriverSemver(configVersion, previous) > 0) {
-        maxByModel[modelId] = configVersion;
+      if (typeof asset?.name === 'string') {
+        assetNames.push(asset.name);
       }
     }
   }
 
-  return maxByModel;
+  return highestPublishedConfigVersions(assetNames);
 }
 
 function isCli() {

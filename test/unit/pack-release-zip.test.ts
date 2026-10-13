@@ -5,9 +5,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { parseModuleCatalog } from '@springfield/ham-radio-registry';
 import { describe, expect, it } from 'vitest';
+import { analyzeCommits } from '@semantic-release/commit-analyzer';
 import {
+  highestPublishedConfigVersions,
   packRadioModuleReleases,
   publishedConfigVersionsByModel,
+  releaseAssetModelVersion,
 } from '../../scripts/pack-release-zip.mjs';
 
 const rootDirectory = join(import.meta.dirname, '../..');
@@ -112,7 +115,101 @@ describe('packRadioModuleReleases', () => {
     }
   });
 
-  it('parses per-radio asset names when listing published versions', () => {
+  it('does not treat manufacturer bundle zips as a published UV-5R', () => {
+    const publishedNames = [
+      'radio-module-baofeng-3.7.2.zip',
+      'radio-module-baofeng-3.6.1.zip',
+      'radio-module-baofeng-3.5.0.zip',
+    ];
+
+    expect(releaseAssetModelVersion('radio-module-baofeng-3.7.2.zip')).toBeUndefined();
+    expect(releaseAssetModelVersion('radio-module-baofeng-uv5r-3.7.0.zip')).toEqual({
+      modelId: 'baofeng-uv5r',
+      configVersion: '3.7.0',
+    });
+    expect(highestPublishedConfigVersions(publishedNames)).toEqual({});
+
+    const result = packRadioModuleReleases(rootDirectory, {
+      releaseVersion: '4.0.0',
+      publishedVersionsByModel: highestPublishedConfigVersions(publishedNames),
+    });
+
+    expect(result.zips.map((zip) => zip.zipName)).toEqual(['radio-module-baofeng-uv5r-3.7.0.zip']);
+    expect(result.catalogEntries[0]?.downloadUrl).toBe(
+      'https://github.com/springfield-ham-radio/radio-module-baofeng/releases/download/v4.0.0/radio-module-baofeng-uv5r-3.7.0.zip',
+    );
+  });
+
+  it('follows nested $ref files into the zip', () => {
+    const root = mkdtempSync(join(tmpdir(), 'pack-release-'));
+
+    try {
+      mkdirSync(join(root, 'configs'), { recursive: true });
+      mkdirSync(join(root, 'src/shared/schemas'), { recursive: true });
+      writeFileSync(join(root, 'src/shared/schemas/extra.json'), '{ "type": "object" }\n');
+      writeFileSync(
+        join(root, 'src/shared/schemas/settings.json'),
+        '{ "properties": { "extra": { "$ref": "./extra.json" } } }\n',
+      );
+      writeFileSync(
+        join(root, 'package.json'),
+        JSON.stringify({
+          name: '@springfield/radio-module-example',
+          version: '1.0.0',
+          repository: 'https://github.com/springfield-ham-radio/radio-module-example',
+          springfield: { manufacturer: 'Example' },
+        }),
+      );
+      writeFileSync(
+        join(root, 'configs/example-radio.json'),
+        JSON.stringify({
+          id: { model: 'example-radio', name: 'Example Radio', manufacturer: 'Example' },
+          version: '1.2.0',
+          minApiVersion: '18.0.1',
+          settingsSchema: { settingsSchema: { $ref: '../src/shared/schemas/settings.json' } },
+        }),
+      );
+
+      const result = packRadioModuleReleases(root, { forceAll: true, releaseVersion: '2.0.0' });
+      const entries = zipEntries(result.zips[0]!.zipPath);
+
+      expect(entries).toEqual([
+        'configs/example-radio.json',
+        'src/shared/schemas/extra.json',
+        'src/shared/schemas/settings.json',
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('returns no published versions when the GitHub slug is missing', () => {
     expect(publishedConfigVersionsByModel(undefined)).toEqual({});
+  });
+});
+
+describe('semantic-release', () => {
+  it('classifies the ADR 0009 commit as a major release', async () => {
+    const log = spawnSync('git', ['log', 'origin/main..HEAD', '--format=%B%x00'], {
+      cwd: rootDirectory,
+      encoding: 'utf8',
+    });
+
+    if (log.status !== 0) {
+      throw new Error(log.stderr || 'git log failed');
+    }
+
+    const commits = log.stdout
+      .split('\0')
+      .map((message) => message.trim())
+      .filter((message) => message.length > 0)
+      .map((message) => ({ message }));
+
+    const releaseType = await analyzeCommits(
+      { preset: 'conventionalcommits' },
+      { commits, logger: { log() {}, error() {} } },
+    );
+
+    expect(releaseType).toBe('major');
   });
 });

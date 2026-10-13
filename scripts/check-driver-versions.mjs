@@ -71,8 +71,12 @@ export function driverVersionBumpFailures(rootDirectory, baseRef = 'HEAD') {
 
     const configDirectory = dirname(join(rootDirectory, relativeConfig));
     const changed = [];
+    // Introducing minApiVersion (the ADR 0009 cutover) is catalog metadata and does not
+    // bump the driver. Changing a minApiVersion that is already set does, so the new
+    // floor is published as a new config version.
+    const ignoreNewMinApiVersion = baseJson?.minApiVersion === undefined;
 
-    if (canonicalConfig(headJson) !== canonicalConfig(baseJson)) {
+    if (canonicalConfig(headJson, ignoreNewMinApiVersion) !== canonicalConfig(baseJson, ignoreNewMinApiVersion)) {
       changed.push(relativeConfig);
     }
 
@@ -137,13 +141,18 @@ function semverParts(version) {
   return [Number(match[1]), Number(match[2]), Number(match[3])];
 }
 
-function canonicalConfig(parsed) {
+function canonicalConfig(parsed, ignoreMinApiVersion = false) {
   if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
     return JSON.stringify(parsed);
   }
 
-  const { version: _version, minApiVersion: _minApiVersion, ...rest } = parsed;
-  return JSON.stringify(rest);
+  const { version: _version, minApiVersion, ...rest } = parsed;
+
+  if (ignoreMinApiVersion) {
+    return JSON.stringify(rest);
+  }
+
+  return JSON.stringify(minApiVersion === undefined ? rest : { minApiVersion, ...rest });
 }
 
 function normalizeFile(text) {
