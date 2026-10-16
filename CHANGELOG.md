@@ -1,3 +1,9 @@
+## [4.1.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v4.0.0...v4.1.0) (2026-10-16)
+
+### Features
+
+* add pack:beta for single-radio beta zips ([#30](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/30)) ([c781c75](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/c781c7569ea5bbd99f1f51523128111660c57dfe))
+
 ## [4.0.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v3.7.2...v4.0.0) (2026-10-13)
 
 ### ⚠ BREAKING CHANGES
