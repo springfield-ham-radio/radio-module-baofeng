@@ -96,6 +96,43 @@ export function packRadioModuleReleases(moduleRoot, options = {}) {
   return { zips, catalogEntries, catalogEntriesPath };
 }
 
+/**
+ * @typedef {{ fileName: string, relativeConfig: string, modelId: string, name: string, configVersion: string, minApiVersion: string, manufacturer: string, parsed: object }} ConfigDescriptor
+ */
+
+/**
+ * @param {string} moduleRoot
+ * @returns {ConfigDescriptor[]}
+ */
+export function listConfigDescriptors(moduleRoot) {
+  return loadRadioConfigs(moduleRoot);
+}
+
+/**
+ * @param {string} moduleRoot
+ * @param {string} fileName
+ * @returns {ConfigDescriptor}
+ */
+export function parseConfigDescriptor(moduleRoot, fileName) {
+  const relativeConfig = `configs/${fileName}`;
+  const descriptor = loadRadioConfigs(moduleRoot).find((entry) => entry.relativeConfig === relativeConfig);
+
+  if (!descriptor) {
+    throw new Error(`missing config ${relativeConfig}`);
+  }
+
+  return descriptor;
+}
+
+/**
+ * @param {string} moduleRoot
+ * @param {ConfigDescriptor} descriptor
+ * @returns {string[]}
+ */
+export function closurePathsForConfig(moduleRoot, descriptor) {
+  return closureRepoPaths(moduleRoot, descriptor.relativeConfig, descriptor.parsed);
+}
+
 function loadRadioConfigs(moduleRoot) {
   const configDirectory = join(moduleRoot, 'configs');
 
