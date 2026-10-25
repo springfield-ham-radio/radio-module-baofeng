@@ -27,7 +27,7 @@
   "scripts": {
     "build": "node -e \"console.log('json-only radio module; nothing to build')\"",
     "pack:release": "node scripts/pack-release-zip.mjs",
-    "pack:beta": "node scripts/pack-beta-zip.mjs",
+    "pack:beta": "ham-radio-pack-beta",
     "check:driver-versions": "node scripts/check-driver-versions.mjs",
     "commitlint": "commitlint --edit",
     "format": "oxfmt",
@@ -65,7 +65,7 @@
     "@semantic-release/npm": "13.2.0",
     "@springfield/ham-radio-api": "^18.0.1",
     "@springfield/ham-radio-registry": "^2.0.0",
-    "@springfield/ham-radio-utils": "^4.15.0",
+    "@springfield/ham-radio-utils": "^4.17.0",
     "@types/node": "26.6.5",
     "husky": "9.1.7",
     "loglayer": "^9.4.0",
