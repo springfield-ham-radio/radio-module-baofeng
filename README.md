@@ -11,7 +11,7 @@ yarn pack:release
 yarn pack:beta baofeng-uv5r
 ```
 
-`pack:beta <modelId> [n]` builds one local beta zip under `dist-release/` ([ADR 0010](https://springfield-ham-radio.github.io/ham-radio-docs/developer/adr/0010-local-beta-driver-zips.html)): same `$ref` closure as `pack:release` for that radio, with packed config version `<version>-beta.<n>`. It does not call GitHub, write `catalog-entries.json`, or remove other zips in `dist-release/`. Output is zip path, byte size, `sha256:` digest, and short git SHA when available.
+`pack:beta` is the shared `ham-radio-pack-beta` command from `@springfield/ham-radio-utils`. `pack:beta <modelId> [n]` builds one local beta zip under `dist-release/` ([ADR 0010](https://springfield-ham-radio.github.io/ham-radio-docs/developer/adr/0010-local-beta-driver-zips.html)): same `$ref` closure as `pack:release` for that radio, with packed config version `<version>-beta.<n>`. It does not call GitHub, write `catalog-entries.json`, or remove other zips in `dist-release/`. Output is zip path, byte size, `sha256:` digest, and short git SHA when available. `pack:release` stays the local `scripts/pack-release-zip.mjs` script.
 
 `pack:release` writes one zip per changed `configs/*.json` driver:
 
