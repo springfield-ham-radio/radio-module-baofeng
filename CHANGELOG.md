@@ -1,3 +1,9 @@
+## [4.1.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v4.1.0...v4.1.1) (2026-11-07)
+
+### Bug Fixes
+
+* **deps:** bump fast-uri from 3.1.7 to 3.1.9 ([#34](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/34)) ([3615113](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/3615113b65f41c4c6e2ed47a22e183f3d238ba00))
+
 ## [4.1.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v4.0.0...v4.1.0) (2026-10-16)
 
 ### Features
