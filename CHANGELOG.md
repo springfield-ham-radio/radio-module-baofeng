@@ -1,3 +1,13 @@
+## [4.2.0](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v4.1.1...v4.2.0) (2026-11-15)
+
+### Features
+
+* list the 2-band UV-5R Plus on the UV-5R driver ([#40](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/40)) ([8d14b1a](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/8d14b1aa12948472214b6da42e04ed8d996bc9db))
+
+### Bug Fixes
+
+* **deps:** bump lodash-es from 4.17.21 to 4.18.1 ([#38](https://github.com/springfield-ham-radio/radio-module-baofeng/issues/38)) ([3a85837](https://github.com/springfield-ham-radio/radio-module-baofeng/commit/3a858373e5e9b65b18a5cc86791427021ef0edcb))
+
 ## [4.1.1](https://github.com/springfield-ham-radio/radio-module-baofeng/compare/v4.1.0...v4.1.1) (2026-11-07)
 
 ### Bug Fixes
