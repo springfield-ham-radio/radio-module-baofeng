@@ -33,7 +33,7 @@ describe('packRadioModuleReleases', () => {
     const result = packRadioModuleReleases(rootDirectory, { forceAll: true, releaseVersion: '9.9.9' });
 
     expect(result.zips).toHaveLength(1);
-    expect(result.zips[0]?.zipName).toBe('radio-module-baofeng-uv5r-3.7.0.zip');
+    expect(result.zips[0]?.zipName).toBe('radio-module-baofeng-uv5r-3.8.0.zip');
 
     const entries = zipEntries(result.zips[0]!.zipPath);
 
@@ -49,12 +49,12 @@ describe('packRadioModuleReleases', () => {
       id: 'baofeng-uv5r',
       package: '@springfield/radio-module-baofeng-uv5r',
       manufacturer: 'Baofeng',
-      name: 'Baofeng UV-5R',
-      version: '3.7.0',
+      name: 'Baofeng UV-5R / UV-5R Plus',
+      version: '3.8.0',
       config: 'configs/baofeng-uv5r.json',
       minApiVersion: '18.0.1',
       downloadUrl:
-        'https://github.com/springfield-ham-radio/radio-module-baofeng/releases/download/v9.9.9/radio-module-baofeng-uv5r-3.7.0.zip',
+        'https://github.com/springfield-ham-radio/radio-module-baofeng/releases/download/v9.9.9/radio-module-baofeng-uv5r-3.8.0.zip',
     });
 
     const onDisk = JSON.parse(readFileSync(result.catalogEntriesPath, 'utf8')) as unknown[];
@@ -77,7 +77,7 @@ describe('packRadioModuleReleases', () => {
   it('skips radios whose config version is already on a release asset', () => {
     const result = packRadioModuleReleases(rootDirectory, {
       releaseVersion: '3.7.2',
-      publishedVersionsByModel: { 'baofeng-uv5r': '3.7.0' },
+      publishedVersionsByModel: { 'baofeng-uv5r': '3.8.0' },
     });
 
     expect(result.zips).toHaveLength(0);
@@ -134,9 +134,9 @@ describe('packRadioModuleReleases', () => {
       publishedVersionsByModel: highestPublishedConfigVersions(publishedNames),
     });
 
-    expect(result.zips.map((zip) => zip.zipName)).toEqual(['radio-module-baofeng-uv5r-3.7.0.zip']);
+    expect(result.zips.map((zip) => zip.zipName)).toEqual(['radio-module-baofeng-uv5r-3.8.0.zip']);
     expect(result.catalogEntries[0]?.downloadUrl).toBe(
-      'https://github.com/springfield-ham-radio/radio-module-baofeng/releases/download/v4.0.0/radio-module-baofeng-uv5r-3.7.0.zip',
+      'https://github.com/springfield-ham-radio/radio-module-baofeng/releases/download/v4.0.0/radio-module-baofeng-uv5r-3.8.0.zip',
     );
   });
 

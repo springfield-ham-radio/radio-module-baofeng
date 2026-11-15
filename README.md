@@ -1,6 +1,6 @@
 # radio-module-baofeng
 
-JSON radio module for Baofeng UV-5R / UV-5RE Plus. Clone-protocol memory read and write; no live CAT.
+JSON radio module for Baofeng UV-5R, UV-5RE Plus, and UV-5R Plus (2-band, High/Low power). Clone-protocol memory read and write; no live CAT. The 3-power UV-5R+ (CHIRP's BF-F8HP) and the Quansheng UV-5R Plus (CHIRP's UV-K5) are different radios and are not this driver.
 
 Install from HamBench (**Preferences → Radios**). Each radio is its own release zip on GitHub Releases, not an npm runtime dependency of the app.
 
@@ -15,7 +15,7 @@ yarn pack:beta baofeng-uv5r
 
 `pack:release` writes one zip per changed `configs/*.json` driver:
 
-- `dist-release/radio-module-baofeng-uv5r-<config.version>.zip` (for example `radio-module-baofeng-uv5r-3.7.0.zip`)
+- `dist-release/radio-module-baofeng-uv5r-<config.version>.zip` (for example `radio-module-baofeng-uv5r-3.8.0.zip`)
 - `dist-release/catalog-entries.json` — schema version 3 catalog rows for those zips
 
 Each zip contains only that config file and the relative `$ref` files it needs (schemas and memory maps). The zip filename and catalog `version` use the config’s `version` field ([ADR 0006](https://springfield-ham-radio.github.io/ham-radio-docs/developer/adr/0006-per-driver-config-semver.html)). The GitHub Release tag is still the manufacturer repo version from `package.json` / semantic-release; `downloadUrl` points at `.../releases/download/v<repo-version>/radio-module-<model>-<config.version>.zip`.
