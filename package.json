@@ -1,7 +1,7 @@
 {
   "name": "@springfield/radio-module-baofeng",
   "version": "4.1.1",
-  "description": "Radio module for Baofeng UV-5R series ham radios (DSL JSON configs)",
+  "description": "Radio module for Baofeng UV-5R, UV-5RE Plus, and UV-5R Plus (DSL JSON configs)",
   "author": "Bryan Hunt",
   "license": "MIT",
   "readme": "README.md",

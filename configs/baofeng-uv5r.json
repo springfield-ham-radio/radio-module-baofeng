@@ -2,12 +2,12 @@
   "$schema": "https://springfield-ham-radio.com/schemas/radio-config-v1.json",
   "id": {
     "model": "baofeng-uv5r",
-    "name": "Baofeng UV-5R",
+    "name": "Baofeng UV-5R / UV-5R Plus",
     "manufacturer": "Baofeng"
   },
-  "version": "3.7.0",
+  "version": "3.8.0",
   "minApiVersion": "18.0.1",
-  "description": "UV-5R and UV-5RE Plus models",
+  "description": "UV-5R, UV-5RE Plus, and UV-5R Plus (2-band, High/Low power)",
   "capabilities": {
     "memoryRead": true,
     "memoryWrite": true,
